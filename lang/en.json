@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "accueil": "Home",
+    "services": "Services",
+    "processus": "Process",
+    "portfolio": "Portfolio",
+    "faq": "FAQ",
+    "boutique": "Shop",
+    "contact": "Contact",
+    "cta": "Start a project"
+  },
+  "hero": {
+    "title_1": "I turn your ideas into",
+    "title_2": "modern digital solutions.",
+    "text": "I support entrepreneurs, businesses and creators in Benin and worldwide in building digital solutions tailored to their goals: websites, video editing, artificial intelligence and digital strategy.",
+    "btn_services": "Discover my services",
+    "btn_contact": "Contact me",
+    "trust": "<strong>80+</strong> projects delivered to satisfied clients"
+  },
+  "services": {
+    "eyebrow": "My expertise",
+    "title": "What I offer",
+    "subtitle": "Four complementary skills, one mission: move your project forward.",
+    "web_title": "Web Development",
+    "web_text": "Building modern, fast and responsive websites and applications tailored to your business.",
+    "video_title": "Video Editing",
+    "video_text": "Professional video content creation to promote your products and services.",
+    "ia_title": "AI Training",
+    "ia_text": "Hands-on learning of AI tools to boost your efficiency.",
+    "accomp_title": "Digital Coaching",
+    "accomp_text": "Personalized advice to grow your online presence."
+  },
+  "process": {
+    "eyebrow": "Way of working",
+    "title": "How do we work together?",
+    "subtitle": "A clear four-step process, from the first conversation to final delivery.",
+    "step1_title": "Discussion",
+    "step1_text": "We talk about your needs, goals and expected results.",
+    "step2_title": "Analysis",
+    "step2_text": "I define a tailored strategy with the right tools.",
+    "step3_title": "Creation",
+    "step3_text": "I build your project with attention to detail and quality.",
+    "step4_title": "Delivery",
+    "step4_text": "I support you after delivery for a smooth handover."
+  },
+  "portfolio": {
+    "eyebrow": "Work",
+    "title": "Some recent projects",
+    "p1_title": "Professional showcase website",
+    "p1_text": "A modern interface to present a business.",
+    "p2_title": "Commercial landing page",
+    "p2_text": "A page designed to present an offer.",
+    "p3_title": "Advertising video",
+    "p3_text": "Dynamic editing for social media.",
+    "p4_title": "AI project",
+    "p4_text": "Solutions using artificial intelligence.",
+    "p5_title": "Digital identity",
+    "p5_text": "Building a professional digital presence."
+  },
+  "why": {
+    "eyebrow": "Why me",
+    "title": "A digital partner worth investing in",
+    "subtitle": "For several years, I've helped entrepreneurs and businesses turn their ideas into concrete, measurable and lasting digital solutions.",
+    "stat1": "Projects completed",
+    "stat2": "Clients supported",
+    "stat3": "Years of experience",
+    "stat4": "Satisfied clients",
+    "item1_title": "Creativity",
+    "item1_text": "Every project gets a personalized approach to create a unique experience.",
+    "item2_title": "Versatility",
+    "item2_text": "A combination of skills in web development, video and artificial intelligence.",
+    "item3_title": "Modern solutions",
+    "item3_text": "Using current tools to build efficient, scalable solutions.",
+    "item4_title": "Support",
+    "item4_text": "Guidance based on listening, advice and results.",
+    "badge1": "Guaranteed work",
+    "badge2": "Reply within 24h",
+    "badge3": "Personalized follow-up",
+    "badge4": "4.9/5 satisfaction"
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What my clients say",
+    "subtitle": "Genuine feedback on projects we've worked on together."
+  },
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "Everything you need to know",
+    "subtitle": "Answers to the most common questions before starting a project.",
+    "q1": "Who is Géraud Zoé?",
+    "a1": "Géraud Zoé, real name Géraud KPOVIESSI, is a freelance web developer based in Benin, specialized in website creation, video editing, AI training and digital coaching.",
+    "q2": "What services does he offer?",
+    "a2": "Web development, video editing, artificial intelligence training and digital coaching for businesses and entrepreneurs.",
+    "q3": "Where does he work?",
+    "a3": "He is based in Benin and works locally, while also supporting clients remotely worldwide.",
+    "q4": "How to contact him?",
+    "a4": "By email at geraudzoe66@gmail.com or via WhatsApp; he usually replies within 24h."
+  },
+  "cta": {
+    "title": "Have a project?",
+    "text": "Let's talk about your idea and build the right solution together.",
+    "btn": "Contact me"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's work together",
+    "subtitle": "A question, an idea or a project? I'd love to talk with you.",
+    "email_label": "Email",
+    "whatsapp_label": "WhatsApp",
+    "location_label": "Location",
+    "location_value": "Benin",
+    "form_name": "Your name",
+    "form_email": "Your email",
+    "form_subject": "Subject",
+    "form_message": "Your message",
+    "form_submit": "Send message"
+  },
+  "footer": {
+    "link1": "What I offer",
+    "link2": "My Work",
+    "link3": "FAQ",
+    "link4": "Shop"
+  }
+}

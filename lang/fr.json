@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "accueil": "Accueil",
+    "services": "Services",
+    "processus": "Processus",
+    "portfolio": "Portfolio",
+    "faq": "FAQ",
+    "boutique": "Boutique",
+    "contact": "Contact",
+    "cta": "Démarrer un projet"
+  },
+  "hero": {
+    "title_1": "Je transforme vos idées en",
+    "title_2": "solutions numériques modernes.",
+    "text": "J'accompagne les entrepreneurs, entreprises et créateurs au Bénin et à l'international dans la création de solutions digitales adaptées à leurs objectifs : sites web, montage vidéo, intelligence artificielle et stratégie digitale.",
+    "btn_services": "Découvrir mes services",
+    "btn_contact": "Me contacter",
+    "trust": "<strong>80+</strong> projets livrés à des clients satisfaits"
+  },
+  "services": {
+    "eyebrow": "Mon expertise",
+    "title": "Ce que je propose",
+    "subtitle": "Quatre compétences complémentaires, une seule mission : faire avancer votre projet.",
+    "web_title": "Développement Web",
+    "web_text": "Création de sites web et applications modernes, rapides et responsives adaptés à votre activité.",
+    "video_title": "Montage Vidéo",
+    "video_text": "Création de contenus vidéo professionnels pour promouvoir vos produits et services.",
+    "ia_title": "Formation IA",
+    "ia_text": "Apprentissage pratique des outils d'intelligence artificielle pour gagner en efficacité.",
+    "accomp_title": "Accompagnement",
+    "accomp_text": "Conseils personnalisés pour développer votre présence numérique."
+  },
+  "process": {
+    "eyebrow": "Méthode de travail",
+    "title": "Comment travaillons-nous ensemble ?",
+    "subtitle": "Un processus clair en quatre étapes, du premier échange à la livraison finale.",
+    "step1_title": "Discussion",
+    "step1_text": "Nous échangeons sur votre besoin, vos objectifs et les résultats attendus.",
+    "step2_title": "Analyse",
+    "step2_text": "Je définis une stratégie adaptée avec les outils nécessaires.",
+    "step3_title": "Création",
+    "step3_text": "Je réalise votre projet avec attention aux détails et à la qualité.",
+    "step4_title": "Livraison",
+    "step4_text": "Je vous accompagne après la livraison pour une meilleure utilisation."
+  },
+  "portfolio": {
+    "eyebrow": "Réalisations",
+    "title": "Quelques projets récents",
+    "p1_title": "Site vitrine professionnel",
+    "p1_text": "Une interface moderne pour présenter une activité.",
+    "p2_title": "Landing page commerciale",
+    "p2_text": "Une page pensée pour présenter une offre.",
+    "p3_title": "Vidéo publicitaire",
+    "p3_text": "Montage dynamique pour les réseaux sociaux.",
+    "p4_title": "Projet IA",
+    "p4_text": "Solutions utilisant l'intelligence artificielle.",
+    "p5_title": "Identité numérique",
+    "p5_text": "Création d'une présence digitale professionnelle."
+  },
+  "why": {
+    "eyebrow": "Pourquoi moi",
+    "title": "Un partenaire digital en qui vous pouvez investir",
+    "subtitle": "Depuis plusieurs années, j'aide des entrepreneurs et entreprises à transformer leurs idées en solutions numériques concrètes, mesurables et durables.",
+    "stat1": "Projets réalisés",
+    "stat2": "Clients accompagnés",
+    "stat3": "Années d'expérience",
+    "stat4": "Clients satisfaits",
+    "item1_title": "Créativité",
+    "item1_text": "Chaque projet bénéficie d'une approche personnalisée afin de créer une expérience unique.",
+    "item2_title": "Polyvalence",
+    "item2_text": "Une combinaison de compétences en développement web, vidéo et intelligence artificielle.",
+    "item3_title": "Solutions modernes",
+    "item3_text": "Utilisation d'outils actuels pour créer des solutions efficaces et évolutives.",
+    "item4_title": "Accompagnement",
+    "item4_text": "Un suivi basé sur l'écoute, le conseil et la recherche de résultats.",
+    "badge1": "Travail garanti",
+    "badge2": "Réponse sous 24h",
+    "badge3": "Suivi personnalisé",
+    "badge4": "4.9/5 satisfaction"
+  },
+  "testimonials": {
+    "eyebrow": "Témoignages",
+    "title": "Ce que disent mes clients",
+    "subtitle": "Des retours authentiques sur les projets menés ensemble."
+  },
+  "faq": {
+    "eyebrow": "Questions fréquentes",
+    "title": "Tout ce qu'il faut savoir",
+    "subtitle": "Les réponses aux questions les plus posées avant de démarrer un projet.",
+    "q1": "Qui est Géraud Zoé ?",
+    "a1": "Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, la formation en IA et l'accompagnement digital.",
+    "q2": "Quels services propose-t-il ?",
+    "a2": "Développement web, montage vidéo, formation en intelligence artificielle et accompagnement digital pour entreprises et entrepreneurs.",
+    "q3": "Dans quelle zone intervient-il ?",
+    "a3": "Il est basé au Bénin et intervient localement, tout en accompagnant également des clients à distance partout dans le monde.",
+    "q4": "Comment le contacter ?",
+    "a4": "Par email à geraudzoe66@gmail.com ou via WhatsApp ; il répond généralement sous 24h."
+  },
+  "cta": {
+    "title": "Vous avez un projet ?",
+    "text": "Parlons de votre idée et construisons ensemble une solution adaptée.",
+    "btn": "Me contacter"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Travaillons ensemble",
+    "subtitle": "Une question, une idée ou un projet ? Je serai ravi d'échanger avec vous.",
+    "email_label": "Email",
+    "whatsapp_label": "WhatsApp",
+    "location_label": "Localisation",
+    "location_value": "Bénin",
+    "form_name": "Votre nom",
+    "form_email": "Votre email",
+    "form_subject": "Sujet",
+    "form_message": "Votre message",
+    "form_submit": "Envoyer le message"
+  },
+  "footer": {
+    "link1": "Ce que je propose",
+    "link2": "Mes Réalisations",
+    "link3": "FAQ",
+    "link4": "Boutique"
+  }
+}

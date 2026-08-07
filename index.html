@@ -57,8 +57,113 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- Flag Icons (drapeaux vectoriels fiables, remplace les emoji de drapeaux) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/7.2.3/css/flag-icons.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS du sélecteur de langue (i18n) -->
+    <style>
+        .lang-switcher {
+            position: relative;
+            margin-left: 1rem;
+        }
+
+        .lang-current {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: inherit;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .lang-current .fi,
+        .lang-option .fi {
+            border-radius: 3px;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
+        }
+
+        .lang-current .fi {
+            font-size: 1.1rem;
+            line-height: 1.1rem;
+        }
+
+        .lang-option .fi {
+            font-size: 1rem;
+            line-height: 1rem;
+        }
+
+        .lang-current:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: #0F172A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.4rem;
+            min-width: 160px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            z-index: 999;
+        }
+
+        .lang-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: #E2E8F0;
+            font-family: inherit;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.7rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .lang-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .lang-option.active {
+            background: rgba(46, 92, 255, 0.15);
+            color: #2E5CFF;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .lang-switcher {
+                margin: 1rem 0 0;
+            }
+        }
+    </style>
 
     <!-- JSON-LD structuré pour le SEO et le GEO (moteurs génératifs / IA) -->
     <script type="application/ld+json">
@@ -214,18 +319,22 @@
 
             <ul class="nav-links" id="navLinks">
 
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#processus">Processus</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer">Boutique</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#accueil" data-i18n="nav.accueil">Accueil</a></li>
+                <li><a href="#services" data-i18n="nav.services">Services</a></li>
+                <li><a href="#processus" data-i18n="nav.processus">Processus</a></li>
+                <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer" data-i18n="nav.boutique">Boutique</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
 
             </ul>
 
+            <div class="lang-switcher" id="langSwitcher">
+                <button type="button" id="langCurrent" class="lang-current" aria-haspopup="true" aria-expanded="false">
+                    <span class="fi fi-fr"></span> FR
+                </button>
+            </div>
+
             <a href="#contact" class="btn primary-btn nav-cta">
-                Démarrer un projet
+                <span data-i18n="nav.cta">Démarrer un projet</span>
             </a>
 
             <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
@@ -258,11 +367,11 @@
                 </p>
 
                 <h1 class="reveal">
-                     Je transforme vos idées en
-                    <span>solutions numériques modernes.</span>
+                    <span data-i18n="hero.title_1">Je transforme vos idées en</span>
+                    <span data-i18n="hero.title_2">solutions numériques modernes.</span>
                 </h1>
 
-                <p class="hero-text reveal">
+                <p class="hero-text reveal" data-i18n="hero.text">
                     J'accompagne les entrepreneurs, entreprises et créateurs au Bénin et à l'international
                     dans la création de solutions digitales adaptées à leurs objectifs : sites web, montage vidéo,
                     intelligence artificielle et stratégie digitale.
@@ -271,11 +380,11 @@
                 <div class="hero-buttons reveal">
 
                     <a href="#services" class="btn primary-btn">
-                        <span>Découvrir mes services</span>
+                        <span data-i18n="hero.btn_services">Découvrir mes services</span>
                     </a>
 
                     <a href="#contact" class="btn secondary-btn">
-                        <span>Me contacter</span>
+                        <span data-i18n="hero.btn_contact">Me contacter</span>
                     </a>
 
                 </div>
@@ -286,7 +395,7 @@
                         <img src="https://ui-avatars.com/api/?name=M+H&background=D4A73A&color=1a1a1a&size=64" alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
                         <img src="https://ui-avatars.com/api/?name=K+D&background=131B2E&color=fff&size=64" alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
                     </div>
-                    <p><strong>80+</strong> projets livrés à des clients satisfaits</p>
+                    <p data-i18n-html="hero.trust"><strong>80+</strong> projets livrés à des clients satisfaits</p>
                 </div>
 
             </div>
@@ -316,35 +425,35 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Mon expertise</span>
-                <h2>Ce que je propose</h2>
-                <p>Quatre compétences complémentaires, une seule mission : faire avancer votre projet.</p>
+                <span class="eyebrow" data-i18n="services.eyebrow">Mon expertise</span>
+                <h2 data-i18n="services.title">Ce que je propose</h2>
+                <p data-i18n="services.subtitle">Quatre compétences complémentaires, une seule mission : faire avancer votre projet.</p>
             </div>
 
             <div class="cards-grid">
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
-                    <h3>Développement Web</h3>
-                    <p>Création de sites web et applications modernes, rapides et responsives adaptés à votre activité.</p>
+                    <h3 data-i18n="services.web_title">Développement Web</h3>
+                    <p data-i18n="services.web_text">Création de sites web et applications modernes, rapides et responsives adaptés à votre activité.</p>
                 </div>
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-video" aria-hidden="true"></i></div>
-                    <h3>Montage Vidéo</h3>
-                    <p>Création de contenus vidéo professionnels pour promouvoir vos produits et services.</p>
+                    <h3 data-i18n="services.video_title">Montage Vidéo</h3>
+                    <p data-i18n="services.video_text">Création de contenus vidéo professionnels pour promouvoir vos produits et services.</p>
                 </div>
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
-                    <h3>Formation IA</h3>
-                    <p>Apprentissage pratique des outils d'intelligence artificielle pour gagner en efficacité.</p>
+                    <h3 data-i18n="services.ia_title">Formation IA</h3>
+                    <p data-i18n="services.ia_text">Apprentissage pratique des outils d'intelligence artificielle pour gagner en efficacité.</p>
                 </div>
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
-                    <h3>Accompagnement</h3>
-                    <p>Conseils personnalisés pour développer votre présence numérique.</p>
+                    <h3 data-i18n="services.accomp_title">Accompagnement</h3>
+                    <p data-i18n="services.accomp_text">Conseils personnalisés pour développer votre présence numérique.</p>
                 </div>
 
             </div>
@@ -360,35 +469,35 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Méthode de travail</span>
-                <h2>Comment travaillons-nous ensemble ?</h2>
-                <p>Un processus clair en quatre étapes, du premier échange à la livraison finale.</p>
+                <span class="eyebrow" data-i18n="process.eyebrow">Méthode de travail</span>
+                <h2 data-i18n="process.title">Comment travaillons-nous ensemble ?</h2>
+                <p data-i18n="process.subtitle">Un processus clair en quatre étapes, du premier échange à la livraison finale.</p>
             </div>
 
             <div class="process-grid">
 
                 <div class="process-card reveal">
                     <span>01</span>
-                    <h3>Discussion</h3>
-                    <p>Nous échangeons sur votre besoin, vos objectifs et les résultats attendus.</p>
+                    <h3 data-i18n="process.step1_title">Discussion</h3>
+                    <p data-i18n="process.step1_text">Nous échangeons sur votre besoin, vos objectifs et les résultats attendus.</p>
                 </div>
 
                 <div class="process-card reveal">
                     <span>02</span>
-                    <h3>Analyse</h3>
-                    <p>Je définis une stratégie adaptée avec les outils nécessaires.</p>
+                    <h3 data-i18n="process.step2_title">Analyse</h3>
+                    <p data-i18n="process.step2_text">Je définis une stratégie adaptée avec les outils nécessaires.</p>
                 </div>
 
                 <div class="process-card reveal">
                     <span>03</span>
-                    <h3>Création</h3>
-                    <p>Je réalise votre projet avec attention aux détails et à la qualité.</p>
+                    <h3 data-i18n="process.step3_title">Création</h3>
+                    <p data-i18n="process.step3_text">Je réalise votre projet avec attention aux détails et à la qualité.</p>
                 </div>
 
                 <div class="process-card reveal">
                     <span>04</span>
-                    <h3>Livraison</h3>
-                    <p>Je vous accompagne après la livraison pour une meilleure utilisation.</p>
+                    <h3 data-i18n="process.step4_title">Livraison</h3>
+                    <p data-i18n="process.step4_text">Je vous accompagne après la livraison pour une meilleure utilisation.</p>
                 </div>
 
             </div>
@@ -404,8 +513,8 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Réalisations</span>
-                <h2>Quelques projets récents</h2>
+                <span class="eyebrow" data-i18n="portfolio.eyebrow">Réalisations</span>
+                <h2 data-i18n="portfolio.title">Quelques projets récents</h2>
             </div>
 
             <div class="portfolio-grid">
@@ -417,8 +526,8 @@
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <h3>Site vitrine professionnel</h3>
-                    <p>Une interface moderne pour présenter une activité.</p>
+                    <h3 data-i18n="portfolio.p1_title">Site vitrine professionnel</h3>
+                    <p data-i18n="portfolio.p1_text">Une interface moderne pour présenter une activité.</p>
                 </div>
 
                 <div class="project reveal">
@@ -428,8 +537,8 @@
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <h3>Landing page commerciale</h3>
-                    <p>Une page pensée pour présenter une offre.</p>
+                    <h3 data-i18n="portfolio.p2_title">Landing page commerciale</h3>
+                    <p data-i18n="portfolio.p2_text">Une page pensée pour présenter une offre.</p>
                 </div>
 
                 <div class="project reveal">
@@ -439,8 +548,8 @@
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
                     </div>
-                    <h3>Vidéo publicitaire</h3>
-                    <p>Montage dynamique pour les réseaux sociaux.</p>
+                    <h3 data-i18n="portfolio.p3_title">Vidéo publicitaire</h3>
+                    <p data-i18n="portfolio.p3_text">Montage dynamique pour les réseaux sociaux.</p>
                 </div>
 
                 <div class="project reveal">
@@ -451,8 +560,8 @@
                         </div>
 
                     </div>
-                    <h3>Projet IA</h3>
-                    <p>Solutions utilisant l'intelligence artificielle.</p>
+                    <h3 data-i18n="portfolio.p4_title">Projet IA</h3>
+                    <p data-i18n="portfolio.p4_text">Solutions utilisant l'intelligence artificielle.</p>
                 </div>
 
                 <div class="project reveal">
@@ -463,8 +572,8 @@
                         </div>
 
                     </div>
-                    <h3>Identité numérique</h3>
-                    <p>Création d'une présence digitale professionnelle.</p>
+                    <h3 data-i18n="portfolio.p5_title">Identité numérique</h3>
+                    <p data-i18n="portfolio.p5_text">Création d'une présence digitale professionnelle.</p>
                 </div>
 
             </div>
@@ -480,9 +589,9 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Pourquoi moi</span>
-                <h2>Un partenaire digital en qui vous pouvez investir</h2>
-                <p>
+                <span class="eyebrow" data-i18n="why.eyebrow">Pourquoi moi</span>
+                <h2 data-i18n="why.title">Un partenaire digital en qui vous pouvez investir</h2>
+                <p data-i18n="why.subtitle">
                     Depuis plusieurs années, j'aide des entrepreneurs et entreprises à transformer leurs idées
                     en solutions numériques concrètes, mesurables et durables.
                 </p>
@@ -493,25 +602,25 @@
                 <div class="stat-card reveal">
                     <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
                     <h3><span class="counter" data-target="150">0</span>+</h3>
-                    <p>Projets réalisés</p>
+                    <p data-i18n="why.stat1">Projets réalisés</p>
                 </div>
 
                 <div class="stat-card reveal">
                     <i class="fa-solid fa-users" aria-hidden="true"></i>
                     <h3><span class="counter" data-target="80">0</span>+</h3>
-                    <p>Clients accompagnés</p>
+                    <p data-i18n="why.stat2">Clients accompagnés</p>
                 </div>
 
                 <div class="stat-card reveal">
                     <i class="fa-solid fa-award" aria-hidden="true"></i>
                     <h3><span class="counter" data-target="5">0</span>+</h3>
-                    <p>Années d'expérience</p>
+                    <p data-i18n="why.stat3">Années d'expérience</p>
                 </div>
 
                 <div class="stat-card reveal">
                     <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
                     <h3><span class="counter" data-target="98">0</span>%</h3>
-                    <p>Clients satisfaits</p>
+                    <p data-i18n="why.stat4">Clients satisfaits</p>
                 </div>
 
             </div>
@@ -521,42 +630,42 @@
                 <div class="why-item reveal">
                     <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
                     <div>
-                        <h3>Créativité</h3>
-                        <p>Chaque projet bénéficie d'une approche personnalisée afin de créer une expérience unique.</p>
+                        <h3 data-i18n="why.item1_title">Créativité</h3>
+                        <p data-i18n="why.item1_text">Chaque projet bénéficie d'une approche personnalisée afin de créer une expérience unique.</p>
                     </div>
                 </div>
 
                 <div class="why-item reveal">
                     <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
                     <div>
-                        <h3>Polyvalence</h3>
-                        <p>Une combinaison de compétences en développement web, vidéo et intelligence artificielle.</p>
+                        <h3 data-i18n="why.item2_title">Polyvalence</h3>
+                        <p data-i18n="why.item2_text">Une combinaison de compétences en développement web, vidéo et intelligence artificielle.</p>
                     </div>
                 </div>
 
                 <div class="why-item reveal">
                     <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                     <div>
-                        <h3>Solutions modernes</h3>
-                        <p>Utilisation d'outils actuels pour créer des solutions efficaces et évolutives.</p>
+                        <h3 data-i18n="why.item3_title">Solutions modernes</h3>
+                        <p data-i18n="why.item3_text">Utilisation d'outils actuels pour créer des solutions efficaces et évolutives.</p>
                     </div>
                 </div>
 
                 <div class="why-item reveal">
                     <i class="fa-solid fa-user-check" aria-hidden="true"></i>
                     <div>
-                        <h3>Accompagnement</h3>
-                        <p>Un suivi basé sur l'écoute, le conseil et la recherche de résultats.</p>
+                        <h3 data-i18n="why.item4_title">Accompagnement</h3>
+                        <p data-i18n="why.item4_text">Un suivi basé sur l'écoute, le conseil et la recherche de résultats.</p>
                     </div>
                 </div>
 
             </div>
 
             <div class="trust-badges reveal">
-                <div class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>Travail garanti</span></div>
-                <div class="badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span>Réponse sous 24h</span></div>
-                <div class="badge"><i class="fa-solid fa-comments" aria-hidden="true"></i><span>Suivi personnalisé</span></div>
-                <div class="badge"><i class="fa-solid fa-star" aria-hidden="true"></i><span>4.9/5 satisfaction</span></div>
+                <div class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span data-i18n="why.badge1">Travail garanti</span></div>
+                <div class="badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span data-i18n="why.badge2">Réponse sous 24h</span></div>
+                <div class="badge"><i class="fa-solid fa-comments" aria-hidden="true"></i><span data-i18n="why.badge3">Suivi personnalisé</span></div>
+                <div class="badge"><i class="fa-solid fa-star" aria-hidden="true"></i><span data-i18n="why.badge4">4.9/5 satisfaction</span></div>
             </div>
 
         </div>
@@ -570,12 +679,14 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Témoignages</span>
-                <h2>Ce que disent mes clients</h2>
-                <p>Des retours authentiques sur les projets menés ensemble.</p>
+                <span class="eyebrow" data-i18n="testimonials.eyebrow">Témoignages</span>
+                <h2 data-i18n="testimonials.title">Ce que disent mes clients</h2>
+                <p data-i18n="testimonials.subtitle">Des retours authentiques sur les projets menés ensemble.</p>
             </div>
 
         </div>
+
+        <!-- Note : les témoignages ci-dessous restent volontairement en français (avis clients authentiques, non traduits). -->
 
         <div class="testimonial-slider reveal">
 
@@ -690,9 +801,9 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Questions fréquentes</span>
-                <h2>Tout ce qu'il faut savoir</h2>
-                <p>Les réponses aux questions les plus posées avant de démarrer un projet.</p>
+                <span class="eyebrow" data-i18n="faq.eyebrow">Questions fréquentes</span>
+                <h2 data-i18n="faq.title">Tout ce qu'il faut savoir</h2>
+                <p data-i18n="faq.subtitle">Les réponses aux questions les plus posées avant de démarrer un projet.</p>
             </div>
 
             <div class="why-grid">
@@ -700,32 +811,32 @@
                 <div class="why-item reveal">
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
-                        <h3>Qui est Géraud Zoé ?</h3>
-                        <p>Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, la formation en IA et l'accompagnement digital.</p>
+                        <h3 data-i18n="faq.q1">Qui est Géraud Zoé ?</h3>
+                        <p data-i18n="faq.a1">Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, la formation en IA et l'accompagnement digital.</p>
                     </div>
                 </div>
 
                 <div class="why-item reveal">
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
-                        <h3>Quels services propose-t-il ?</h3>
-                        <p>Développement web, montage vidéo, formation en intelligence artificielle et accompagnement digital pour entreprises et entrepreneurs.</p>
+                        <h3 data-i18n="faq.q2">Quels services propose-t-il ?</h3>
+                        <p data-i18n="faq.a2">Développement web, montage vidéo, formation en intelligence artificielle et accompagnement digital pour entreprises et entrepreneurs.</p>
                     </div>
                 </div>
 
                 <div class="why-item reveal">
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
-                        <h3>Dans quelle zone intervient-il ?</h3>
-                        <p>Il est basé au Bénin et intervient localement, tout en accompagnant également des clients à distance partout dans le monde.</p>
+                        <h3 data-i18n="faq.q3">Dans quelle zone intervient-il ?</h3>
+                        <p data-i18n="faq.a3">Il est basé au Bénin et intervient localement, tout en accompagnant également des clients à distance partout dans le monde.</p>
                     </div>
                 </div>
 
                 <div class="why-item reveal">
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
-                        <h3>Comment le contacter ?</h3>
-                        <p>Par email à geraudzoe66@gmail.com ou via WhatsApp ; il répond généralement sous 24h.</p>
+                        <h3 data-i18n="faq.q4">Comment le contacter ?</h3>
+                        <p data-i18n="faq.a4">Par email à geraudzoe66@gmail.com ou via WhatsApp ; il répond généralement sous 24h.</p>
                     </div>
                 </div>
 
@@ -741,12 +852,12 @@
 
         <div class="container reveal">
 
-            <h2>Vous avez un projet ?</h2>
+            <h2 data-i18n="cta.title">Vous avez un projet ?</h2>
 
-            <p>Parlons de votre idée et construisons ensemble une solution adaptée.</p>
+            <p data-i18n="cta.text">Parlons de votre idée et construisons ensemble une solution adaptée.</p>
 
             <a href="#contact" class="btn primary-btn">
-                <span>Me contacter</span>
+                <span data-i18n="cta.btn">Me contacter</span>
             </a>
 
         </div>
@@ -760,9 +871,9 @@
         <div class="container">
 
             <div class="section-title reveal">
-                <span class="eyebrow">Contact</span>
-                <h2>Travaillons ensemble</h2>
-                <p>Une question, une idée ou un projet ? Je serai ravi d'échanger avec vous.</p>
+                <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+                <h2 data-i18n="contact.title">Travaillons ensemble</h2>
+                <p data-i18n="contact.subtitle">Une question, une idée ou un projet ? Je serai ravi d'échanger avec vous.</p>
             </div>
 
             <div class="contact-container">
@@ -774,7 +885,7 @@
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                         </a>
                         <div>
-                            <h3>Email</h3>
+                            <h3 data-i18n="contact.email_label">Email</h3>
                             <p>geraudzoe66@gmail.com</p>
                         </div>
                     </div>
@@ -784,7 +895,7 @@
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                         </a>
                         <div>
-                            <h3>WhatsApp</h3>
+                            <h3 data-i18n="contact.whatsapp_label">WhatsApp</h3>
                             <p>+229 0162369528<br>+229 0168890874</p>
                         </div>
                     </div>
@@ -792,8 +903,8 @@
                     <div class="contact-item">
                         <span class="contact-icon-plain"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
                         <div>
-                            <h3>Localisation</h3>
-                            <p>Bénin</p>
+                            <h3 data-i18n="contact.location_label">Localisation</h3>
+                            <p data-i18n="contact.location_value">Bénin</p>
                         </div>
                     </div>
 
@@ -801,13 +912,13 @@
 
                 <form action="https://formspree.io/f/xrenpooz" method="POST" enctype="multipart/form-data" class="contact-form reveal" aria-label="Formulaire de contact">
 
-                    <input type="text" placeholder="Votre nom" name="name" autocomplete="name" required>
-                    <input type="email" placeholder="Votre email" name="email" autocomplete="email" required>
-                    <input type="text" placeholder="Sujet" name="subject">
-                    <textarea rows="6" placeholder="Votre message" name="message" required></textarea>
+                    <input type="text" placeholder="Votre nom" name="name" autocomplete="name" required data-i18n-placeholder="contact.form_name">
+                    <input type="email" placeholder="Votre email" name="email" autocomplete="email" required data-i18n-placeholder="contact.form_email">
+                    <input type="text" placeholder="Sujet" name="subject" data-i18n-placeholder="contact.form_subject">
+                    <textarea rows="6" placeholder="Votre message" name="message" required data-i18n-placeholder="contact.form_message"></textarea>
 
                     <button class="btn primary-btn" type="submit">
-                        <span>Envoyer le message</span>
+                        <span data-i18n="contact.form_submit">Envoyer le message</span>
                     </button>
 
                 </form>
@@ -831,10 +942,10 @@
                 </div>
 
                 <ul class="footer-links">
-                    <li><a href="#services">Ce que je propose</a></li>
-                    <li><a href="#portfolio">Mes Réalisations</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer">Boutique</a></li>
+                    <li><a href="#services" data-i18n="footer.link1">Ce que je propose</a></li>
+                    <li><a href="#portfolio" data-i18n="footer.link2">Mes Réalisations</a></li>
+                    <li><a href="#faq" data-i18n="footer.link3">FAQ</a></li>
+                    <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer" data-i18n="footer.link4">Boutique</a></li>
                 </ul>
 
                 <div class="social-links">
@@ -860,6 +971,7 @@
     </button>
 
     <!-- ================= JAVASCRIPT ================= -->
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
 </body>
 
