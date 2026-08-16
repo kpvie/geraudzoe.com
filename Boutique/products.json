@@ -1,0 +1,34 @@
+[
+  {
+    "id": "ebook-ia-entrepreneurs",
+    "name": "Guide pratique : l'IA pour entrepreneurs",
+    "price": 5000,
+    "currency": "XOF",
+    "description": "Un guide concret pour utiliser l'intelligence artificielle dans votre activité au quotidien.",
+    "url": "produits/modele-produit-fichier.html"
+  },
+  {
+    "id": "template-site-vitrine",
+    "name": "Template de site vitrine prêt à personnaliser",
+    "price": 15000,
+    "currency": "XOF",
+    "description": "Un modèle HTML/CSS professionnel, prêt à adapter à votre marque.",
+    "url": "produits/modele-produit-fichier.html"
+  },
+  {
+    "id": "selection-coaching-premium",
+    "name": "Sélection — Programme Coaching Premium",
+    "price": 10000,
+    "currency": "XOF",
+    "description": "Postulez au programme de coaching premium. Réponse personnalisée sous 48h après sélection.",
+    "url": "produits/modele-produit-selection.html"
+  },
+  {
+    "id": "guide-capcut-telephone",
+    "name": "CapCut — Monter comme un pro avec un téléphone",
+    "price": 5000,
+    "currency": "XOF",
+    "description": "Apprends à monter tes vidéos sur CapCut directement depuis ton téléphone.",
+    "url": "Boutique/capcut.html"
+  }
+]

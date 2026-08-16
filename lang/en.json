@@ -56,7 +56,15 @@
     "p4_text": "Solutions using artificial intelligence.",
     "p5_title": "Digital identity",
     "p5_text": "Building a professional digital presence."
+      },
+
+    "products": {
+      "here": "Digital Shop",
+      "digit": "My Digital Products",
+      "again": "Ready-to-use resources, delivered automatically after secure payment.",
+      "januar": "Discover all my products"
   },
+  
   "why": {
     "eyebrow": "Why me",
     "title": "A digital partner worth investing in",
