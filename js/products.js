@@ -1,11 +1,11 @@
 (function () {
   // ⚠️ Remplace par ta VRAIE clé PUBLIQUE KkiaPay (sans risque à exposer ici).
   // Ne mets JAMAIS ta Private Api Key ni ta Secret ici.
-  const KKIAPAY_PUBLIC_KEY = 'COLLE_TA_CLE_PUBLIQUE_KKIAPAY_ICI';
+  const KKIAPAY_PUBLIC_KEY = 'a5d73a7095ae11f18b87e9a44e851008';
 
   // ⚠️ Remplace par l'URL de ta fonction Netlify une fois déployée.
   // Exemple : https://ton-projet.netlify.app/.netlify/functions/check-status
-  const CHECK_STATUS_URL = 'COLLE_ICI_URL_DE_TA_FONCTION_CHECK_STATUS';
+  const CHECK_STATUS_URL = 'https://remarkable-beignet-5207cf.netlify.app/.netlify/functions/check-status';
 
   // Mets false une fois que tu es en argent réel (mode Live activé sur KkiaPay)
   const SANDBOX_MODE = true;
