@@ -127,5 +127,11 @@
     "link2": "Mes Réalisations",
     "link3": "FAQ",
     "link4": "Boutique"
-  }
+  },
+  "products": {
+    "eyebrow": "Boutique digitale",
+    "title": "Mes produits numériques",
+    "subtitle": "Des ressources prêtes à l'emploi, livrées automatiquement après paiement sécurisé.",
+    "cta": "Découvrir tous mes produits"
+}
 }

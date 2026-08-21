@@ -128,5 +128,11 @@
     "link2": "My Work",
     "link3": "FAQ",
     "link4": "Shop"
-  }
+  },
+  "products": {
+    "eyebrow": "Digital shop",
+    "title": "My digital products",
+    "subtitle": "Ready-to-use resources, delivered automatically after secure payment.",
+    "cta": "Discover all my products"
+}
 }

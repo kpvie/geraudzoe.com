@@ -117,7 +117,6 @@ h1, h2, h3, h4 {
 .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
     font-family: var(--font-display);
     font-size: 0.8rem;
     font-weight: 600;
@@ -125,14 +124,6 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     color: var(--blue-600);
     margin-bottom: 14px;
-}
- 
-.eyebrow::before {
-    content: "";
-    width: 22px;
-    height: 2px;
-    background: var(--gold-500);
-    display: inline-block;
 }
  
 .section-title {
@@ -203,10 +194,6 @@ h1, h2, h3, h4 {
     background: var(--blue-600);
     color: #fff;
     box-shadow: var(--shadow-sm);
-}
- 
-.primary-btn::before {
-    background: linear-gradient(135deg, var(--navy-900), var(--blue-600));
 }
  
 .primary-btn:hover {
@@ -619,7 +606,7 @@ h1, h2, h3, h4 {
  
 .card:hover .card-icon {
     transform: rotate(-8deg) scale(1.08);
-    background: linear-gradient(135deg, var(--blue-600), var(--navy-900));
+    background: var(--blue-600);
     color: #fff;
 }
  
@@ -759,6 +746,28 @@ h1, h2, h3, h4 {
 .center {
     display: flex;
     justify-content: center;
+}
+
+/* ===== PORTFOLIO — espace de sécurité pour le texte ===== */
+
+.project h3,
+.project p {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+/* ====== PRODUITS (teaser accueil) ====== */
+
+.products-teaser {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.products-teaser .btn {
+    max-width: 100%;
+    text-align: center;
 }
  
 /* =================== WHY / POURQUOI =================== */
