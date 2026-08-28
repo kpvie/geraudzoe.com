@@ -1,0 +1,153 @@
+<section class="catalogue-chariow" id="produits">
+  <div class="conteneur-catalogue">
+    <h2 class="titre-section">Mes produits</h2>
+    <div class="grille-produits" id="grilleProduits">
+      <!-- Les cartes produits sont injectées ici en JS -->
+      <p class="chargement-produits" id="chargementProduits">Chargement des produits...</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .catalogue-chariow {
+    padding: 80px 20px;
+    background: #111826;
+    color: #fff;
+  }
+
+  .conteneur-catalogue {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .titre-section {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+  }
+
+  .grille-produits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .carte-produit {
+    background: #1a202c;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease;
+  }
+
+  .carte-produit:hover {
+    transform: translateY(-6px);
+  }
+
+  .carte-produit img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .contenu-carte {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .nom-produit {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .prix-produit {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .bouton-produit {
+    margin-top: auto;
+    display: inline-block;
+    text-align: center;
+    background: #2563eb;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+    box-shadow: none;
+  }
+
+  .bouton-produit:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .chargement-produits {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #ccc;
+  }
+
+  /* Responsive tablette */
+  @media (max-width: 1024px) {
+    .grille-produits {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 640px) {
+    .grille-produits {
+      grid-template-columns: 1fr;
+    }
+
+    .titre-section {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Récupère les produits Chariow via la fonction Netlify et affiche les cartes
+  async function chargerProduitsChariow() {
+    const grille = document.getElementById("grilleProduits");
+
+    try {
+      const reponse = await fetch("/.netlify/functions/chariow-produits");
+      const donnees = await reponse.json();
+
+      if (!reponse.ok || !donnees.produits || donnees.produits.length === 0) {
+        grille.innerHTML = '<p class="chargement-produits">Aucun produit disponible pour le moment.</p>';
+        return;
+      }
+
+      grille.innerHTML = donnees.produits
+        .map(
+          (produit) => `
+        <div class="carte-produit">
+          <img src="${produit.image || 'images/produit-placeholder.jpg'}" alt="${produit.nom}" loading="lazy">
+          <div class="contenu-carte">
+            <h3 class="nom-produit">${produit.nom}</h3>
+            <p class="prix-produit">${produit.prixAffiche}</p>
+            <a class="bouton-produit" href="/produits/${produit.slug}.html">Voir le produit</a>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    } catch (erreur) {
+      grille.innerHTML = '<p class="chargement-produits">Erreur de chargement des produits.</p>';
+    }
+  }
+
+  chargerProduitsChariow();
+</script>
