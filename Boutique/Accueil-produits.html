@@ -122,7 +122,7 @@
     const grille = document.getElementById("grilleProduits");
 
     try {
-      const reponse = await fetch("https://remarkable-beignet-5207cf.netlify.app/.netlify/functions/chariow-products");;
+      const reponse = await fetch("https://remarkable-beignet-5207cf.netlify.app/.netlify/functions/chariow-produits");
       const donnees = await reponse.json();
 
       if (!reponse.ok || !donnees.produits || donnees.produits.length === 0) {
