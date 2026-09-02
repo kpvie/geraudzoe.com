@@ -1,16 +1,35 @@
 <section class="catalogue-chariow" id="produits">
   <div class="conteneur-catalogue">
-    <h2 class="titre-section">Mes produits</h2>
+    <div class="entete-catalogue">
+      <p class="accroche-catalogue">Ressources numériques</p>
+      <h2 class="titre-section">Des outils prêts à l'emploi pour créer plus vite</h2>
+      <p class="intro-catalogue">Guides, formations et systèmes que j'utilise moi-même dans mon travail de montage, de développement et de création IA.</p>
+    </div>
+
     <div class="grille-produits" id="grilleProduits">
-      <!-- Les cartes produits sont injectées ici en JS -->
       <p class="chargement-produits" id="chargementProduits">Chargement des produits...</p>
+    </div>
+
+    <div class="reassurance-catalogue">
+      <div class="item-reassurance">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+        <span>Livraison immédiate après paiement</span>
+      </div>
+      <div class="item-reassurance">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Paiement sécurisé via Chariow</span>
+      </div>
+      <div class="item-reassurance">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <span>Accès au contenu à vie</span>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .catalogue-chariow {
-    padding: 80px 20px;
+    padding: 96px 20px;
     background: #111826;
     color: #fff;
   }
@@ -20,30 +39,56 @@
     margin: 0 auto;
   }
 
-  .titre-section {
+  /* En-tête de section */
+  .entete-catalogue {
+    max-width: 640px;
+    margin: 0 auto 56px;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
+  }
+
+  .accroche-catalogue {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gold-500, #d4a94a);
+    margin-bottom: 12px;
+  }
+
+  .titre-section {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin-bottom: 16px;
     color: #fff;
   }
 
+  .intro-catalogue {
+    font-family: "Nunito", sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #c3cad9;
+  }
+
+  /* Grille de produits */
   .grille-produits {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 28px;
   }
 
   .carte-produit {
     background: #1a202c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
 
   .carte-produit:hover {
     transform: translateY(-6px);
+    border-color: rgba(37, 99, 235, 0.5);
   }
 
   .carte-produit img {
@@ -53,27 +98,56 @@
   }
 
   .contenu-carte {
-    padding: 18px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     flex: 1;
   }
 
+  .categorie-produit {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold-500, #d4a94a);
+    background: rgba(212, 169, 74, 0.12);
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
   .nom-produit {
+    font-family: "DM Sans", sans-serif;
     font-size: 1.05rem;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+  }
+
+  .description-produit {
+    font-family: "Nunito", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #9aa4b8;
+    margin-bottom: 16px;
+  }
+
+  .bas-carte {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
   }
 
   .prix-produit {
     color: #fff;
     font-weight: 700;
-    margin-bottom: 16px;
+    font-size: 1.05rem;
   }
 
   .bouton-produit {
-    margin-top: auto;
     display: inline-block;
     text-align: center;
     background: #2563eb;
@@ -82,6 +156,7 @@
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.92rem;
     transition: background 0.2s ease, color 0.2s ease;
     box-shadow: none;
   }
@@ -97,6 +172,31 @@
     color: #ccc;
   }
 
+  /* Bandeau de réassurance */
+  .reassurance-catalogue {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .item-reassurance {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #c3cad9;
+    font-family: "Nunito", sans-serif;
+    font-size: 0.9rem;
+  }
+
+  .item-reassurance svg {
+    flex-shrink: 0;
+    color: var(--gold-500, #d4a94a);
+  }
+
   /* Responsive tablette */
   @media (max-width: 1024px) {
     .grille-produits {
@@ -106,17 +206,43 @@
 
   /* Responsive mobile */
   @media (max-width: 640px) {
+    .catalogue-chariow {
+      padding: 64px 16px;
+    }
+
     .grille-produits {
       grid-template-columns: 1fr;
     }
 
     .titre-section {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+    }
+
+    .reassurance-catalogue {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
     }
   }
 </style>
 
 <script>
+  // Accroches courtes par produit, tenues à jour ici quand on modifie PRODUITS_AUTORISES côté backend
+  const INFOS_PRODUITS = {
+    "prd_h60kzl": {
+      categorie: "Guide",
+      description: "La méthode complète pour créer des visuels produits professionnels, étape par étape."
+    },
+    "prd_vajso9": {
+      categorie: "Système IA",
+      description: "Le système complet pour produire des publicités performantes grâce à l'intelligence artificielle."
+    },
+    "prd_1n7gkf": {
+      categorie: "Formation",
+      description: "Apprends à créer des vidéos dessins animés pour enfants, du script à l'export final."
+    }
+  };
+
   // Récupère les produits Chariow via la fonction Netlify et affiche les cartes
   async function chargerProduitsChariow() {
     const grille = document.getElementById("grilleProduits");
@@ -131,18 +257,24 @@
       }
 
       grille.innerHTML = donnees.produits
-        .map(
-          (produit) => `
+        .map((produit) => {
+          const infos = INFOS_PRODUITS[produit.id] || { categorie: "Ressource", description: "" };
+
+          return `
         <div class="carte-produit">
           <img src="${produit.image || 'images/produit-placeholder.jpg'}" alt="${produit.nom}" loading="lazy">
           <div class="contenu-carte">
+            <span class="categorie-produit">${infos.categorie}</span>
             <h3 class="nom-produit">${produit.nom}</h3>
-            <p class="prix-produit">${produit.prixAffiche}</p>
-            <a class="bouton-produit" href="/produits/${produit.slug}.html">Voir le produit</a>
+            <p class="description-produit">${infos.description}</p>
+            <div class="bas-carte">
+              <span class="prix-produit">${produit.prixAffiche}</span>
+              <a class="bouton-produit" href="/produits/${produit.slug}.html">Voir le produit</a>
+            </div>
           </div>
         </div>
-      `
-        )
+      `;
+        })
         .join("");
     } catch (erreur) {
       grille.innerHTML = '<p class="chargement-produits">Erreur de chargement des produits.</p>';
