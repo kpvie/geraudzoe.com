@@ -30,8 +30,8 @@
 <style>
   .catalogue-chariow {
     padding: 96px 20px;
-    background: #111826;
-    color: #fff;
+    background: #ffffff;
+    color: #111826;
   }
 
   .conteneur-catalogue {
@@ -39,7 +39,6 @@
     margin: 0 auto;
   }
 
-  /* En-tête de section */
   .entete-catalogue {
     max-width: 640px;
     margin: 0 auto 56px;
@@ -50,7 +49,7 @@
     font-family: "DM Sans", sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--gold-500, #d4a94a);
+    color: #a3781c; /* version plus foncée du doré, lisible sur blanc */
     margin-bottom: 12px;
   }
 
@@ -59,17 +58,16 @@
     font-size: 2.1rem;
     line-height: 1.25;
     margin-bottom: 16px;
-    color: #fff;
+    color: #111826;
   }
 
   .intro-catalogue {
     font-family: "Nunito", sans-serif;
     font-size: 1.05rem;
     line-height: 1.6;
-    color: #c3cad9;
+    color: #5b6472;
   }
 
-  /* Grille de produits */
   .grille-produits {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -77,18 +75,20 @@
   }
 
   .carte-produit {
-    background: #1a202c;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.1);
     border-radius: 14px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 2px 10px rgba(17, 24, 38, 0.04);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .carte-produit:hover {
     transform: translateY(-6px);
-    border-color: rgba(37, 99, 235, 0.5);
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 12px 28px rgba(17, 24, 38, 0.08);
   }
 
   .carte-produit img {
@@ -110,7 +110,7 @@
     font-family: "DM Sans", sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--gold-500, #d4a94a);
+    color: #a3781c;
     background: rgba(212, 169, 74, 0.12);
     padding: 4px 10px;
     border-radius: 6px;
@@ -121,7 +121,7 @@
     font-family: "DM Sans", sans-serif;
     font-size: 1.05rem;
     font-weight: 600;
-    color: #fff;
+    color: #111826;
     margin-bottom: 6px;
   }
 
@@ -129,7 +129,7 @@
     font-family: "Nunito", sans-serif;
     font-size: 0.9rem;
     line-height: 1.5;
-    color: #9aa4b8;
+    color: #5b6472;
     margin-bottom: 16px;
   }
 
@@ -142,41 +142,43 @@
   }
 
   .prix-produit {
-    color: #fff;
+    color: #111826;
     font-weight: 700;
     font-size: 1.05rem;
   }
 
+  /* Bouton : reste bleu plein, et garde une bordure bleue visible au survol
+     au lieu de devenir blanc — sinon il disparaît sur fond blanc */
   .bouton-produit {
     display: inline-block;
     text-align: center;
     background: #2563eb;
-    color: #fff;
+    color: #ffffff;
     padding: 10px 18px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.92rem;
+    border: 1.5px solid #2563eb;
     transition: background 0.2s ease, color 0.2s ease;
-    box-shadow: none;
   }
 
   .bouton-produit:hover {
-    background: #fff;
-    color: #000;
+    background: #ffffff;
+    color: #2563eb;
+    /* la bordure bleue reste visible, donc le bouton ne se fond pas dans le fond blanc */
   }
 
   .chargement-produits {
     grid-column: 1 / -1;
     text-align: center;
-    color: #ccc;
+    color: #5b6472;
   }
 
-  /* Bandeau de réassurance */
   .reassurance-catalogue {
     margin-top: 56px;
     padding-top: 32px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(17, 24, 38, 0.1);
     display: flex;
     justify-content: center;
     gap: 40px;
@@ -187,24 +189,22 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #c3cad9;
+    color: #5b6472;
     font-family: "Nunito", sans-serif;
     font-size: 0.9rem;
   }
 
   .item-reassurance svg {
     flex-shrink: 0;
-    color: var(--gold-500, #d4a94a);
+    color: #a3781c;
   }
 
-  /* Responsive tablette */
   @media (max-width: 1024px) {
     .grille-produits {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  /* Responsive mobile */
   @media (max-width: 640px) {
     .catalogue-chariow {
       padding: 64px 16px;
