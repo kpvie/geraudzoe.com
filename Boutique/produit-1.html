@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide Professionnel de Création de Visuels Produits — Géraud Zoé</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Nunito", sans-serif;
+    color: #111826;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  .conteneur {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .conteneur-large {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  h1, h2, h3 {
+    font-family: "Orbitron", sans-serif;
+    color: #111826;
+    line-height: 1.3;
+  }
+
+  .etiquette {
+    display: inline-block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #a3781c;
+    background: rgba(212, 169, 74, 0.12);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .bouton-principal {
+    display: inline-block;
+    background: #2563eb;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 16px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1.5px solid #2563eb;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .bouton-principal:hover {
+    background: #ffffff;
+    color: #2563eb;
+  }
+
+  section {
+    padding: 72px 0;
+  }
+
+  .section-alternee {
+    background: #f6f8fc;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    padding: 64px 0 80px;
+  }
+
+  .grille-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .image-hero-conteneur {
+    position: relative;
+  }
+
+  .image-hero-conteneur img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 24px 48px rgba(17, 24, 38, 0.12);
+    transform: rotate(-2deg);
+  }
+
+  .titre-hero {
+    font-size: 2.4rem;
+    margin-bottom: 18px;
+  }
+
+  .accroche-hero {
+    font-size: 1.15rem;
+    color: #5b6472;
+    margin-bottom: 28px;
+  }
+
+  .liste-benefices {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .liste-benefices li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+
+  .liste-benefices svg {
+    flex-shrink: 0;
+    color: #2563eb;
+    margin-top: 3px;
+  }
+
+  .bloc-prix-hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .prix-hero {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  /* ===================== PROBLÈME ===================== */
+  .titre-section {
+    font-size: 1.9rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .sous-titre-section {
+    text-align: center;
+    color: #5b6472;
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 0 auto 44px;
+  }
+
+  .grille-problemes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .item-probleme {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    border-radius: 12px;
+  }
+
+  .item-probleme svg {
+    flex-shrink: 0;
+    color: #b5495b;
+    margin-top: 2px;
+  }
+
+  /* ===================== AVANT / APRÈS ===================== */
+  .grille-avant-apres {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .carte-avant-apres {
+    position: relative;
+  }
+
+  .carte-avant-apres img {
+    width: 100%;
+    border-radius: 14px;
+    display: block;
+  }
+
+  .etiquette-image {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: #111826;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+  }
+
+  .etiquette-image.apres {
+    background: #2563eb;
+  }
+
+  /* ===================== TÉMOIGNAGES CLIENTS ===================== */
+  .grille-clients {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .carte-client {
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .nom-client {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 16px 0;
+  }
+
+  .images-client {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 14px 16px 16px;
+  }
+
+  .images-client img {
+    width: 100%;
+    border-radius: 8px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  /* ===================== CE QUE TU VAS APPRENDRE ===================== */
+  .grille-competences {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .item-competence {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    border-left: 3px solid #2563eb;
+    background: #ffffff;
+  }
+
+  .item-competence h3 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .item-competence p {
+    color: #5b6472;
+    font-size: 0.92rem;
+  }
+
+  /* ===================== USAGES + PUBLIC ===================== */
+  .grille-usages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .puce-usage {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.1);
+    padding: 10px 18px;
+    border-radius: 30px;
+  }
+
+  /* ===================== CE QU'IL TE FAUT ===================== */
+  .liste-prerequis {
+    list-style: none;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .liste-prerequis li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(17, 24, 38, 0.08);
+    font-size: 1.02rem;
+  }
+
+  .liste-prerequis li:last-child {
+    border-bottom: none;
+  }
+
+  .liste-prerequis svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  /* ===================== VIDÉO ===================== */
+  .video-conteneur {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-bottom: 43.9%; /* ratio 16:9 sur max-width 780px */
+    height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(17, 24, 38, 0.1);
+  }
+
+  .video-conteneur iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ===================== OFFRE ===================== */
+  .carte-offre {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1.5px solid #2563eb;
+    border-radius: 18px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .prix-offre {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.6rem;
+    margin: 12px 0 20px;
+  }
+
+  .liste-offre {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .liste-offre li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.98rem;
+  }
+
+  .liste-offre svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  /* ===================== FAQ ===================== */
+  .item-faq {
+    border-bottom: 1px solid rgba(17, 24, 38, 0.1);
+  }
+
+  .question-faq {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 20px 4px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111826;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .question-faq svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .item-faq.ouvert .question-faq svg {
+    transform: rotate(45deg);
+  }
+
+  .reponse-faq {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    color: #5b6472;
+    font-size: 0.95rem;
+  }
+
+  .item-faq.ouvert .reponse-faq {
+    max-height: 240px;
+    padding-bottom: 20px;
+  }
+
+  /* ===================== CTA FINAL ===================== */
+  .cta-final {
+    background: #2563eb;
+    color: #ffffff;
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .cta-final h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 14px;
+  }
+
+  .cta-final p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+  }
+
+  .cta-final .bouton-principal {
+    background: #ffffff;
+    color: #2563eb;
+    border-color: #ffffff;
+  }
+
+  .cta-final .bouton-principal:hover {
+    background: transparent;
+    color: #ffffff;
+  }
+
+  /* ===================== BARRE D'ACHAT MOBILE ===================== */
+  .barre-achat-mobile {
+    display: none;
+  }
+
+  /* ===================== RESPONSIVE TABLETTE ===================== */
+  @media (max-width: 1024px) {
+    .grille-hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .image-hero-conteneur {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .grille-clients {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grille-competences {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===================== RESPONSIVE MOBILE ===================== */
+  @media (max-width: 640px) {
+    section {
+      padding: 56px 0;
+    }
+
+    .titre-hero {
+      font-size: 1.7rem;
+    }
+
+    .titre-section {
+      font-size: 1.5rem;
+    }
+
+    .grille-problemes {
+      grid-template-columns: 1fr;
+    }
+
+    .grille-avant-apres {
+      grid-template-columns: 1fr;
+    }
+
+    .grille-clients {
+      grid-template-columns: 1fr;
+    }
+
+    .carte-offre {
+      padding: 32px 22px;
+    }
+
+    .video-conteneur {
+      padding-bottom: 56.25%; /* repasse en ratio 16:9 classique en pleine largeur mobile */
+    }
+
+    /* Barre d'achat fixe en bas, utile sur mobile où le CTA hero sort vite de l'écran */
+    .barre-achat-mobile {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid rgba(17, 24, 38, 0.1);
+      padding: 12px 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 50;
+      box-shadow: 0 -8px 20px rgba(17, 24, 38, 0.06);
+    }
+
+    .barre-achat-mobile .prix-hero {
+      font-size: 1.15rem;
+    }
+
+    .barre-achat-mobile .bouton-principal {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+    }
+
+    body {
+      padding-bottom: 70px; /* évite que la barre fixe ne cache le bas de page */
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="conteneur">
+      <div class="grille-hero">
+        <div class="image-hero-conteneur">
+          <img src="images/produit-1/hero.jpg" alt="Guide Professionnel de Création de Visuels Produits">
+        </div>
+        <div>
+          <span class="etiquette">Guide numérique</span>
+          <h1 class="titre-hero">Crée des visuels produits qui donnent envie d'acheter</h1>
+          <p class="accroche-hero">La méthode complète, étape par étape, pour transformer une simple photo en visuel professionnel — avec des outils accessibles à tous.</p>
+          <ul class="liste-benefices">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Aucune compétence en graphisme requise</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Uniquement des outils gratuits</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Applicable dès aujourd'hui à tes propres produits</span>
+            </li>
+          </ul>
+          <div class="bloc-prix-hero">
+            <span class="prix-hero">1599 FCFA</span>
+            <a href="#offre" class="bouton-principal">Acheter maintenant</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LE PROBLÈME ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Tu as un bon produit, mais tes visuels ne lui rendent pas justice ?</h2>
+      <p class="sous-titre-section">Ce sont les blocages les plus fréquents chez les vendeurs qui n'ont pas encore de méthode claire pour présenter leurs produits.</p>
+      <div class="grille-problemes">
+        <div class="item-probleme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Une photo prise à la va-vite, sans mise en scène</span>
+        </div>
+        <div class="item-probleme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Un arrière-plan qui n'attire pas l'œil</span>
+        </div>
+        <div class="item-probleme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Une présentation qui donne une impression amateur</span>
+        </div>
+        <div class="item-probleme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>La difficulté à créer une publicité qui a l'air pro</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LA TRANSFORMATION ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">La transformation</h2>
+      <p class="sous-titre-section">Le même produit, avant et après avoir appliqué la méthode du guide.</p>
+      <div class="grille-avant-apres">
+        <div class="carte-avant-apres">
+          <span class="etiquette-image">Avant</span>
+          <img src="images/produit-1/avant.jpg" alt="Photo produit avant la méthode">
+        </div>
+        <div class="carte-avant-apres">
+          <span class="etiquette-image apres">Après</span>
+          <img src="images/produit-1/apres.jpg" alt="Visuel produit après la méthode">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TÉMOIGNAGES CLIENTS ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur-large">
+      <h2 class="titre-section">Ils ont appris. Ils ont essayé. Voici ce qu'ils ont créé.</h2>
+      <p class="sous-titre-section">Des captures d'échanges réels, suivies du visuel que chaque personne a produit après le guide.</p>
+      <div class="grille-clients">
+        <div class="carte-client">
+          <p class="nom-client">Client 01</p>
+          <div class="images-client">
+            <img src="images/produit-1/client-1-whatsapp.jpg" alt="Échange WhatsApp client 1">
+            <img src="images/produit-1/client-1-resultat.jpg" alt="Visuel créé par le client 1">
+          </div>
+        </div>
+        <div class="carte-client">
+          <p class="nom-client">Client 02</p>
+          <div class="images-client">
+            <img src="images/produit-1/client-2-whatsapp.jpg" alt="Échange WhatsApp client 2">
+            <img src="images/produit-1/client-2-resultat.jpg" alt="Visuel créé par le client 2">
+          </div>
+        </div>
+        <div class="carte-client">
+          <p class="nom-client">Client 03</p>
+          <div class="images-client">
+            <img src="images/produit-1/client-3-whatsapp.jpg" alt="Échange WhatsApp client 3">
+            <img src="images/produit-1/client-3-resultat.jpg" alt="Visuel créé par le client 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE TU VAS APPRENDRE ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que tu vas apprendre</h2>
+      <p class="sous-titre-section">Des compétences choisies pour leur utilité directe dans la vente, pas une liste de chapitres à cocher.</p>
+      <div class="grille-competences">
+        <div class="item-competence">
+          <div>
+            <h3>Mettre en scène un produit</h3>
+            <p>Choisir l'angle, l'arrière-plan et la lumière qui valorisent réellement ce que tu vends.</p>
+          </div>
+        </div>
+        <div class="item-competence">
+          <div>
+            <h3>Retoucher sans logiciel complexe</h3>
+            <p>Améliorer une photo avec des outils simples, gratuits et accessibles depuis un téléphone.</p>
+          </div>
+        </div>
+        <div class="item-competence">
+          <div>
+            <h3>Créer un visuel publicitaire</h3>
+            <p>Construire une image qui donne envie de cliquer, pas juste une photo du produit.</p>
+          </div>
+        </div>
+        <div class="item-competence">
+          <div>
+            <h3>Adapter le format aux réseaux</h3>
+            <p>Préparer les bonnes tailles et les bons formats pour chaque plateforme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== USAGES ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que tu peux faire avec le guide</h2>
+      <div class="grille-usages">
+        <span class="puce-usage">Présenter tes produits</span>
+        <span class="puce-usage">Créer des publications</span>
+        <span class="puce-usage">Créer des visuels publicitaires</span>
+        <span class="puce-usage">Améliorer tes photos</span>
+        <span class="puce-usage">Préparer du contenu réseaux sociaux</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== POUR QUI ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Pour qui ?</h2>
+      <div class="grille-usages">
+        <span class="puce-usage">Entrepreneurs</span>
+        <span class="puce-usage">Vendeurs en ligne</span>
+        <span class="puce-usage">Créateurs de contenu</span>
+        <span class="puce-usage">Community managers</span>
+        <span class="puce-usage">Débutants en IA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CE QU'IL TE FAUT ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Ce qu'il te faut</h2>
+      <p class="sous-titre-section">Ton principal atout : tu peux commencer avec des outils accessibles gratuitement.</p>
+      <ul class="liste-prerequis">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Pas besoin de Photoshop</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Pas besoin d'être graphiste</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Pas besoin d'un ordinateur puissant</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Des outils d'IA gratuits suffisent pour commencer</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== VIDÉO ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Vois la méthode en action</h2>
+      <p class="sous-titre-section">Une démonstration rapide du processus utilisé dans le guide.</p>
+      <div class="video-conteneur">
+        <!-- Remplace VIDEO_ID par l'identifiant réel de ta vidéo YouTube -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Démonstration du guide" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OFFRE ===================== -->
+  <section class="section-alternee" id="offre">
+    <div class="conteneur">
+      <h2 class="titre-section">L'offre</h2>
+      <div class="carte-offre">
+        <span class="etiquette">Accès immédiat</span>
+        <p class="prix-offre">15 000 FCFA</p>
+        <ul class="liste-offre">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Le guide complet, étape par étape</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Accès dès la confirmation du paiement</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Accès à vie, sans abonnement</span>
+          </li>
+        </ul>
+        <a href="#" class="bouton-principal" id="boutonAchatPrincipal">Acheter le guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Questions fréquentes</h2>
+      <div class="liste-faq">
+        <div class="item-faq">
+          <button class="question-faq">
+            <span>Est-ce adapté aux débutants ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="reponse-faq"><p>Oui, le guide part des bases et ne suppose aucune expérience préalable en création visuelle.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq">
+            <span>Ai-je besoin de Photoshop ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="reponse-faq"><p>Non, toute la méthode repose sur des outils gratuits et accessibles.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq">
+            <span>Les outils sont-ils gratuits ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="reponse-faq"><p>Oui, tous les outils recommandés dans le guide ont une version gratuite suffisante pour appliquer la méthode.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq">
+            <span>Est-ce utilisable avec un téléphone ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="reponse-faq"><p>Oui, l'ensemble du processus peut être suivi depuis un smartphone.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq">
+            <span>Comment vais-je recevoir le guide ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="reponse-faq"><p>L'accès est envoyé automatiquement dès la confirmation de ton paiement.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq">
+            <span>Puis-je l'utiliser pour mes produits professionnels ?</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="reponse-faq"><p>Oui, la méthode est directement applicable à la présentation de produits destinés à la vente.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA FINAL ===================== -->
+  <section class="cta-final">
+    <h2>Ton produit mérite mieux qu'une simple photo</h2>
+    <p>Apprends à créer des visuels qui le mettent réellement en valeur.</p>
+    <a href="#offre" class="bouton-principal">Acheter le guide</a>
+  </section>
+
+  <!-- ===================== BARRE D'ACHAT MOBILE ===================== -->
+  <div class="barre-achat-mobile">
+    <span class="prix-hero">15 000 FCFA</span>
+    <a href="#offre" class="bouton-principal">Acheter</a>
+  </div>
+
+  <script>
+    // Accordéon FAQ : ouvre/ferme une question au clic
+    document.querySelectorAll(".item-faq").forEach((item) => {
+      item.querySelector(".question-faq").addEventListener("click", () => {
+        item.classList.toggle("ouvert");
+      });
+    });
+
+    // Emplacement prévu pour le widget Snap de Chariow (paiement sans quitter la page)
+    // document.getElementById("boutonAchatPrincipal").addEventListener("click", ...)
+  </script>
+
+</body>
+</html>

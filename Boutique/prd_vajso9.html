@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le système complet pour produire des publicités avec l'IA — Géraud Zoé</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Nunito", sans-serif;
+    color: #111826;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  .conteneur {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .conteneur-large {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  h1, h2, h3 {
+    font-family: "Orbitron", sans-serif;
+    color: #111826;
+    line-height: 1.3;
+  }
+
+  .etiquette {
+    display: inline-block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #a3781c;
+    background: rgba(212, 169, 74, 0.12);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .bouton-principal {
+    display: inline-block;
+    background: #2563eb;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 16px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1.5px solid #2563eb;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .bouton-principal:hover {
+    background: #ffffff;
+    color: #2563eb;
+  }
+
+  section {
+    padding: 72px 0;
+  }
+
+  .section-alternee {
+    background: #f6f8fc;
+  }
+
+  .titre-section {
+    font-size: 1.9rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .sous-titre-section {
+    text-align: center;
+    color: #5b6472;
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 0 auto 44px;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    padding: 64px 0 80px;
+  }
+
+  .grille-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .image-hero-conteneur img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 24px 48px rgba(17, 24, 38, 0.12);
+    transform: rotate(-2deg);
+  }
+
+  .titre-hero {
+    font-size: 2.3rem;
+    margin-bottom: 18px;
+  }
+
+  .accroche-hero {
+    font-size: 1.15rem;
+    color: #5b6472;
+    margin-bottom: 28px;
+  }
+
+  .liste-benefices {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .liste-benefices li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+
+  .liste-benefices svg {
+    flex-shrink: 0;
+    color: #2563eb;
+    margin-top: 3px;
+  }
+
+  .bloc-prix-hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .prix-hero {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  /* ===================== LISTE À PUCES ICÔNES (frustrations) ===================== */
+  .grille-frustrations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .item-frustration {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    border-radius: 12px;
+  }
+
+  .item-frustration svg {
+    flex-shrink: 0;
+    color: #b5495b;
+    margin-top: 2px;
+  }
+
+  .conclusion-frustrations {
+    max-width: 560px;
+    margin: 36px auto 0;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  /* ============== VIDÉO ============== */
+  .video-conteneur {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-bottom: 43.9%;
+    height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(17, 24, 38, 0.1);
+  }
+
+  .video-conteneur iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .note-video {
+    text-align: center;
+    color: #5b6472;
+    max-width: 560px;
+    margin: 24px auto 0;
+    font-size: 0.95rem;
+  }
+
+  /* ===================== TIMELINE (ce que tu vas apprendre) ===================== */
+  .timeline {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 23px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: rgba(37, 99, 235, 0.18);
+  }
+
+  .etape-timeline {
+    position: relative;
+    display: flex;
+    gap: 24px;
+    padding-bottom: 36px;
+  }
+
+  .etape-timeline:last-child {
+    padding-bottom: 0;
+  }
+
+  .numero-timeline {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .contenu-etape h3 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    padding-top: 10px;
+  }
+
+  .contenu-etape p {
+    color: #5b6472;
+    font-size: 0.95rem;
+  }
+
+  /* ===================== COMPARAISON MÉTHODE ===================== */
+  .comparaison-methode {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .flux-methode {
+    padding: 22px 24px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .flux-ancien {
+    background: rgba(181, 73, 91, 0.06);
+    border: 1px solid rgba(181, 73, 91, 0.18);
+  }
+
+  .flux-nouveau {
+    background: rgba(37, 99, 235, 0.06);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+  }
+
+  .etiquette-flux {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+
+  .flux-ancien .etiquette-flux {
+    background: #b5495b;
+    color: #fff;
+  }
+
+  .flux-nouveau .etiquette-flux {
+    background: #2563eb;
+    color: #fff;
+  }
+
+  .etape-flux {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111826;
+    white-space: nowrap;
+  }
+
+  .fleche-flux {
+    color: #9aa4b8;
+    flex-shrink: 0;
+  }
+
+  /* ===================== CITATION MISE EN AVANT ===================== */
+  .citation-forte {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+
+  /* ===================== CE QUE TU REÇOIS ===================== */
+  .carte-contenu-recu {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .liste-recu {
+    list-style: none;
+    margin: 20px 0 24px;
+  }
+
+  .liste-recu li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(17, 24, 38, 0.06);
+    font-size: 0.98rem;
+  }
+
+  .liste-recu li:last-child {
+    border-bottom: none;
+  }
+
+  .liste-recu svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  .badges-format {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .badge-format {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: #f6f8fc;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+
+  /* ===================== PUBLIC CIBLE ===================== */
+  .grille-public {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .carte-public {
+    padding: 22px;
+    border-left: 3px solid #2563eb;
+    background: #ffffff;
+  }
+
+  .carte-public svg {
+    color: #2563eb;
+    margin-bottom: 12px;
+  }
+
+  .carte-public h3 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .carte-public p {
+    color: #5b6472;
+    font-size: 0.9rem;
+  }
+
+  /* ===================== CE QUE CE N'EST PAS ===================== */
+  .liste-exclusions {
+    list-style: none;
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+
+  .liste-exclusions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(17, 24, 38, 0.08);
+  }
+
+  .liste-exclusions li:last-child {
+    border-bottom: none;
+  }
+
+  .liste-exclusions svg {
+    flex-shrink: 0;
+    color: #b5495b;
+    margin-top: 2px;
+  }
+
+  .note-honnetete {
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    color: #5b6472;
+    font-size: 0.95rem;
+  }
+
+  /* ===================== SECTEURS (imagine) ===================== */
+  .grille-usages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .puce-usage {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.1);
+    padding: 10px 18px;
+    border-radius: 30px;
+  }
+
+  /* ===================== OFFRE ===================== */
+  .carte-offre {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1.5px solid #2563eb;
+    border-radius: 18px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .prix-offre {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.4rem;
+    margin: 12px 0 20px;
+  }
+
+  .liste-offre {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .liste-offre li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.98rem;
+  }
+
+  .liste-offre svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  /* ===================== FAQ ===================== */
+  .item-faq {
+    border-bottom: 1px solid rgba(17, 24, 38, 0.1);
+  }
+
+  .question-faq {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 20px 4px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111826;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .question-faq svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .item-faq.ouvert .question-faq svg {
+    transform: rotate(45deg);
+  }
+
+  .reponse-faq {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    color: #5b6472;
+    font-size: 0.95rem;
+  }
+
+  .item-faq.ouvert .reponse-faq {
+    max-height: 240px;
+    padding-bottom: 20px;
+  }
+
+  /* ===================== CTA FINAL ===================== */
+  .cta-final {
+    background: #2563eb;
+    color: #ffffff;
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .cta-final h2 {
+    color: #ffffff;
+    font-size: 1.9rem;
+    margin-bottom: 14px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-final p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-final .bouton-principal {
+    background: #ffffff;
+    color: #2563eb;
+    border-color: #ffffff;
+  }
+
+  .cta-final .bouton-principal:hover {
+    background: transparent;
+    color: #ffffff;
+  }
+
+  /* ===================== BARRE D'ACHAT MOBILE ===================== */
+  .barre-achat-mobile {
+    display: none;
+  }
+
+  /* ===================== RESPONSIVE TABLETTE ===================== */
+  @media (max-width: 1024px) {
+    .grille-hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .image-hero-conteneur {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .grille-public {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ===================== RESPONSIVE MOBILE ===================== */
+  @media (max-width: 640px) {
+    section {
+      padding: 56px 0;
+    }
+
+    .titre-hero {
+      font-size: 1.6rem;
+    }
+
+    .titre-section {
+      font-size: 1.5rem;
+    }
+
+    .grille-frustrations {
+      grid-template-columns: 1fr;
+    }
+
+    .grille-public {
+      grid-template-columns: 1fr;
+    }
+
+    .carte-offre {
+      padding: 32px 22px;
+    }
+
+    .citation-forte {
+      font-size: 1.15rem;
+    }
+
+    .video-conteneur {
+      padding-bottom: 56.25%;
+    }
+
+    .flux-methode {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .fleche-flux {
+      transform: rotate(90deg);
+    }
+
+    .barre-achat-mobile {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid rgba(17, 24, 38, 0.1);
+      padding: 12px 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 50;
+      box-shadow: 0 -8px 20px rgba(17, 24, 38, 0.06);
+    }
+
+    .barre-achat-mobile .prix-hero {
+      font-size: 1.1rem;
+    }
+
+    .barre-achat-mobile .bouton-principal {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+    }
+
+    body {
+      padding-bottom: 70px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="conteneur">
+      <div class="grille-hero">
+        <div class="image-hero-conteneur">
+          <img src="images/produit-2/hero.jpg" alt="Système de production de publicités avec l'IA">
+        </div>
+        <div>
+          <span class="etiquette">Système numérique</span>
+          <h1 class="titre-hero">Crée des publicités professionnelles avec l'IA, sans abonnement</h1>
+          <p class="accroche-hero">Passe de l'idée à la publicité finale grâce à un système structuré, en utilisant des outils accessibles sans payer une multitude d'abonnements.</p>
+          <ul class="liste-benefices">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Aucune agence, aucun abonnement obligatoire</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Une méthode structurée, pas une liste d'outils</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Applicable à n'importe quel produit ou activité</span>
+            </li>
+          </ul>
+          <div class="bloc-prix-hero">
+            <span class="prix-hero">[PRIX]</span>
+            <a href="#offre" class="bouton-principal">Découvrir le système</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LE PROBLÈME ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Le problème n'est pas l'IA. C'est la méthode.</h2>
+      <p class="sous-titre-section">Avoir accès à des dizaines d'outils ne signifie pas savoir créer une publicité. On se retrouve vite avec :</p>
+      <div class="grille-frustrations">
+        <div class="item-frustration">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>
+          <span>Plusieurs plateformes à tester en même temps</span>
+        </div>
+        <div class="item-frustration">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <span>Des abonnements qui s'accumulent chaque mois</span>
+        </div>
+        <div class="item-frustration">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span>Des crédits qui disparaissent rapidement</span>
+        </div>
+        <div class="item-frustration">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10 20 7v10l-5-3Z"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
+          <span>Des vidéos impressionnantes qui ne vendent rien</span>
+        </div>
+        <div class="item-frustration">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M21 3v5h-5M3 21v-5h5"/></svg>
+          <span>Des résultats incohérents d'un essai à l'autre</span>
+        </div>
+        <div class="item-frustration">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+          <span>Beaucoup de temps perdu à chercher « le bon prompt »</span>
+        </div>
+      </div>
+      <p class="conclusion-frustrations">Ce guide propose une autre approche : un système structuré pour savoir quoi faire, avec quels outils et dans quel ordre.</p>
+    </div>
+  </section>
+
+  <!-- ===================== VIDÉO SHOWCASE ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Regarde ce que le système permet de produire</h2>
+      <div class="video-conteneur">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Exemples de publicités réalisées avec ce système" allowfullscreen></iframe>
+      </div>
+      <p class="note-video">Ce ne sont pas des concepts théoriques — cette vidéo présente des exemples concrets de productions réalisées avec les techniques et outils abordés dans le système.</p>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE TU VAS APPRENDRE (TIMELINE) ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que tu vas réellement apprendre</h2>
+      <p class="sous-titre-section">Pas une liste d'outils IA — un processus complet pour organiser chaque étape de production, de l'idée jusqu'à la publicité finale.</p>
+      <div class="timeline">
+        <div class="etape-timeline">
+          <span class="numero-timeline">01</span>
+          <div class="contenu-etape">
+            <h3>Concevoir l'idée publicitaire</h3>
+            <p>Savoir quoi montrer, quoi dire et pourquoi la personne devrait regarder la publicité, avant de générer quoi que ce soit.</p>
+          </div>
+        </div>
+        <div class="etape-timeline">
+          <span class="numero-timeline">02</span>
+          <div class="contenu-etape">
+            <h3>Préparer le contenu</h3>
+            <p>Texte, scénario, scènes, messages et éléments visuels nécessaires à ta publicité.</p>
+          </div>
+        </div>
+        <div class="etape-timeline">
+          <span class="numero-timeline">03</span>
+          <div class="contenu-etape">
+            <h3>Générer les éléments avec l'IA</h3>
+            <p>Exploiter différents outils d'IA pour produire les éléments nécessaires à ta publicité.</p>
+          </div>
+        </div>
+        <div class="etape-timeline">
+          <span class="numero-timeline">04</span>
+          <div class="contenu-etape">
+            <h3>Créer des scènes cohérentes</h3>
+            <p>Organiser ton processus pour limiter l'incohérence fréquente entre les scènes générées par IA.</p>
+          </div>
+        </div>
+        <div class="etape-timeline">
+          <span class="numero-timeline">05</span>
+          <div class="contenu-etape">
+            <h3>Construire la publicité finale</h3>
+            <p>Assembler les différents éléments pour obtenir un contenu publicitaire complet, pas une succession de clips.</p>
+          </div>
+        </div>
+        <div class="etape-timeline">
+          <span class="numero-timeline">06</span>
+          <div class="contenu-etape">
+            <h3>Produire sans multiplier les abonnements</h3>
+            <p>Un système pensé autour d'outils accessibles sans abonnement, pour réduire le coût de production.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE ÇA CHANGE (COMPARAISON) ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que ce système change</h2>
+      <div class="comparaison-methode">
+        <div class="flux-methode flux-ancien">
+          <span class="etiquette-flux">Sans méthode</span>
+          <span class="etape-flux">Idée</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Outil IA</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Résultat médiocre</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Nouvel outil</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Nouvel abonnement</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Perte de temps</span>
+        </div>
+        <div class="flux-methode flux-nouveau">
+          <span class="etiquette-flux">Avec le système</span>
+          <span class="etape-flux">Idée</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Scénario</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Préparation</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Génération</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Assemblage</span>
+          <svg class="fleche-flux" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="etape-flux">Publicité finale</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CITATION ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <p class="citation-forte">Le véritable avantage n'est pas de mémoriser une plateforme. C'est de comprendre le processus — pour l'adapter ensuite à n'importe quel outil et n'importe quel projet.</p>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE TU REÇOIS ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que tu reçois</h2>
+      <div class="carte-contenu-recu">
+        <h3>Le système complet de production publicitaire avec l'IA</h3>
+        <p style="color:#5b6472; margin-top:8px; font-size:0.95rem;">Un e-book numérique qui te guide dans tout le processus de création de publicités avec l'intelligence artificielle.</p>
+        <ul class="liste-recu">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>La méthode de production complète</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Les étapes à suivre, dans l'ordre</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Les outils recommandés et leurs usages</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Les techniques de génération et de préparation</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>L'organisation complète du processus</span></li>
+        </ul>
+        <div class="badges-format">
+          <span class="badge-format">Format : e-book numérique</span>
+          <span class="badge-format">Niveau : débutant à intermédiaire</span>
+          <span class="badge-format">Accès : numérique</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PUBLIC CIBLE ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur-large">
+      <h2 class="titre-section">À qui s'adresse ce système ?</h2>
+      <div class="grille-public">
+        <div class="carte-public">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>
+          <h3>Entrepreneurs</h3>
+          <p>Promouvoir ton activité sans devoir systématiquement faire appel à une agence.</p>
+        </div>
+        <div class="carte-public">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1 6H5L4 4Z"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/></svg>
+          <h3>Commerçants et vendeurs</h3>
+          <p>Créer des publicités pour présenter tes produits sur les réseaux sociaux.</p>
+        </div>
+        <div class="carte-public">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m9 9 5 3-5 3V9Z"/></svg>
+          <h3>Créateurs de contenu</h3>
+          <p>Produire des contenus publicitaires plus rapidement grâce à l'IA.</p>
+        </div>
+        <div class="carte-public">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1V7a5 5 0 0 1 5-5Z"/></svg>
+          <h3>Community managers</h3>
+          <p>Proposer davantage de possibilités de production à tes clients.</p>
+        </div>
+        <div class="carte-public">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <h3>Freelances</h3>
+          <p>Intégrer la création publicitaire assistée par IA dans tes services.</p>
+        </div>
+        <div class="carte-public">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+          <h3>Débutants en IA</h3>
+          <p>Utiliser plusieurs outils sans te perdre dans leur fonctionnement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE ÇA N'EST PAS ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Ce système n'est pas...</h2>
+      <ul class="liste-exclusions">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Une promesse de devenir expert en publicité en quelques heures</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Une formule magique garantissant des ventes</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Une collection de prompts sans explication</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span>Une liste de 50 outils dont tu n'utiliseras jamais la moitié</span>
+        </li>
+      </ul>
+      <p class="note-honnetete">C'est un système de travail pour produire tes propres publicités avec l'IA. La performance commerciale dépend aussi de ton produit, ton offre, ton ciblage, ton message et ta diffusion.</p>
+    </div>
+  </section>
+
+  <!-- ===================== IMAGINE (SECTEURS) ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Imagine pouvoir produire toi-même une publicité pour...</h2>
+      <div class="grille-usages">
+        <span class="puce-usage">Un restaurant</span>
+        <span class="puce-usage">Une boutique</span>
+        <span class="puce-usage">Un produit cosmétique</span>
+        <span class="puce-usage">Une marque de vêtements</span>
+        <span class="puce-usage">Une formation</span>
+        <span class="puce-usage">Un service</span>
+        <span class="puce-usage">Une entreprise</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OBJECTIF ===================== -->
+  <section>
+    <div class="conteneur">
+      <p class="citation-forte">Le but n'est pas de te rendre dépendant d'un outil. Le but est de te donner une méthode reproductible — que tu apprends une fois, puis adaptes à différents produits et projets.</p>
+    </div>
+  </section>
+
+  <!-- ===================== VIDÉO DÉMO ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Tu veux voir le résultat avant d'acheter ?</h2>
+      <div class="video-conteneur">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Démonstration du système" allowfullscreen></iframe>
+      </div>
+      <p class="note-video">Observe les différentes publicités présentées et imagine ce que tu pourrais produire pour ton propre produit ou ton activité.</p>
+    </div>
+  </section>
+
+  <!-- ===================== OFFRE ===================== -->
+  <section id="offre">
+    <div class="conteneur">
+      <h2 class="titre-section">Passe à la production</h2>
+      <div class="carte-offre">
+        <span class="etiquette">Accès immédiat</span>
+        <p class="prix-offre">[PRIX]</p>
+        <ul class="liste-offre">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Le système complet, étape par étape</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Accès dès la confirmation du paiement</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Sans abonnement obligatoire</span></li>
+        </ul>
+        <div id="chariow-widget" data-product-id="prd_vajso9" data-store-domain="elhjqpbx.mychariow.shop" data-style="tap"
+          data-border-style="rounded" data-cta-width="xs" data-cta-animation="none" data-locale="fr"
+          data-primary-color="#2563eb" data-background-color="#FFFFFF" data-custom-cta-text="Acheter le système"></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Questions fréquentes</h2>
+      <div class="liste-faq">
+        <div class="item-faq">
+          <button class="question-faq"><span>Est-ce adapté aux débutants ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Oui, le système est conçu pour accompagner quelqu'un qui débute dans la création publicitaire avec l'IA.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Dois-je être graphiste ou monteur vidéo ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Non, le principe est justement d'exploiter les outils d'IA pour simplifier une partie de la production.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Dois-je payer plusieurs abonnements ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Le système est conçu autour d'outils accessibles sans abonnement. Les conditions des plateformes pouvant évoluer, vérifie toujours leurs limites gratuites au moment de leur utilisation.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Puis-je créer des publicités pour mes propres produits ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Oui, la méthode peut être appliquée à différents produits, services et activités.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Le système garantit-il que mes publicités vont vendre ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Non, aucun guide sérieux ne peut garantir des ventes. Le système t'apprend à produire des publicités ; leur performance dépend aussi de l'offre, du message, du ciblage et de la diffusion.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Comment vais-je recevoir le produit ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Le produit est numérique et accessible après l'achat selon le mode de livraison prévu sur la plateforme.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA FINAL ===================== -->
+  <section class="cta-final">
+    <h2>L'IA peut déjà créer des images, des vidéos, des voix. Sans méthode, ce ne sont que des morceaux de contenu.</h2>
+    <p>Arrête de chercher quel outil utiliser. Apprends plutôt comment les utiliser ensemble.</p>
+    <a href="#offre" class="bouton-principal">Accéder au système</a>
+  </section>
+
+  <!-- ===================== BARRE D'ACHAT MOBILE ===================== -->
+  <div class="barre-achat-mobile">
+    <span class="prix-hero">[PRIX]</span>
+    <a href="#offre" class="bouton-principal">Acheter maintenant</a>
+  </div>
+
+  <script>
+    document.querySelectorAll(".item-faq").forEach((item) => {
+      item.querySelector(".question-faq").addEventListener("click", () => {
+        item.classList.toggle("ouvert");
+      });
+    });
+    </script>
+
+    // Emplacement prévu pour le widget Snap de Chariow (paiement sans quitter la page)
+    // document.getElementById("boutonAchatPrincipal").addEventListener("click", ...)
+    <!-- Chariow Widget -->
+
+<script>
+(function() {
+  var script = document.createElement('script');
+  script.src = 'https://js.chariowcdn.com/v1/widget.min.js';
+  script.async = true;
+  document.head.appendChild(script);
+
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://js.chariowcdn.com/v1/widget.min.css';
+  document.head.appendChild(link);
+})();
+</script>
+</body>
+</html>
