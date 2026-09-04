@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Créer des dessins animés pour enfants avec l'IA — Géraud Zoé</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Nunito", sans-serif;
+    color: #111826;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  .conteneur {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .conteneur-large {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  h1, h2, h3 {
+    font-family: "Orbitron", sans-serif;
+    color: #111826;
+    line-height: 1.3;
+  }
+
+  .etiquette {
+    display: inline-block;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #a3781c;
+    background: rgba(212, 169, 74, 0.12);
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+
+  .bouton-principal {
+    display: inline-block;
+    background: #2563eb;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 16px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1.5px solid #2563eb;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .bouton-principal:hover {
+    background: #ffffff;
+    color: #2563eb;
+  }
+
+  section {
+    padding: 72px 0;
+  }
+
+  .section-alternee {
+    background: #f6f8fc;
+  }
+
+  .titre-section {
+    font-size: 1.9rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .sous-titre-section {
+    text-align: center;
+    color: #5b6472;
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 0 auto 44px;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    padding: 64px 0 80px;
+  }
+
+  .grille-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .image-hero-conteneur img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 24px 48px rgba(17, 24, 38, 0.12);
+    transform: rotate(-2deg);
+  }
+
+  .titre-hero {
+    font-size: 2.3rem;
+    margin-bottom: 18px;
+  }
+
+  .accroche-hero {
+    font-size: 1.15rem;
+    color: #5b6472;
+    margin-bottom: 28px;
+  }
+
+  .liste-benefices {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .liste-benefices li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+
+  .liste-benefices svg {
+    flex-shrink: 0;
+    color: #2563eb;
+    margin-top: 3px;
+  }
+
+  .bloc-prix-hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .prix-hero {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  /* ===================== VIDÉO ===================== */
+  .video-conteneur {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding-bottom: 43.9%;
+    height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(17, 24, 38, 0.1);
+  }
+
+  .video-conteneur iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .note-video {
+    text-align: center;
+    color: #5b6472;
+    max-width: 560px;
+    margin: 24px auto 0;
+    font-size: 0.95rem;
+  }
+
+  /* ===================== CHAÎNE DE PRODUCTION ===================== */
+  .chaine-production {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 900px;
+    margin: 0 auto 36px;
+  }
+
+  .maillon-chaine {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    background: #ffffff;
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    color: #111826;
+    padding: 9px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .fleche-chaine {
+    color: #9aa4b8;
+    flex-shrink: 0;
+  }
+
+  .note-chaine {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  /* ===================== COMPÉTENCES (grille icônes) ===================== */
+  .grille-competences {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .carte-competence {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    border-radius: 14px;
+  }
+
+  .carte-competence svg {
+    color: #2563eb;
+    margin-bottom: 14px;
+  }
+
+  .carte-competence h3 {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .carte-competence p {
+    color: #5b6472;
+    font-size: 0.92rem;
+  }
+
+  /* ===================== CASCADE (univers progressif) ===================== */
+  .bloc-cascade {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .ligne-cascade {
+    padding: 10px 0 10px 20px;
+    border-left: 2px solid rgba(37, 99, 235, 0.2);
+    font-family: "DM Sans", sans-serif;
+    color: #5b6472;
+    font-size: 1rem;
+  }
+
+  .ligne-cascade.accent {
+    border-left-color: #2563eb;
+    color: #111826;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding-top: 18px;
+  }
+
+  /* ===================== RÉASSURANCE (pas besoin de) ===================== */
+  .liste-reassurance {
+    list-style: none;
+    max-width: 560px;
+    margin: 0 auto 28px;
+  }
+
+  .liste-reassurance li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(17, 24, 38, 0.08);
+    font-size: 1.02rem;
+  }
+
+  .liste-reassurance li:last-child {
+    border-bottom: none;
+  }
+
+  .liste-reassurance svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  /* ===================== TÉMOIGNAGES ===================== */
+  .grille-temoignages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .carte-temoignage {
+    aspect-ratio: 3 / 4;
+    background: #f6f8fc;
+    border: 1px dashed rgba(17, 24, 38, 0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    color: #9aa4b8;
+    font-size: 0.9rem;
+  }
+
+  /* ===================== PUBLIC CIBLE ===================== */
+  .grille-public-liste {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .item-public {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+
+  .item-public svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  /* ===================== CE QUE TU REÇOIS ===================== */
+  .carte-contenu-recu {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .badges-format {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .badge-format {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: #f6f8fc;
+    border: 1px solid rgba(17, 24, 38, 0.08);
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+
+  /* ===================== CALLOUT HONNÊTETÉ ===================== */
+  .callout-honnetete {
+    max-width: 640px;
+    margin: 0 auto;
+    background: rgba(212, 169, 74, 0.06);
+    border: 1px solid rgba(212, 169, 74, 0.3);
+    border-radius: 14px;
+    padding: 28px 30px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .callout-honnetete svg {
+    flex-shrink: 0;
+    color: #a3781c;
+  }
+
+  .callout-honnetete p {
+    color: #5b6472;
+    font-size: 0.98rem;
+  }
+
+  .callout-honnetete p strong {
+    color: #111826;
+  }
+
+  /* ===================== OFFRE ===================== */
+  .carte-offre {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1.5px solid #2563eb;
+    border-radius: 18px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  .prix-offre {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.4rem;
+    margin: 12px 0 20px;
+  }
+
+  .liste-offre {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .liste-offre li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.98rem;
+  }
+
+  .liste-offre svg {
+    flex-shrink: 0;
+    color: #2563eb;
+  }
+
+  /* ===================== FAQ ===================== */
+  .item-faq {
+    border-bottom: 1px solid rgba(17, 24, 38, 0.1);
+  }
+
+  .question-faq {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 20px 4px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #111826;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .question-faq svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .item-faq.ouvert .question-faq svg {
+    transform: rotate(45deg);
+  }
+
+  .reponse-faq {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    color: #5b6472;
+    font-size: 0.95rem;
+  }
+
+  .item-faq.ouvert .reponse-faq {
+    max-height: 240px;
+    padding-bottom: 20px;
+  }
+
+  /* ===================== CTA FINAL ===================== */
+  .cta-final {
+    background: #2563eb;
+    color: #ffffff;
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .cta-final h2 {
+    color: #ffffff;
+    font-size: 1.7rem;
+    margin-bottom: 32px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===================== BARRE D'ACHAT MOBILE ===================== */
+  .barre-achat-mobile {
+    display: none;
+  }
+
+  /* ===================== RESPONSIVE TABLETTE ===================== */
+  @media (max-width: 1024px) {
+    .grille-hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .image-hero-conteneur {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .grille-temoignages {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ===================== RESPONSIVE MOBILE ===================== */
+  @media (max-width: 640px) {
+    section {
+      padding: 56px 0;
+    }
+
+    .titre-hero {
+      font-size: 1.6rem;
+    }
+
+    .titre-section {
+      font-size: 1.5rem;
+    }
+
+    .grille-competences {
+      grid-template-columns: 1fr;
+    }
+
+    .grille-temoignages {
+      grid-template-columns: 1fr;
+    }
+
+    .grille-public-liste {
+      grid-template-columns: 1fr;
+    }
+
+    .carte-offre {
+      padding: 32px 22px;
+    }
+
+    .video-conteneur {
+      padding-bottom: 56.25%;
+    }
+
+    .callout-honnetete {
+      flex-direction: column;
+    }
+
+    .barre-achat-mobile {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid rgba(17, 24, 38, 0.1);
+      padding: 12px 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 50;
+      box-shadow: 0 -8px 20px rgba(17, 24, 38, 0.06);
+    }
+
+    .barre-achat-mobile .prix-hero {
+      font-size: 1.1rem;
+    }
+
+    .barre-achat-mobile .bouton-principal {
+      padding: 12px 20px;
+      font-size: 0.95rem;
+    }
+
+    body {
+      padding-bottom: 70px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="conteneur">
+      <div class="grille-hero">
+        <div class="image-hero-conteneur">
+          <img src="images/produit-3/hero.jpg" alt="Création de dessins animés pour enfants avec l'IA">
+        </div>
+        <div>
+          <span class="etiquette">Guide numérique</span>
+          <h1 class="titre-hero">Crée des dessins animés avec l'IA, même sans savoir dessiner</h1>
+          <p class="accroche-hero">Apprends à transformer tes idées en personnages, en histoires, puis en vidéos prêtes pour les réseaux sociaux — et découvre comment ce contenu peut devenir un vrai projet.</p>
+          <ul class="liste-benefices">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Aucune compétence en dessin requise</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Des outils accessibles gratuitement pour commencer</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>De l'idée jusqu'à la publication sur les réseaux</span>
+            </li>
+          </ul>
+          <div class="bloc-prix-hero">
+            <span class="prix-hero">[PRIX]</span>
+            <a href="#offre" class="bouton-principal">Découvrir le guide</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VIDÉO DÉMO ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Tu veux voir ce qu'on peut réellement créer ?</h2>
+      <div class="video-conteneur">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="Exemples de dessins animés créés avec la méthode" allowfullscreen></iframe>
+      </div>
+      <p class="note-video">Ce que tu viens de voir n'est pas qu'une démonstration de technologie — c'est un aperçu du processus de création que tu vas apprendre à reproduire.</p>
+    </div>
+  </section>
+
+  <!-- ===================== LA CHAÎNE DE PRODUCTION ===================== -->
+  <section>
+    <div class="conteneur-large">
+      <h2 class="titre-section">Le véritable défi n'est pas de trouver une IA</h2>
+      <p class="sous-titre-section">Il existe des dizaines d'outils capables de générer des images, des vidéos ou des voix. Le vrai problème, c'est de savoir comment les enchaîner.</p>
+      <div class="chaine-production">
+        <span class="maillon-chaine">Idée</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Scénario</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Personnages</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Scènes</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Animation</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Voix</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Montage</span>
+        <svg class="fleche-chaine" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span class="maillon-chaine">Publication</span>
+      </div>
+      <p class="note-chaine">Ce guide te montre comment organiser l'ensemble de ce processus, sans te perdre entre les outils.</p>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE TU VAS APPRENDRE ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que tu vas apprendre</h2>
+      <div class="grille-competences">
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <h3>Créer tes personnages avec l'IA</h3>
+          <p>Concevoir des personnages adaptés à ton univers et à tes histoires.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4Z"/><path d="M8 9h8M8 13h5"/></svg>
+          <h3>Créer des histoires pour enfants</h3>
+          <p>Transformer une idée en scénario construit pour le format vidéo.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="m21 15-5-5-9 9"/></svg>
+          <h3>Générer les différentes scènes</h3>
+          <p>Décomposer ton histoire et préparer les éléments nécessaires à chaque scène.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10 20 7v10l-5-3Z"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
+          <h3>Animer tes créations</h3>
+          <p>Transformer tes images et personnages en séquences animées.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v4M8 22h8"/></svg>
+          <h3>Ajouter les voix et le son</h3>
+          <p>Donner vie à tes histoires grâce aux voix et éléments audio nécessaires.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+          <h3>Monter la vidéo finale</h3>
+          <p>Assembler tes séquences pour obtenir une vidéo complète, prête à publier.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3V9Z"/></svg>
+          <h3>Publier sur les réseaux sociaux</h3>
+          <p>Adapter tes créations à YouTube, TikTok, Facebook et Instagram.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+          <h3>Comprendre la monétisation</h3>
+          <p>Les principes pour développer une audience et comprendre comment la monétisation peut intervenir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TON PROPRE UNIVERS (CASCADE) ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Et si tu créais ton propre univers ?</h2>
+      <p class="sous-titre-section">Tu pourrais commencer avec un seul personnage. Puis créer une histoire. Puis une deuxième. Puis une troisième.</p>
+      <div class="bloc-cascade">
+        <p class="ligne-cascade">Un personnage</p>
+        <p class="ligne-cascade">des histoires</p>
+        <p class="ligne-cascade">des épisodes</p>
+        <p class="ligne-cascade">une audience</p>
+        <p class="ligne-cascade accent">une possibilité de monétisation</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RÉASSURANCE ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Pas besoin d'être animateur professionnel</h2>
+      <ul class="liste-reassurance">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Pas besoin de savoir dessiner à la main</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Pas besoin de maîtriser des logiciels d'animation professionnels</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Pas besoin de commencer avec un gros budget</span>
+        </li>
+      </ul>
+      <p class="sous-titre-section" style="margin-bottom:0;">Le guide t'apprend à exploiter des outils d'IA accessibles gratuitement pour construire progressivement tes vidéos.</p>
+    </div>
+  </section>
+
+  <!-- ===================== TÉMOIGNAGES ===================== -->
+  <section>
+    <div class="conteneur-large">
+      <h2 class="titre-section">Ils ont essayé. Voici leurs résultats.</h2>
+      <p class="sous-titre-section">Le meilleur moyen de comprendre la méthode, c'est de voir ce qu'elle permet déjà de réaliser.</p>
+      <div class="grille-temoignages">
+        <div class="carte-temoignage">Témoignage / capture client 1</div>
+        <div class="carte-temoignage">Témoignage / capture client 2</div>
+        <div class="carte-temoignage">Témoignage / capture client 3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PUBLIC CIBLE ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">À qui s'adresse ce guide ?</h2>
+      <div class="grille-public-liste">
+        <div class="item-public"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Créateur de contenu</span></div>
+        <div class="item-public"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Débutant en intelligence artificielle</span></div>
+        <div class="item-public"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Entrepreneur</span></div>
+        <div class="item-public"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>YouTubeur ou TikTokeur</span></div>
+        <div class="item-public"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Passionné par les dessins animés</span></div>
+        <div class="item-public"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Créateur de contenu pour enfants</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE TU REÇOIS ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2 class="titre-section">Ce que tu reçois</h2>
+      <div class="carte-contenu-recu">
+        <h3>Un e-book numérique complet</h3>
+        <p style="color:#5b6472; margin-top:8px; font-size:0.95rem;">Consacré à la création de vidéos de dessins animés avec l'IA — le processus, les outils, et les étapes pour passer d'une idée à une vidéo prête pour les réseaux sociaux.</p>
+        <div class="badges-format">
+          <span class="badge-format">Format : e-book numérique</span>
+          <span class="badge-format">Niveau : débutant à intermédiaire</span>
+          <span class="badge-format">Outils : accessibles gratuitement</span>
+          <span class="badge-format">Objectif : création + développement de contenu</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HONNÊTETÉ ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <div class="callout-honnetete">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <p><strong>Ce guide ne promet pas de te rendre riche.</strong> La monétisation n'est jamais automatique — elle dépend de la qualité du contenu, de l'audience, de la régularité, de la plateforme et du respect des règles de monétisation. Le guide te donne les connaissances et le processus pour créer ton contenu et comprendre comment développer un projet autour de celui-ci.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OFFRE ===================== -->
+  <section id="offre">
+    <div class="conteneur">
+      <h2 class="titre-section">Commence maintenant</h2>
+      <p class="sous-titre-section">Tu n'as pas besoin d'être dessinateur, ni animateur, ni de posséder un studio. Tu as besoin d'une idée, des bons outils et d'une méthode pour les utiliser.</p>
+      <div class="carte-offre">
+        <span class="etiquette">Accès immédiat</span>
+        <p class="prix-offre">3499 FCFA</p>
+        <ul class="liste-offre">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Le guide complet, étape par étape</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Accès dès la confirmation du paiement</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6 9 17l-5-5" />
+            </svg><span>Accès à vie, sans abonnement</span></li>
+        </ul>
+        <!-- Emplacement du widget Snap Chariow pour ce produit -->
+        <div id="chariow-widget" data-product-id="prd_1n7gkf" data-store-domain="elhjqpbx.mychariow.shop" data-style="tap"
+            data-border-style="rounded" data-cta-width="xs" data-cta-animation="none" data-locale="en"
+            data-primary-color="#0047AB" data-background-color="#FFFFFF" data-custom-cta-text="Obtenir maintenant"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section-alternee">
+    <div class="conteneur">
+      <h2 class="titre-section">Questions fréquentes</h2>
+      <div class="liste-faq">
+        <div class="item-faq">
+          <button class="question-faq"><span>Dois-je savoir dessiner pour commencer ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Non, la méthode repose sur des outils d'IA — aucune compétence en dessin n'est nécessaire.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Ai-je besoin d'un studio ou d'un gros budget ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Non, le guide t'apprend à construire progressivement tes vidéos avec des outils accessibles gratuitement.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>La monétisation est-elle garantie ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>Non, elle dépend de plusieurs facteurs (audience, régularité, plateforme). Le guide t'apporte le processus, pas une promesse de revenus.</p></div>
+        </div>
+        <div class="item-faq">
+          <button class="question-faq"><span>Comment vais-je recevoir le guide ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="reponse-faq"><p>L'accès est envoyé automatiquement dès la confirmation de ton paiement.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA FINAL ===================== -->
+  <section class="cta-final">
+    <h2>Tu n'as pas besoin d'être animateur professionnel pour commencer à créer. Tu dois simplement savoir comment faire travailler les bons outils ensemble.</h2>
+    <a href="#offre" class="bouton-principal">Acheter le guide</a>
+  </section>
+
+  <!-- ===================== BARRE D'ACHAT MOBILE ===================== -->
+  <div class="barre-achat-mobile">
+    <span class="prix-hero">[PRIX]</span>
+    <a href="#offre" class="bouton-principal">Acheter</a>
+  </div>
+
+  <script>
+    document.querySelectorAll(".item-faq").forEach((item) => {
+      item.querySelector(".question-faq").addEventListener("click", () => {
+        item.classList.toggle("ouvert");
+      });
+    });
+  </script>
+  <script>
+(function() {
+  var script = document.createElement('script');
+  script.src = 'https://js.chariowcdn.com/v1/widget.min.js';
+  script.async = true;
+  document.head.appendChild(script);
+
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://js.chariowcdn.com/v1/widget.min.css';
+  document.head.appendChild(link);
+})();
+</script>
+
+</body>
+</html>

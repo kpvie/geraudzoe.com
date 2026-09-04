@@ -760,7 +760,7 @@
       <h2 class="titre-section">L'offre</h2>
       <div class="carte-offre">
         <span class="etiquette">Accès immédiat</span>
-        <p class="prix-offre">15 000 FCFA</p>
+        <p class="prix-offre">1590 FCFA</p>
         <ul class="liste-offre">
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
@@ -771,14 +771,19 @@
             <span>Accès dès la confirmation du paiement</span>
           </li>
           <li>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
             <span>Accès à vie, sans abonnement</span>
-          </li>
-        </ul>
-        <a href="#" class="bouton-principal" id="boutonAchatPrincipal">Acheter le guide</a>
-      </div>
-    </div>
-  </section>
+            </li>
+            </ul>
+            <!-- ============ widget snap chariow ============= -->
+            <div id="chariow-widget" data-product-id="prd_h60kzl" data-store-domain="elhjqpbx.mychariow.shop" data-style="tap"
+              data-border-style="rounded" data-cta-width="xs" data-cta-animation="none" data-locale="en"
+              data-primary-color="#D35400" data-background-color="#008F51" data-custom-cta-text="Commencer aujourd'hui"></div>
+            </div>
+        </div>
+   </section>
 
   <!-- ===================== FAQ ===================== -->
   <section>
@@ -840,7 +845,7 @@
 
   <!-- ===================== BARRE D'ACHAT MOBILE ===================== -->
   <div class="barre-achat-mobile">
-    <span class="prix-hero">15 000 FCFA</span>
+    <span class="prix-hero">1590 FCFA</span>
     <a href="#offre" class="bouton-principal">Acheter</a>
   </div>
 
@@ -851,10 +856,20 @@
         item.classList.toggle("ouvert");
       });
     });
+</script>
+  <script>
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://js.chariowcdn.com/v1/widget.min.js';
+      script.async = true;
+      document.head.appendChild(script);
 
-    // Emplacement prévu pour le widget Snap de Chariow (paiement sans quitter la page)
-    // document.getElementById("boutonAchatPrincipal").addEventListener("click", ...)
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://js.chariowcdn.com/v1/widget.min.css';
+      document.head.appendChild(link);
+    })();
   </script>
-
-</body>
-</html>
+  </body>
+  
+  </html>
