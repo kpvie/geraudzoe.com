@@ -230,15 +230,18 @@
   const INFOS_PRODUITS = {
     "prd_h60kzl": {
       categorie: "Guide",
-      description: "La méthode complète pour créer des visuels produits professionnels, étape par étape."
+      description: "La méthode complète pour créer des visuels produits professionnels, étape par étape.",
+      lien: "Boutique/Accueil-produits/prd_h60kzl.html"
     },
     "prd_vajso9": {
       categorie: "Système IA",
-      description: "Le système complet pour produire des publicités performantes grâce à l'intelligence artificielle."
+      description: "Le système complet pour produire des publicités performantes grâce à l'intelligence artificielle.",
+      lien: "Boutique/Accueil-produits/prd_vajso9.html"
     },
     "prd_1n7gkf": {
       categorie: "Formation",
-      description: "Apprends à créer des vidéos dessins animés pour enfants, du script à l'export final."
+      description: "Apprends à créer des vidéos dessins animés pour enfants, du script à l'export final.",
+      lien: "Boutique/Accueil-produits/prd_1n7gkf.html"
     }
   };
 
@@ -257,7 +260,7 @@
 
       grille.innerHTML = donnees.produits
         .map((produit) => {
-          const infos = INFOS_PRODUITS[produit.id] || { categorie: "Ressource", description: "" };
+          const infos = INFOS_PRODUITS[produit.id] || { categorie: "Ressource", description: "", lien: "#" };
 
           return `
         <div class="carte-produit">
@@ -268,7 +271,7 @@
             <p class="description-produit">${infos.description}</p>
             <div class="bas-carte">
               <span class="prix-produit">${produit.prixAffiche}</span>
-              <a class="bouton-produit" href="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits/prd_vajso9.html">Voir le produit</a>
+              <a class="bouton-produit" href="${infos.lien}">Voir le produit</a>
             </div>
           </div>
         </div>
@@ -281,63 +284,4 @@
   }
 
   chargerProduitsChariow();
-</script>
-<script>
-  // Accroches courtes par produit, tenues à jour ici quand on modifie PRODUITS_AUTORISES côté backend
-const INFOS_PRODUITS = {
-  "prd_h60kzl": {
-    categorie: "Guide",
-    description: "La méthode complète pour créer des visuels produits professionnels, étape par étape.",
-    lien: "/produits/prd_h60kzl.html"
-  },
-  "prd_vajso9": {
-    categorie: "Système IA",
-    description: "Le système complet pour produire des publicités performantes grâce à l'intelligence artificielle.",
-    lien: "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits/prd_vajso9.html"
-  },
-  "prd_1n7gkf": {
-    categorie: "Formation",
-    description: "Apprends à créer des vidéos dessins animés pour enfants, du script à l'export final.",
-    lien: "Boutique/Accueil-produits/prd_1n7gkf.html"
-  }
-};
-
-async function chargerProduitsChariow() {
-  const grille = document.getElementById("grilleProduits");
-
-  try {
-    const reponse = await fetch("https://willowy-fenglisu-d19e74.netlify.app/.netlify/functions/chariow-produits");
-    const donnees = await reponse.json();
-
-    if (!reponse.ok || !donnees.produits || donnees.produits.length === 0) {
-      grille.innerHTML = '<p class="chargement-produits">Aucun produit disponible pour le moment.</p>';
-      return;
-    }
-
-    grille.innerHTML = donnees.produits
-      .map((produit) => {
-        const infos = INFOS_PRODUITS[produit.id] || { categorie: "Ressource", description: "", lien: "#" };
-
-        return `
-      <div class="carte-produit">
-        <img src="${produit.image || 'images/produit-placeholder.jpg'}" alt="${produit.nom}" loading="lazy">
-        <div class="contenu-carte">
-          <span class="categorie-produit">${infos.categorie}</span>
-          <h3 class="nom-produit">${produit.nom}</h3>
-          <p class="description-produit">${infos.description}</p>
-          <div class="bas-carte">
-            <span class="prix-produit">${produit.prixAffiche}</span>
-            <a class="bouton-produit" href="${infos.lien}">Voir le produit</a>
-          </div>
-        </div>
-      </div>
-    `;
-      })
-      .join("");
-  } catch (erreur) {
-    grille.innerHTML = '<p class="chargement-produits">Erreur de chargement des produits.</p>';
-  }
-}
-
-chargerProduitsChariow();
 </script>
