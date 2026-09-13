@@ -79,11 +79,23 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
+  .reveal,
+  .titre-hero,
+  .image-hero,
+  .accroche-hero,
+  .note-hero,
+  .bloc-prix-hero,
+  .bloc-lignes p,
+  .liste-recu li {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 
       *,
       *::before,
