@@ -414,6 +414,7 @@
       height: 0;
       border-radius: 12px;
       overflow: hidden;
+      background: var(--marine);
       box-shadow: 0 14px 30px rgba(17, 24, 38, 0.08);
       margin-bottom: 14px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -987,6 +988,48 @@
         padding-bottom: 70px;
       }
     }
+
+    .miniature-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bouton-lecture-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62px;
+  height: 62px;
+  border: none;
+  border-radius: 16px; /* rectangle arrondi par défaut */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bouton-lecture-video {
+  background: var(--bleu);
+}
+.bouton-lecture-video.rond {
+  border-radius: 50%; /* cercle parfait, pour la page Capcut*/
+}
+
+.bouton-lecture-video:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-conteneur.lu .miniature-video,
+.video-conteneur.lu .bouton-lecture-video {
+  display: none;
+}
   </style>
 </head>
 
@@ -1074,44 +1117,87 @@
       <p class="sous-titre-section">Ne te contente pas de lire une promesse, regarde les exemples.</p>
       <div class="grille-videos">
         <div class="carte-video">
-          <div class="video-conteneur"><iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
-              title="Histoires et storytelling" allowfullscreen></iframe></div>
+          <div class="video-conteneur" data-video-id="-_2QYXmdab8">
+            <img class="miniature-video" src="../Images/capcut.webp"
+              alt="Aperçu de la vidéo">
+            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
           <h3>Histoires & storytelling</h3>
           <p>Un format pensé pour raconter une histoire et retenir l'attention.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur"><iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
-              title="Dessins animés pour enfants" allowfullscreen></iframe></div>
+          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
+            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg"
+              alt="Aperçu de la vidéo">
+            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
           <h3>Dessins animés pour enfants</h3>
           <p>Personnages, scènes, animation et narration.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur"><iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="Publicité vidéo IA"
-              allowfullscreen></iframe></div>
+          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
+            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg"
+              alt="Aperçu de la vidéo">
+            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
           <h3>Publicité vidéo IA</h3>
           <p>Transformer un produit ou un service en contenu publicitaire.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur"><iframe src="https://www.youtube.com/embed/VIDEO_ID_4" title="Personnage virtuel"
-              allowfullscreen></iframe></div>
+          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
+            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg"
+              alt="Aperçu de la vidéo">
+            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
           <h3>Personnage virtuel</h3>
           <p>Un personnage qui parle, explique, présente ou recommande.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur"><iframe src="https://www.youtube.com/embed/VIDEO_ID_5"
-              title="Podcast et contenu parlé" allowfullscreen></iframe></div>
+          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
+            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg"
+              alt="Aperçu de la vidéo">
+            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
           <h3>Podcast & contenu parlé</h3>
           <p>Un autre format pour produire régulièrement du contenu avec l'IA.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur"><iframe src="https://www.youtube.com/embed/VIDEO_ID_6" title="Sticky animé"
-              allowfullscreen></iframe></div>
+          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
+            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg"
+              alt="Aperçu de la vidéo">
+            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+          </div>
           <h3>Sticky animé</h3>
           <p>Exploiter les contenus existants pour faire rire les spectateurs.</p>
         </div>
         <p class="note-videos">Ces cinq vidéos ne représentent qu'une partie des possibilités abordées dans la
           formation.</p>
       </div>
+    </div>                                                                                 
   </section>
 
   <!-- ===================== OBJECTION : JE NE SAIS PAS FAIRE ===================== -->
@@ -1600,6 +1686,26 @@
       { threshold: 0 }
     );
     observateurHero.observe(zoneHero);
+
+    </script>
+    <script>
+
+     // Style du bouton youtube pour qu'il ressemble à un bouton de lecture
+
+    document.querySelectorAll(".bouton-lecture-video").forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    const conteneur = bouton.closest(".video-conteneur");
+    const idVideo = conteneur.dataset.videoId;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${idVideo}?autoplay=1`;
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+    iframe.allowFullscreen = true;
+
+    conteneur.appendChild(iframe);
+    conteneur.classList.add("lu");
+  });
+});
   </script>
   <script>
     (function () {
