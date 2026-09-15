@@ -1030,12 +1030,142 @@
 .video-conteneur.lu .bouton-lecture-video {
   display: none;
 }
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink-900);
+    letter-spacing: -0.01em;
+}
+.logo span {
+    color: var(--blue-600);
+}
+    .entete-produit {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(17, 24, 38, 0.08);
+}
+
+.entete-produit-interieur {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Logo identique à celui du site principal (font-family, poids, couleurs) */
+.logo {
+  font-family: "Sora", "Inter", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #10131a;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #2e5cff;
+}
+
+.lien-catalogue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2e5cff; /* bleu du site principal, identique sur les 3 pages */
+  text-decoration: none;
+  border: 1.5px solid #2e5cff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.lien-catalogue:hover {
+  background: #2e5cff;
+  color: #ffffff;
+}
+
+.bloc-bienvenue {
+  text-align: center;
+  padding: 20px 20px 0;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Bandeau défilant : la couleur de fond dépend de la couleur clé DE CETTE page */
+.bandeau-defilant {
+  background: var(--rouge); /* ← remplace par var(--bleu) sur les pages qui utilisent le bleu comme couleur clé */
+  color: #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+  margin-top: 12px;
+}
+
+.bandeau-piste {
+  display: inline-block;
+  padding-left: 100%;
+  animation: defilement 22s linear infinite;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+@keyframes defilement {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@media (max-width: 640px) {
+  .entete-produit-interieur {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .lien-catalogue {
+    font-size: 0.85rem;
+    padding: 7px 14px;
+  }
+}
+ 
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <div class="barre-progression" id="barreProgression"></div>
+<header class="entete-produit">
+  <div class="entete-produit-interieur">
+    <a href="https://kpvie.github.io/geraudzoe.com/" class="logo">Géraud<span>Zoé</span></a>
+    <a href="Accueil-produits.html" class="lien-catalogue">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Voir d'autres produits similaires
+    </a>
+  </div>
+</header>
+
+<div class="bloc-bienvenue">
+  <p class="texte-bienvenue">Bienvenue 👋</p>
+</div>
+
+<div class="bandeau-defilant">
+  <div class="bandeau-piste">
+    <span>✦ Texte à personnaliser ✦ Texte à personnaliser ✦ Texte à personnaliser ✦ Texte à personnaliser ✦ Texte à personnaliser ✦ Texte à personnaliser</span>
+  </div>
+</div>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero">
