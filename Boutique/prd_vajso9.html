@@ -95,7 +95,13 @@
     animation: none !important;
     transition: none !important;
   }
-}
+
+/* Le bandeau défilant reste actif même en mode "réduire les animations" :
+     c'est un contenu à lire, pas un simple effet décoratif */
+  .bandeau-piste {
+    animation: defilement 26s linear infinite !important;
+  }
+  }
 
 
     .etiquette {
@@ -1152,13 +1158,13 @@
     <a href="https://kpvie.github.io/geraudzoe.com/" class="logo">Géraud<span>Zoé</span></a>
     <a href="Accueil-produits.html" class="lien-catalogue">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Voir d'autres produits similaires
+      Revoir le catalogue
     </a>
   </div>
 </header>
 
 <div class="bloc-bienvenue">
-  <p class="texte-bienvenue">Bienvenue 👋</p>
+  <p class="texte-bienvenue">Bienvenue</p>
 </div>
 
 <div class="bandeau-defilant">
