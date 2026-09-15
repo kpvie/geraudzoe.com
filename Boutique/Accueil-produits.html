@@ -99,7 +99,13 @@
         transform: none !important;
       }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-    }
+
+    /* Le bandeau défilant reste actif même en mode "réduire les animations" :
+     c'est un contenu à lire, pas un simple effet décoratif */
+  .bandeau-piste {
+    animation: defilement 45s linear infinite !important;
+  }
+}
 
     /* ===================== EN-TÊTE ===================== */
     .entete-produit {
@@ -137,11 +143,11 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.88rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--bleu);
       border: 1.5px solid var(--bleu);
-      padding: 8px 16px;
+      padding: 6px 12px;
       border-radius: 8px;
       transition: background 0.2s ease, color 0.2s ease;
     }
@@ -239,7 +245,7 @@
     .bandeau-piste {
       display: inline-block;
       padding-left: 100%;
-      animation: defilement 26s linear infinite;
+      animation: defilement 45s linear infinite;
       font-size: 0.83rem;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -594,10 +600,11 @@
       .grille-pourquoi { grid-template-columns: 1fr; }
       .grille-categories { grid-template-columns: 1fr; }
       .grille-reassurance { grid-template-columns: 1fr 1fr; gap: 28px; }
-      .entete-produit-interieur { justify-content: center; text-align: center; gap: 12px; }
+      .entete-produit-interieur {  justify-content: space-between;
+     gap: 10px; }
       .barre-filtres { gap: 8px; }
       .filtre { font-size: 0.84rem; padding: 8px 15px; }
-      .pied-contenu { flex-direction: column; text-align: center; }
+      .pied-contenu { flex-direction: column; justify-content: space-between; gap: 10px; }
       .cta-final h2 { font-size: 1.5rem; }
     }
   </style>

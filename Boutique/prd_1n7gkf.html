@@ -156,7 +156,12 @@
         animation: none !important;
         transition: none !important;
       }
-    }
+    /* Le bandeau défilant reste actif même en mode "réduire les animations" :
+     c'est un contenu à lire, pas un simple effet décoratif */
+  .bandeau-piste {
+    animation: defilement 45s linear infinite !important;
+  }
+}
 
     /* ===================== EN-TÊTE (identique sur tout le site) ===================== */
     .entete-produit {
@@ -1071,14 +1076,13 @@
       }
 
       .entete-produit-interieur {
-        justify-content: center;
-        text-align: center;
-        gap: 12px;
+         justify-content: space-between;
+        gap: 10px;
       }
 
       .lien-catalogue {
-        font-size: 0.82rem;
-        padding: 7px 14px;
+        font-size: 0.78rem;
+        padding: 6px 12px;
       }
 
       .barre-achat-mobile {
