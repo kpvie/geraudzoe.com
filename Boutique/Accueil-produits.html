@@ -6,36 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ============ SEO ============ -->
-  <title>Boutique digitale — eBooks, formations et ressources pratiques | Géraud Zoé</title>
+  <title>Boutique digitale — Formations IA, site web et montage vidéo | Géraud Zoé</title>
   <meta name="description"
-    content="Découvre les eBooks, formations et ressources digitales de Géraud Zoé : création de sites web avec l'IA, montage vidéo, contenu IA et plus. Accès immédiat après paiement sécurisé.">
+    content="3 formations pratiques de Géraud Zoé : créer un site web professionnel avec l'IA (5 000 FCFA), créer et monétiser du contenu vidéo avec l'IA (2 500 FCFA), montage vidéo pro sur téléphone avec CapCut (3 000 FCFA). Accès immédiat après paiement sécurisé.">
   <meta name="keywords"
-    content="boutique digitale Bénin, ebook IA, formation création site web, formation montage vidéo, ressources numériques, produits digitaux Géraud Zoé">
-  <meta name="author" content="Géraud Zoé">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    content="boutique digitale Bénin, formation IA Bénin, créer site web avec IA sans coder, formation CapCut mobile, monétiser contenu vidéo IA, ressources numériques francophones, produits digitaux Géraud Zoé">
+  <meta name="author" content="Géraud KPOVIESSI">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#2e5cff">
   <link rel="canonical" href="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html">
+
+  <!-- ============ GEO / contexte local ============ -->
+  <meta name="geo.region" content="BJ-LI">
+  <meta name="geo.placename" content="Cotonou, Bénin">
+  <meta name="language" content="fr">
+  <meta name="coverage" content="Worldwide">
+  <meta name="distribution" content="global">
 
   <link rel="icon" type="image/png" href="../Images/favicon.png">
   <link rel="apple-touch-icon" href="../Images/favicon.png">
 
   <!-- ============ Open Graph ============ -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Boutique digitale — eBooks, formations et ressources pratiques">
+  <meta property="og:title" content="Boutique digitale — Formations IA, site web et montage vidéo">
   <meta property="og:description"
-    content="Des ressources pour apprendre, créer et passer à l'action : IA, développement web, montage vidéo et création de contenu.">
-  <meta property="og:image" content="https://kpvie.github.io/geraudzoe.com/Images/capcut.webp">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Boutique digitale de Géraud Zoé">
+    content="Des formations pratiques pour apprendre, créer et passer à l'action : créer un site web avec l'IA, produire du contenu vidéo IA, monter des vidéos pro sur téléphone.">
+  <meta property="og:image" content="https://kpvie.github.io/geraudzoe.com/Images/site-web-ia.webp">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="Boutique digitale de Géraud Zoé — formations IA, web et vidéo">
   <meta property="og:url" content="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="Géraud Zoé">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Boutique digitale — Géraud Zoé">
-  <meta name="twitter:description" content="eBooks, formations et ressources pratiques pour apprendre, créer et passer à l'action.">
-  <meta name="twitter:image" content="https://kpvie.github.io/geraudzoe.com/Images/contenuia.webp">
+  <meta name="twitter:description" content="Formations pratiques : site web avec l'IA, contenu vidéo IA, montage CapCut mobile. À partir de 2 500 FCFA.">
+  <meta name="twitter:image" content="https://kpvie.github.io/geraudzoe.com/Images/site-web-ia.webp">
+  <meta name="twitter:image:alt" content="Boutique digitale de Géraud Zoé">
 
   <!-- ============ Polices ============ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,6 +77,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    [hidden] { display: none !important; }
+
     .conteneur { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     .conteneur-etroit { max-width: 720px; margin: 0 auto; padding: 0 20px; }
 
@@ -84,6 +94,22 @@
 
     a { text-decoration: none; }
 
+    /* Lien d'évitement (accessibilité clavier) */
+    .lien-evitement {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--bleu);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 0 0 8px 0;
+      z-index: 500;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .lien-evitement:focus { left: 0; }
+
     /* ===================== APPARITION AU SCROLL ===================== */
     .reveal {
       opacity: 0;
@@ -92,6 +118,9 @@
     }
 
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Filet de sécurité : sans JavaScript, tout reste visible */
+    .no-js .reveal { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
       .reveal, .titre-hero, .accroche-hero, .surtitre-hero, .bloc-cta-hero {
@@ -130,10 +159,10 @@
     }
 
     .logo {
-      font-family: var(--font-display);
+      font-family: var(--police-titre);
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--ink-900);
+      color: var(--marine);
       letter-spacing: -0.01em;
     }
 
@@ -318,6 +347,16 @@
       color: #ffffff;
     }
 
+    .filtre:focus-visible,
+    .carte-categorie:focus-visible,
+    .bouton-produit:focus-visible,
+    .bouton-principal:focus-visible,
+    .lien-catalogue:focus-visible,
+    .nom-produit a:focus-visible {
+      outline: 3px solid var(--bleu);
+      outline-offset: 3px;
+    }
+
     /* ===================== GRILLE PRODUITS ===================== */
     .grille-produits {
       display: grid;
@@ -343,9 +382,11 @@
 
     .carte-produit img {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      height: auto;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       display: block;
+      background: var(--bleu-fond);
     }
 
     .contenu-carte {
@@ -370,6 +411,8 @@
     }
 
     .nom-produit { font-size: 1.05rem; margin-bottom: 7px; }
+    .nom-produit a { color: inherit; transition: color 0.2s ease; }
+    .nom-produit a:hover { color: var(--bleu); }
 
     .description-produit {
       font-size: 0.91rem;
@@ -405,6 +448,7 @@
       font-size: 0.9rem;
       border: 1.5px solid var(--bleu);
       transition: background 0.2s ease, color 0.2s ease, gap 0.2s ease;
+      white-space: nowrap;
     }
 
     .bouton-produit:hover { background: #ffffff; color: var(--bleu); gap: 11px; }
@@ -451,7 +495,15 @@
 
     .carte-une:hover { box-shadow: 0 22px 46px rgba(16, 19, 26, 0.1); }
 
-    .image-une { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 300px; }
+    .image-une {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      min-height: 300px;
+      background: var(--bleu-fond);
+    }
 
     .contenu-une {
       padding: 44px 40px;
@@ -586,7 +638,7 @@
       .grille-reassurance { grid-template-columns: repeat(2, 1fr); }
       .titre-hero { font-size: 2.2rem; }
       .carte-une { grid-template-columns: 1fr; }
-      .image-une { min-height: 240px; aspect-ratio: 16 / 9; }
+      .image-une { min-height: 240px; }
       .contenu-une { padding: 34px 28px; }
     }
 
@@ -600,34 +652,202 @@
       .grille-pourquoi { grid-template-columns: 1fr; }
       .grille-categories { grid-template-columns: 1fr; }
       .grille-reassurance { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .image-une { min-height: 0; }
       .entete-produit-interieur {  justify-content: space-between;
      gap: 10px; }
       .barre-filtres { gap: 8px; }
       .filtre { font-size: 0.84rem; padding: 8px 15px; }
       .pied-contenu { flex-direction: column; justify-content: space-between; gap: 10px; }
       .cta-final h2 { font-size: 1.5rem; }
+      .bas-carte { flex-wrap: wrap; }
     }
   </style>
 
-  <!-- ============ Données structurées ============ -->
+  <!-- ============================================================
+       DONNÉES STRUCTURÉES (SEO classique + GEO / moteurs IA)
+       ------------------------------------------------------------
+        Bloc lis par Google ET les moteurs génératifs
+      
+       Pour les nouveaux produits:  j'ajoute aussi son entrée dans
+          "itemListElement" ci-dessous et je mets "numberOfItems" à jour.
+          ...
+       ============================================================ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Person",
+        "@id": "https://kpvie.github.io/geraudzoe.com/#personne",
+        "name": "Géraud KPOVIESSI",
+        "alternateName": "Géraud Zoé",
+        "jobTitle": "Développeur web et formateur en outils IA",
+        "email": "geraudzoe66@gmail.com",
+        "url": "https://kpvie.github.io/geraudzoe.com/",
+        "knowsLanguage": ["fr", "en"],
+        "knowsAbout": [
+          "Création de sites web avec l'intelligence artificielle",
+          "Montage vidéo mobile avec CapCut",
+          "Création et monétisation de contenu vidéo par IA",
+          "Développement web HTML CSS JavaScript Python",
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Cotonou",
+          "addressRegion": "Littoral",
+          "addressCountry": "BJ"
+        },
+        "sameAs": [
+          "https://www.facebook.com/geraud.zoe",
+          "https://www.linkedin.com/in/g%C3%A9raud-zo%C3%A9-539034259/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kpvie.github.io/geraudzoe.com/#site",
+        "name": "Géraud Zoé",
+        "url": "https://kpvie.github.io/geraudzoe.com/",
+        "inLanguage": "fr",
+        "publisher": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+      },
+      {
         "@type": "CollectionPage",
         "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#page",
         "name": "Boutique digitale — Géraud Zoé",
-        "description": "eBooks, formations et ressources digitales pour apprendre, créer et passer à l'action : IA, développement web, montage vidéo et création de contenu.",
+        "description": "Formations et ressources digitales pour apprendre, créer et passer à l'action : créer un site web avec l'IA, produire et monétiser du contenu vidéo par IA, monter des vidéos professionnelles sur téléphone avec CapCut.",
         "url": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html",
         "inLanguage": "fr",
-        "isPartOf": { "@type": "WebSite", "name": "Géraud Zoé", "url": "https://kpvie.github.io/geraudzoe.com/" }
+        "isPartOf": { "@id": "https://kpvie.github.io/geraudzoe.com/#site" },
+        "about": ["Intelligence artificielle", "Développement web", "Montage vidéo", "Formation en ligne"],
+        "mainEntity": { "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#catalogue" }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://kpvie.github.io/geraudzoe.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Boutique" }
+          { "@type": "ListItem", "position": 2, "name": "Boutique", "item": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#catalogue",
+        "name": "Catalogue des formations digitales de Géraud Zoé",
+        "numberOfItems": 3,
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Product",
+              "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_vajso9.html#produit",
+              "name": "Apprendre à créer du contenu vidéo avec l'IA et le monétiser sur les réseaux sociaux",
+              "description": "Le système complet pour produire différents types de vidéos performantes avec l'intelligence artificielle et les monétiser sur les réseaux sociaux.",
+              "image": "https://kpvie.github.io/geraudzoe.com/Images/contenu-video-ia.webp",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_vajso9.html",
+              "sku": "contenuvideo",
+              "category": "Formation en ligne > Intelligence artificielle > Création de contenu",
+              "inLanguage": "fr",
+              "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+              "offers": {
+                "@type": "Offer",
+                "price": "2500",
+                "priceCurrency": "XOF",
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition",
+                "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_vajso9.html",
+                "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Product",
+              "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_1n7gkf.html#produit",
+              "name": "Apprendre à créer un site web professionnel avec l'IA sans être développeur",
+              "description": "Crée et mets en ligne des sites web professionnels avec l'intelligence artificielle, même en partant de zéro et sans savoir coder.",
+              "image": "https://kpvie.github.io/geraudzoe.com/Images/site-web-ia.webp",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_1n7gkf.html",
+              "sku": "vibecoding",
+              "category": "Formation en ligne > Développement web > Intelligence artificielle",
+              "inLanguage": "fr",
+              "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+              "offers": {
+                "@type": "Offer",
+                "price": "5000",
+                "priceCurrency": "XOF",
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition",
+                "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_1n7gkf.html",
+                "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+              }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Product",
+              "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_h60kzl.html#produit",
+              "name": "Réaliser du montage pro sur téléphone avec CapCut",
+              "description": "Devenir professionnel du montage vidéo avec CapCut mobile, sans ordinateur ni logiciel payant.",
+              "image": "https://kpvie.github.io/geraudzoe.com/Images/montage-capcut.webp",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_h60kzl.html",
+              "sku": "capcut",
+              "category": "Formation en ligne > Montage vidéo > Mobile",
+              "inLanguage": "fr",
+              "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+              "offers": {
+                "@type": "Offer",
+                "price": "3000",
+                "priceCurrency": "XOF",
+                "availability": "https://schema.org/InStock",
+                "itemCondition": "https://schema.org/NewCondition",
+                "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_h60kzl.html",
+                "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Comment se passe l'accès à une formation après le paiement ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "L'accès à la ressource est délivré juste après la confirmation du paiement. Le contenu reste ensuite accessible dans le temps, depuis un téléphone comme depuis un ordinateur."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quels moyens de paiement sont acceptés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Les paiements sont traités par Mtn, Moov et Celtis. Les prix sont affichés en francs CFA (XOF)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il savoir coder ou monter des vidéos pour suivre ces formations ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non. Chaque ressource part des bases et va jusqu'à la réalisation concrète. La formation sur la création de sites web avec l'IA s'adresse à des personnes qui ne sont pas développeurs, et la formation CapCut se suit entièrement depuis un téléphone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Combien coûtent les formations de Géraud Zoé ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Les formations vont de 2 500 FCFA à 5 000 FCFA : créer du contenu vidéo avec l'IA à 2 500 FCFA, montage pro sur téléphone avec CapCut à 3 000 FCFA, et création de site web professionnel avec l'IA à 5 000 FCFA."
+            }
+          }
         ]
       }
     ]
@@ -635,18 +855,22 @@
   </script>
 </head>
 
-<body>
+<body class="no-js">
+
+  <a class="lien-evitement" href="#produits">Aller au catalogue</a>
 
   <!-- ===================== EN-TÊTE ===================== -->
   <header class="entete-produit">
     <div class="entete-produit-interieur">
       <a href="https://kpvie.github.io/geraudzoe.com/" class="logo">Géraud<span>KPOVIESSI</span></a>
       <a href="https://kpvie.github.io/geraudzoe.com/" class="lien-catalogue">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         Retour au site
       </a>
     </div>
   </header>
+
+  <main>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero-boutique">
@@ -657,34 +881,106 @@
       <div class="bloc-cta-hero">
         <a href="#produits" class="bouton-principal">
           Explorer les produits
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ===================== BANDEAU INFORMATIONNEL ===================== -->
-  <div class="bandeau-defilant">
+  <div class="bandeau-defilant" aria-hidden="true">
     <div class="bandeau-piste">
       Ressources digitales &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Accès immédiat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Contenu pratique &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apprends à ton rythme  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ressources digitales &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Accès immédiat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Contenu pratique &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apprends à ton rythme
     </div>
   </div>
 
-  <!-- ===================== PRODUITS ===================== -->
+  <!-- ============================================================
+       PRODUITS
+       ----------
+       
+
+        POUR ... :
+          1. Cpie un bloc <article class="carte-produit"> ci-dessous
+          2. Change.. data-filtre, l'image, le title, la description,
+             the price and the link
+          3. Add this entrée dans le JSON-LD "itemListElement" (<head>)
+          4. Add this page in sitemap.xml
+
+    
+       ============================================================ -->
   <section id="produits" class="reveal">
     <div class="conteneur">
       <h2 class="titre-section">Choisis ce qui t'intéresse</h2>
       <p class="sous-titre-section">Des ressources conçues autour de compétences concrètes : IA, création de contenu, développement web, montage vidéo et bien plus.</p>
 
-      <div class="barre-filtres" id="barreFiltres">
-        <button class="filtre actif" data-categorie="toutes">Tous les produits</button>
-        <button class="filtre" data-categorie="ia">IA</button>
-        <button class="filtre" data-categorie="web">Web</button>
-        <button class="filtre" data-categorie="video">Vidéo</button>
+      <div class="barre-filtres" id="barreFiltres" role="group" aria-label="Filtrer les produits par catégorie">
+        <button type="button" class="filtre actif" data-categorie="toutes" aria-pressed="true">Tous les produits</button>
+        <button type="button" class="filtre" data-categorie="ia" aria-pressed="false">IA</button>
+        <button type="button" class="filtre" data-categorie="web" aria-pressed="false">Web</button>
+        <button type="button" class="filtre" data-categorie="video" aria-pressed="false">Vidéo</button>
+        <button type="button" class="filtre" data-categorie="business" aria-pressed="false">Business</button>
       </div>
 
       <div class="grille-produits" id="grilleProduits">
-        <p class="message-grille" id="messageGrille">Chargement des produits…</p>
+
+        <!-- ---------- Produit 1 : contenu vidéo avec l'IA ---------- -->
+        <article class="carte-produit" data-filtre="ia">
+          <img src="../Images/contenuia.webp"
+               alt="Formation pour créer du contenu vidéo avec l'IA et le monétiser sur les réseaux sociaux"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <div class="contenu-carte">
+            <span class="categorie-produit">Système IA</span>
+            <h3 class="nom-produit"><a href="../Boutique/contenuvideo.html">Apprendre à créer du contenu vidéo avec l'IA et le monétiser sur les réseaux sociaux</a></h3>
+            <p class="description-produit">Le système complet pour produire différents types de vidéos performantes avec l'IA et les monétiser sur les réseaux sociaux.</p>
+            <div class="bas-carte">
+              <span class="prix-produit">2 500 FCFA</span>
+              <a class="bouton-produit" href="../Boutique/contenuvideo.html" aria-label="Découvrir la formation sur la création de contenu vidéo avec l'IA">
+                Découvrir
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ---------- Produit 2 : site web avec l'IA (produit à la une) ---------- -->
+        <article class="carte-produit" data-filtre="web">
+          <img src="../Images/vibe coding.webp"
+               alt="Formation pour créer un site web professionnel avec l'IA sans être développeur"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <div class="contenu-carte">
+            <span class="categorie-produit">Formation • Web</span>
+            <h3 class="nom-produit"><a href="../Boutique/vibecoding.html">Apprendre à créer un site web professionnel avec l'IA sans être développeur</a></h3>
+            <p class="description-produit">Crée et mets en ligne des sites web professionnels avec l'IA, même en partant de zéro.</p>
+            <div class="bas-carte">
+              <span class="prix-produit">5 000 FCFA</span>
+              <a class="bouton-produit" href="../Boutique/vibecoding.html" aria-label="Découvrir la formation sur la création de site web avec l'IA">
+                Découvrir
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ---------- Produit 3 : montage CapCut ---------- -->
+        <article class="carte-produit" data-filtre="video">
+          <img src="../Images/capcut.webp"
+               alt="Formation pour réaliser du montage vidéo professionnel sur téléphone avec CapCut"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <div class="contenu-carte">
+            <span class="categorie-produit">Formation</span>
+            <h3 class="nom-produit"><a href="../Boutique/capcut.html">Réaliser du montage pro sur téléphone avec CapCut</a></h3>
+            <p class="description-produit">Devenir professionnel du montage vidéo avec CapCut mobile, directement depuis ton téléphone.</p>
+            <div class="bas-carte">
+              <span class="prix-produit">3 000 FCFA</span>
+              <a class="bouton-produit" href="../Boutique/capcut.html" aria-label="Découvrir la formation de montage vidéo avec CapCut">
+                Découvrir
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <p class="message-grille" id="messageGrille" hidden>Aucun produit dans cette catégorie pour le moment.</p>
       </div>
     </div>
   </section>
@@ -696,17 +992,17 @@
       <p class="sous-titre-section">Chaque ressource est pensée pour t'amener au résultat, pas seulement à la théorie.</p>
       <div class="grille-pourquoi">
         <div class="bloc-pourquoi">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4Z"/><path d="M8 9h8M8 13h5"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M4 4h13a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4Z"/><path d="M8 9h8M8 13h5"/></svg>
           <h3>Apprendre</h3>
           <p>Comprendre de nouvelles méthodes et développer des compétences utiles.</p>
         </div>
         <div class="bloc-pourquoi">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m14.7 6.3 3 3M3 21l3.5-.7 11-11a2.5 2.5 0 0 0-3.5-3.5l-11 11L3 21Z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m14.7 6.3 3 3M3 21l3.5-.7 11-11a2.5 2.5 0 0 0-3.5-3.5l-11 11L3 21Z"/></svg>
           <h3>Pratiquer</h3>
           <p>Passer rapidement de la théorie à la réalisation.</p>
         </div>
         <div class="bloc-pourquoi">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
           <h3>Créer</h3>
           <p>Utiliser ce que tu apprends pour tes propres projets ou activités.</p>
         </div>
@@ -714,38 +1010,62 @@
     </div>
   </section>
 
-  <!-- ===================== PRODUIT À LA UNE ===================== -->
-  <section class="reveal" id="sectionUne" style="display:none;">
+  <!-- ============================================================
+       PRODUIT À LA UNE
+       👉 Pour changer le produit vedette : remplace simplement
+          l'image, le titre, la description, le prix et le lien
+          de cette carte.
+       ============================================================ -->
+  <section class="reveal" id="sectionUne">
     <div class="conteneur">
       <h2 class="titre-section">À la une</h2>
       <p class="sous-titre-section">La ressource à découvrir en priorité ce mois-ci.</p>
-      <div class="carte-une" id="carteUne"></div>
+      <div class="carte-une" id="carteUne">
+        <img class="image-une" src="../Images/vibe coding.webp"
+             alt="Formation à la une : créer un site web professionnel avec l'IA sans être développeur"
+             width="1280" height="720" loading="lazy" decoding="async">
+        <div class="contenu-une">
+          <span class="categorie-produit">Formation • Web</span>
+          <h3>Apprendre à créer un site web professionnel avec l'IA sans être développeur</h3>
+          <p>Crée et mets en ligne des sites web professionnels avec l'IA, même en partant de zéro.</p>
+          <div class="bas-une">
+            <span class="prix-produit">5 000 FCFA</span>
+            <a class="bouton-produit" href="../Boutique/vibecoding.html" aria-label="Découvrir la formation sur la création de site web avec l'IA">
+              Découvrir cette formation
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===================== CATÉGORIES ===================== -->
   <section class="section-alternee reveal">
     <div class="conteneur">
-      <h2 class="titre-section">Trouve la ressource qui te correspond</h2>
+      <h2 class="titre-section">Trouve la formation qui te correspond</h2>
       <p class="sous-titre-section">Clique sur une catégorie pour filtrer directement le catalogue.</p>
       <div class="grille-categories">
-        <button class="carte-categorie" data-categorie="ia">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+        <button type="button" class="carte-categorie" data-categorie="ia">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
           <h3>IA</h3>
           <p>Outils, méthodes et création avec l'intelligence artificielle.</p>
         </button>
-        <button class="carte-categorie" data-categorie="web">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9Z"/></svg>
+        <button type="button" class="carte-categorie" data-categorie="web">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9Z"/></svg>
           <h3>Web</h3>
           <p>Création de sites, développement web et mise en ligne.</p>
         </button>
-        <button class="carte-categorie" data-categorie="video">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10 20 7v10l-5-3Z"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
+        <button type="button" class="carte-categorie" data-categorie="video">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M15 10 20 7v10l-5-3Z"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
           <h3>Vidéo</h3>
           <p>Montage, création de contenu et production vidéo.</p>
         </button>
-        <button class="carte-categorie" data-categorie="business">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>
+        <!-- Cette catégorie n'a pas encore de produit : elle est masquée
+             automatiquement par le JS, et réapparaîtra toute seule dès
+             qu'une carte aura data-filtre="business". -->
+        <button type="button" class="carte-categorie" data-categorie="business">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>
           <h3>Business</h3>
           <p>Ressources pour développer tes projets et services.</p>
         </button>
@@ -760,22 +1080,22 @@
       <p class="sous-titre-section">Choisis une ressource adaptée à ton objectif, découvre son contenu et commence à l'utiliser à ton rythme.</p>
       <div class="grille-reassurance">
         <div class="item-reassurance">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
           <h3>Accès rapide</h3>
           <p>Accède à ton contenu après l'achat.</p>
         </div>
         <div class="item-reassurance">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>
           <h3>Apprendre partout</h3>
           <p>Consulte tes ressources depuis tes appareils.</p>
         </div>
         <div class="item-reassurance">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           <h3>Accès à vie</h3>
           <p>Ton contenu reste accessible dans le temps.</p>
         </div>
         <div class="item-reassurance">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           <h3>Paiement sécurisé</h3>
           <p>Transactions traitées via Chariow.</p>
         </div>
@@ -790,10 +1110,12 @@
       <p>Explore la boutique et trouve la ressource qui peut t'aider à passer de l'idée à la réalisation.</p>
       <a href="#produits" class="bouton-principal">
         Explorer la boutique
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </section>
+
+  </main>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="pied-page">
@@ -804,7 +1126,7 @@
           <p>Des ressources digitales pour apprendre et créer.</p>
         </div>
 
-        <nav class="pied-liens">
+        <nav class="pied-liens" aria-label="Liens de pied de page">
           <a href="#produits">Boutique</a>
           <a href="https://kpvie.github.io/geraudzoe.com/#services">Services</a>
           <a href="https://kpvie.github.io/geraudzoe.com/#faq">FAQ</a>
@@ -813,13 +1135,13 @@
 
         <div class="pied-reseaux">
           <a href="https://www.facebook.com/geraud.zoe" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>
           </a>
           <a href="https://wa.me/message/CWD4CKJOMTNNC1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.1-4.7A9 9 0 1 1 21 12Z"/><path d="M8.5 9.5c0 3 2 5 5 5 .7 0 1.3-.5 1.3-1.2l-1.6-.8-.8.8a5 5 0 0 1-2.7-2.7l.8-.8-.8-1.6c-.7 0-1.2.6-1.2 1.3Z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.1-4.7A9 9 0 1 1 21 12Z"/><path d="M8.5 9.5c0 3 2 5 5 5 .7 0 1.3-.5 1.3-1.2l-1.6-.8-.8.8a5 5 0 0 1-2.7-2.7l.8-.8-.8-1.6c-.7 0-1.2.6-1.2 1.3Z"/></svg>
           </a>
           <a href="https://www.linkedin.com/in/g%C3%A9raud-zo%C3%A9-539034259/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8H4v12h2.5V8Zm-1.2-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM20 13.5c0-3-1.6-4.5-3.9-4.5-1.5 0-2.4.8-2.8 1.5V8H10.8v12h2.5v-6.4c0-1.3.7-2.1 1.8-2.1s1.7.8 1.7 2.1V20H20v-6.5Z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M6.5 8H4v12h2.5V8Zm-1.2-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM20 13.5c0-3-1.6-4.5-3.9-4.5-1.5 0-2.4.8-2.8 1.5V8H10.8v12h2.5v-6.4c0-1.3.7-2.1 1.8-2.1s1.7.8 1.7 2.1V20H20v-6.5Z"/></svg>
           </a>
         </div>
       </div>
@@ -830,134 +1152,69 @@
 
   <script>
     // ============================================================
-    // Informations locales par produit.
-    // À tenir à jour en même temps que PRODUITS_AUTORISES côté backend.
-    // .....
+    // Filtre
     // ============================================================
-    const INFOS_PRODUITS = {
-      "prd_h60kzl": {
-        categorie: "Guide",
-        filtre: "ia",
-        description: "Devenir professionnel du montage vidéo avec capcut mobile",
-        lien: "prd_h60kzl.html"
-      },
-      "prd_vajso9": {
-        categorie: "Système IA",
-        filtre: "ia",
-        description: "Le système complet pour produire differentes types de vidéos performantes avec l'IA pour les réseaux sociaux.",
-        lien: "prd_vajso9.html"
-      },
-      "prd_1n7gkf": {
-        categorie: "Formation • Web",
-        filtre: "web",
-        description: "Crée et mets en ligne des sites web professionnels avec l'IA, même en partant de zéro.",
-        lien: "prd_1n7gkf.html",
-        aLaUne: true
-      }
-    };
 
-    let produitsCharges = [];
+    document.body.classList.remove("no-js");
 
-    // Génère le HTML d'une carte produit
-    function construireCarte(produit) {
-      const infos = INFOS_PRODUITS[produit.id] || { categorie: "Ressource", filtre: "autre", description: "", lien: "#" };
+    const cartes = Array.from(document.querySelectorAll("#grilleProduits .carte-produit"));
+    const messageGrille = document.getElementById("messageGrille");
+    const boutonsFiltre = Array.from(document.querySelectorAll(".filtre"));
+    const cartesCategorie = Array.from(document.querySelectorAll(".carte-categorie"));
 
-      return `
-        <div class="carte-produit" data-filtre="${infos.filtre}">
-          <img src="${produit.image || '../Images/produit-placeholder.webp'}" alt="${produit.nom}" loading="lazy">
-          <div class="contenu-carte">
-            <span class="categorie-produit">${infos.categorie}</span>
-            <h3 class="nom-produit">${produit.nom}</h3>
-            <p class="description-produit">${infos.description}</p>
-            <div class="bas-carte">
-              <span class="prix-produit">${produit.prixAffiche}</span>
-              <a class="bouton-produit" href="${infos.lien}">
-                Découvrir
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
-    }
+    // Catégories réellement présentes dans le catalogue
+    const categoriesPresentes = new Set(cartes.map((carte) => carte.dataset.filtre));
 
-    // Affiche le produit vedette, s'il existe dans les produits récupérés
-    function afficherProduitALaUne(produits) {
-      const produitVedette = produits.find((p) => INFOS_PRODUITS[p.id]?.aLaUne);
-      if (!produitVedette) return;
+    // Masque les filtres et cartes de catégorie sans aucun produit,
+    // pour ne jamais envoyer le visiteur vers une grille vide.
+    function masquerCategoriesVides() {
+      boutonsFiltre.forEach((bouton) => {
+        if (bouton.dataset.categorie === "toutes") return;
+        bouton.hidden = !categoriesPresentes.has(bouton.dataset.categorie);
+      });
 
-      const infos = INFOS_PRODUITS[produitVedette.id];
-
-      document.getElementById("carteUne").innerHTML = `
-        <img class="image-une" src="${produitVedette.image || '../Images/produit-placeholder.webp'}" alt="${produitVedette.nom}" loading="lazy">
-        <div class="contenu-une">
-          <span class="categorie-produit">${infos.categorie}</span>
-          <h3>${produitVedette.nom}</h3>
-          <p>${infos.description}</p>
-          <div class="bas-une">
-            <span class="prix-produit">${produitVedette.prixAffiche}</span>
-            <a class="bouton-produit" href="${infos.lien}">
-              Découvrir ce produit
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
-          </div>
-        </div>
-      `;
-
-      document.getElementById("sectionUne").style.display = "block";
-    }
-
-    // Applique un filtre de catégorie sur les cartes déjà affichées
-    function appliquerFiltre(categorie) {
-      const grille = document.getElementById("grilleProduits");
-
-      const produitsFiltres = categorie === "toutes"
-        ? produitsCharges
-        : produitsCharges.filter((p) => INFOS_PRODUITS[p.id]?.filtre === categorie);
-
-      if (produitsFiltres.length === 0) {
-        grille.innerHTML = '<p class="message-grille">Aucun produit dans cette catégorie pour le moment.</p>';
-      } else {
-        grille.innerHTML = produitsFiltres.map(construireCarte).join("");
-      }
-
-      // Met à jour le bouton de filtre actif
-      document.querySelectorAll(".filtre").forEach((bouton) => {
-        bouton.classList.toggle("actif", bouton.dataset.categorie === categorie);
+      cartesCategorie.forEach((carte) => {
+        carte.hidden = !categoriesPresentes.has(carte.dataset.categorie);
       });
     }
 
-    // Récupère les produits via la fonction Netlify
-    async function chargerProduitsChariow() {
-      const grille = document.getElementById("grilleProduits");
+    // Applique un filtre de catégorie sur les cartes du HTML
+    function appliquerFiltre(categorie) {
+      let visibles = 0;
 
-      try {
-        const reponse = await fetch("https://willowy-fenglisu-d19e74.netlify.app/.netlify/functions/chariow-produits");
-        const donnees = await reponse.json();
+      cartes.forEach((carte) => {
+        const correspond = categorie === "toutes" || carte.dataset.filtre === categorie;
+        carte.hidden = !correspond;
+        if (correspond) visibles++;
+      });
 
-        if (!reponse.ok || !donnees.produits || donnees.produits.length === 0) {
-          grille.innerHTML = '<p class="message-grille">Aucun produit disponible pour le moment.</p>';
-          return;
-        }
+      messageGrille.hidden = visibles > 0;
 
-        produitsCharges = donnees.produits;
-        grille.innerHTML = produitsCharges.map(construireCarte).join("");
-        afficherProduitALaUne(produitsCharges);
-      } catch (erreur) {
-        grille.innerHTML = '<p class="message-grille">Erreur de chargement des produits.</p>';
-      }
+      boutonsFiltre.forEach((bouton) => {
+        const actif = bouton.dataset.categorie === categorie;
+        bouton.classList.toggle("actif", actif);
+        bouton.setAttribute("aria-pressed", actif ? "true" : "false");
+      });
     }
 
     // Boutons de filtre de la barre
-    document.querySelectorAll(".filtre").forEach((bouton) => {
+    boutonsFiltre.forEach((bouton) => {
       bouton.addEventListener("click", () => appliquerFiltre(bouton.dataset.categorie));
     });
 
     // Cartes de catégories : filtrent et remontent vers la grille
-    document.querySelectorAll(".carte-categorie").forEach((carte) => {
+    cartesCategorie.forEach((carte) => {
       carte.addEventListener("click", () => {
         appliquerFiltre(carte.dataset.categorie);
         document.getElementById("produits").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    // Image de secours si un fichier est manquant ou mal nommé
+    document.querySelectorAll("#grilleProduits img, .image-une").forEach((image) => {
+      image.addEventListener("error", function gererErreur() {
+        this.removeEventListener("error", gererErreur);
+        this.src = "../Images/produit-placeholder.webp";
       });
     });
 
@@ -976,9 +1233,8 @@
 
     document.querySelectorAll(".reveal").forEach((element) => observateur.observe(element));
 
-    chargerProduitsChariow();
+    masquerCategoriesVides();
   </script>
-
 </body>
 
 </html>
