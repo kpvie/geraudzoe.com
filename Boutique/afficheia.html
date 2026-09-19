@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <title>Créer des images professionnelles avec l'IA — Formation gratuite sur WhatsApp | Géraud KPOVIESSI</title>
+  <meta name="description" content="Rejoins une formation 100% gratuite sur WhatsApp et apprends, étape par étape, à créer des visuels professionnels avec l'IA : produits, réseaux sociaux, publicités, portraits. Aucune base en graphisme requise.">
+  <meta name="keywords" content="formation gratuite IA, créer images IA, formation WhatsApp gratuite, visuels IA débutant, création image intelligence artificielle Bénin">
+  <meta name="author" content="Géraud KPOVIESSI">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#eab308">
+  <link rel="canonical" href="https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html">
+
+  <link rel="icon" type="image/png" href="../Images/favicon.png">
+  <link rel="apple-touch-icon" href="../Images/favicon.png">
+
+  <!-- ============ Open Graph ============ -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Créer des images professionnelles avec l'IA — Formation gratuite sur WhatsApp">
+  <meta property="og:description" content="Formation 100% gratuite sur WhatsApp : apprends à créer des visuels professionnels avec l'IA, même sans base en graphisme.">
+  <meta property="og:image" content="https://kpvie.github.io/geraudzoe.com/Images/produit-imagesia.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Formation gratuite créer des images professionnelles avec l'IA">
+  <meta property="og:url" content="https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Géraud KPOVIESSI">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Créer des images professionnelles avec l'IA — Formation gratuite">
+  <meta name="twitter:description" content="Formation 100% gratuite sur WhatsApp pour apprendre à créer des visuels pros avec l'IA.">
+  <meta name="twitter:image" content="https://kpvie.github.io/geraudzoe.com/Images/produit-images-ia.webp">
+
+  <!-- ============ Polices ============ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --jaune: #eab308;
+      --jaune-fonce: #a16207;
+      --jaune-fond: #fefce8;
+      --marine: #10131a;
+      --gris: #4b5563;
+      --gris-clair: #6b7280;
+      --fond-alterne: #f7f8fa;
+      --bordure: rgba(16, 19, 26, 0.09);
+      --site-bleu: #2e5cff;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--marine);
+      background: #ffffff;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .conteneur { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    .conteneur-large { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    .conteneur-etroit { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+    h1, h2, h3 {
+      font-family: "Sora", "Inter", sans-serif;
+      color: var(--marine);
+      line-height: 1.28;
+      letter-spacing: -0.015em;
+    }
+
+    section { padding: 80px 0; }
+    .section-alternee { background: var(--fond-alterne); }
+
+    /* ===================== BARRE DE PROGRESSION ===================== */
+    .barre-progression {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: var(--jaune-fonce); z-index: 300; transition: width 0.1s linear;
+    }
+
+    /* ===================== APPARITION AU SCROLL ===================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .titre-hero,
+      .accroche-hero,
+      .note-hero,
+      .bloc-cta-hero,
+      .bloc-lignes p {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+
+      .bandeau-piste { animation: defilement 40s linear infinite !important; }
+    }
+
+    /* ===================== EN-TÊTE ===================== */
+    .entete-produit {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    .entete-produit-interieur {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: "Sora", "Inter", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--marine);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--site-bleu); }
+
+    .lien-catalogue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--site-bleu);
+      text-decoration: none;
+      border: 1.5px solid var(--site-bleu);
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .lien-catalogue:hover { background: var(--site-bleu); color: #ffffff; }
+
+    @media (max-width: 640px) {
+      .entete-produit-interieur { justify-content: space-between; gap: 10px; }
+      .lien-catalogue { font-size: 0.78rem; padding: 6px 12px; }
+    }
+
+    /* ===================== BIENVENUE + BANDEAU ===================== */
+    .bloc-bienvenue {
+      text-align: center;
+      padding: 22px 20px 14px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--gris);
+    }
+
+    .bandeau-defilant {
+      background: var(--jaune);
+      color: var(--marine);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 11px 0;
+    }
+
+    .bandeau-piste {
+      display: inline-block;
+      padding-left: 100%;
+      animation: defilement 26s linear infinite;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes defilement {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* ===================== ÉLÉMENTS COMMUNS ===================== */
+    .etiquette {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--jaune-fonce);
+      background: var(--jaune-fond);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      padding: 6px 14px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    /* Bouton jaune : texte marine */
+    .bouton-principal {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--jaune);
+      color: var(--marine);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1.5px solid var(--jaune);
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 14px rgba(234, 179, 8, 0.28);
+    }
+
+    .bouton-principal:hover {
+      background: #ffffff;
+      color: var(--jaune-fonce);
+      border-color: var(--jaune-fonce);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(161, 98, 7, 0.2);
+    }
+
+    .bouton-principal:active { transform: translateY(-1px); }
+
+    .bouton-hero-conteneur { position: relative; display: inline-block; }
+
+    .bouton-hero-conteneur::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(234, 179, 8, 0.4);
+      animation: respiration 2.6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes respiration {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.06); opacity: 0; }
+    }
+
+    .titre-section {
+      position: relative;
+      font-size: 1.95rem;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .titre-section::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 3px;
+      background: var(--jaune);
+      margin: 16px auto 0;
+      border-radius: 3px;
+      transition: width 0.6s ease 0.15s;
+    }
+
+    .reveal.visible .titre-section::after { width: 52px; }
+
+    .sous-titre-section {
+      text-align: center;
+      color: var(--gris);
+      font-size: 1.04rem;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+
+    .amorce-objection {
+      display: block;
+      text-align: center;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--gris-clair);
+      margin-bottom: 12px;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero { padding: 62px 0 76px; text-align: center; }
+
+    .titre-hero {
+      font-size: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto 18px;
+      opacity: 0;
+      animation: apparitionHaut 0.8s ease 0.1s forwards;
+    }
+
+    .image-hero {
+      width: 100%;
+      max-width: 900px;
+      margin: 28px auto;
+      border-radius: 14px;
+      display: block;
+      border: 1px solid var(--bordure);
+      box-shadow: 0 20px 44px rgba(16, 19, 26, 0.1);
+      opacity: 0;
+      transform: scale(0.975);
+      animation: apparitionImage 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .image-hero:hover { transform: scale(1.008); box-shadow: 0 26px 52px rgba(16, 19, 26, 0.14); }
+
+    .accroche-hero {
+      font-size: 1.12rem;
+      color: var(--gris);
+      max-width: 660px;
+      margin: 0 auto 12px;
+      opacity: 0;
+      animation: apparitionHaut 0.8s ease 0.5s forwards;
+    }
+
+    .note-hero {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--jaune-fonce);
+      max-width: 620px;
+      margin: 0 auto 32px;
+      opacity: 0;
+      animation: apparitionHaut 0.8s ease 0.65s forwards;
+    }
+
+    .bloc-cta-hero {
+      opacity: 0;
+      animation: apparitionHaut 0.8s ease 0.8s forwards;
+    }
+
+    @keyframes apparitionHaut {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes apparitionImage {
+      from { opacity: 0; transform: scale(0.975); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ===================== CE QUE TU VAS APPRENDRE ===================== */
+    .grille-competences {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .carte-competence {
+      padding: 26px 22px;
+      background: #ffffff;
+      border: 1px solid var(--bordure);
+      border-radius: 14px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .carte-competence:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px rgba(16, 19, 26, 0.07);
+      border-color: rgba(234, 179, 8, 0.35);
+    }
+
+    .carte-competence svg { color: var(--jaune-fonce); margin-bottom: 14px; }
+    .carte-competence h3 { font-size: 1.02rem; margin-bottom: 8px; }
+    .carte-competence p { color: var(--gris); font-size: 0.92rem; }
+
+    /* ===================== GALERIE D'EXEMPLES ===================== */
+    .grille-galerie {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .cadre-galerie {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--bordure);
+      aspect-ratio: 1 / 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cadre-galerie:hover { transform: translateY(-5px) scale(1.015); box-shadow: 0 16px 32px rgba(16, 19, 26, 0.1); }
+    .cadre-galerie img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ===================== TEXTE NARRATIF ===================== */
+    .texte-narratif { max-width: 640px; margin: 0 auto; }
+    .texte-narratif p { color: var(--gris); font-size: 1.02rem; margin-bottom: 16px; }
+    .texte-narratif p:last-child { margin-bottom: 0; }
+    .texte-narratif p.accent { color: var(--marine); font-weight: 700; }
+
+    /* ===================== FORMATION SUR WHATSAPP ===================== */
+    .carte-whatsapp {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--marine);
+      border-radius: 18px;
+      padding: 42px 38px;
+      text-align: center;
+      color: #ffffff;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .carte-whatsapp:hover { transform: translateY(-5px); box-shadow: 0 24px 48px rgba(16, 19, 26, 0.3); }
+
+    .carte-whatsapp svg.icone-whatsapp {
+      color: #25d366;
+      margin-bottom: 16px;
+    }
+
+    .carte-whatsapp h2 { color: #ffffff; font-size: 1.4rem; margin-bottom: 18px; }
+
+    .liste-reassurance-wa {
+      list-style: none;
+      max-width: 380px;
+      margin: 0 auto 26px;
+      text-align: left;
+    }
+
+    .liste-reassurance-wa li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.96rem;
+    }
+
+    .liste-reassurance-wa svg { flex-shrink: 0; color: var(--jaune); }
+
+    .badge-gratuit {
+      display: inline-block;
+      background: var(--jaune);
+      color: var(--marine);
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+    }
+
+    /* ===================== PUCES ===================== */
+    .grille-puces { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; }
+
+    .puce {
+      font-size: 0.91rem;
+      font-weight: 500;
+      background: #ffffff;
+      border: 1px solid var(--bordure);
+      padding: 10px 18px;
+      border-radius: 28px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .puce:hover { border-color: var(--jaune-fonce); transform: translateY(-2px); }
+
+    .grille-raisons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .carte-raison {
+      padding: 24px 22px;
+      background: #ffffff;
+      border: 1px solid var(--bordure);
+      border-radius: 14px;
+      border-left: 3px solid var(--jaune);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .carte-raison:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(16, 19, 26, 0.06); }
+    .carte-raison h3 { font-size: 1rem; margin-bottom: 6px; }
+    .carte-raison p { color: var(--gris); font-size: 0.9rem; }
+
+    /* ===================== CTA FINAL ===================== */
+    .message-central {
+      background: var(--jaune);
+      padding: 88px 20px;
+      text-align: center;
+    }
+
+    .message-central h2 {
+      color: var(--marine);
+      font-size: 1.85rem;
+      max-width: 640px;
+      margin: 0 auto 12px;
+    }
+
+    .message-central p {
+      color: rgba(16, 19, 26, 0.72);
+      font-size: 1.06rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .message-central .bouton-principal {
+      background: var(--marine);
+      color: #ffffff;
+      border-color: var(--marine);
+      box-shadow: 0 8px 24px rgba(16, 19, 26, 0.28);
+    }
+
+    .message-central .bouton-principal:hover {
+      background: #ffffff;
+      color: var(--marine);
+      border-color: var(--marine);
+    }
+
+    /* ===================== RESPONSIVE TABLETTE ===================== */
+    @media (max-width: 1024px) {
+      .grille-competences { grid-template-columns: repeat(2, 1fr); }
+      .grille-galerie { grid-template-columns: repeat(3, 1fr); }
+      .grille-raisons { grid-template-columns: 1fr 1fr; }
+      .titre-hero { font-size: 2.1rem; }
+    }
+
+    /* ===================== RESPONSIVE MOBILE ===================== */
+    @media (max-width: 640px) {
+      section { padding: 58px 0; }
+      .hero { padding: 44px 0 58px; }
+      .titre-hero { font-size: 1.68rem; }
+      .titre-section { font-size: 1.45rem; }
+      .grille-competences { grid-template-columns: 1fr; }
+      .grille-galerie { grid-template-columns: repeat(2, 1fr); }
+      .grille-raisons { grid-template-columns: 1fr; }
+      .carte-whatsapp { padding: 34px 24px; }
+      .message-central h2 { font-size: 1.4rem; }
+    }
+  </style>
+
+  <!-- ============ Données structurées ============ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Course",
+        "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html#formation",
+        "name": "Créer des images professionnelles avec l'IA",
+        "description": "Formation gratuite animée sur WhatsApp pour apprendre, étape par étape, à créer des visuels professionnels avec l'IA : produits, réseaux sociaux, publicités, portraits et concepts visuels.",
+        "provider": { "@type": "Person", "name": "Géraud KPOVIESSI" },
+        "isAccessibleForFree": true,
+        "url": "https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "XOF",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://kpvie.github.io/geraudzoe.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Boutique", "item": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" },
+          { "@type": "ListItem", "position": 3, "name": "Créer des images professionnelles avec l'IA" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <div class="barre-progression" id="barreProgression"></div>
+
+  <header class="entete-produit">
+    <div class="entete-produit-interieur">
+      <a href="https://kpvie.github.io/geraudzoe.com/" class="logo">Géraud<span>KPOVIESSI</span></a>
+      <a href="Accueil-produits.html" class="lien-catalogue">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Retour au catalogue
+      </a>
+    </div>
+  </header>
+
+  <div class="bloc-bienvenue">Bienvenue</div>
+
+  <div class="bandeau-defilant">
+    <div class="bandeau-piste">
+      FORMATION 100% GRATUITE, PLACES LIMITÉES DANS LE GROUPE, REJOINS-NOUS DÈS MAINTENANT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FORMATION 100% GRATUITE, PLACES LIMITÉES DANS LE GROUPE, REJOINS-NOUS DÈS MAINTENANT
+    </div>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="conteneur">
+      <span class="etiquette">Formation gratuite</span>
+      <h1 class="titre-hero">Créer des images professionnelles avec l'IA</h1>
+      <img class="image-hero" src="../Images/produit-images-ia.webp" alt="Créer des images professionnelles avec l'intelligence artificielle">
+      <p class="accroche-hero">Tu veux apprendre à créer de beaux visuels avec l'IA ? Rejoins notre formation gratuite sur WhatsApp et découvre, étape par étape, comment transformer tes idées en images.</p>
+      <p class="note-hero">Aucune base en graphisme n'est nécessaire.</p>
+      <div class="bloc-cta-hero">
+        <div class="bouton-hero-conteneur">
+          <a href="https://chat.whatsapp.com/LIEN_A_REMPLACER" target="_blank" rel="noopener noreferrer" class="bouton-principal">
+             Rejoindre la formation gratuitement
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CE QUE TU VAS APPRENDRE ===================== -->
+  <section class="section-alternee reveal">
+    <div class="conteneur-large">
+      <h2 class="titre-section">Ce que tu vas apprendre</h2>
+      <p class="sous-titre-section">Pendant la formation, tu découvriras comment utiliser l'IA pour créer différents types de visuels.</p>
+      <div class="grille-competences">
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg>
+          <h3>Visuels produits</h3>
+          <p>Présenter un produit de manière professionnelle.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>
+          <h3>Visuels réseaux sociaux</h3>
+          <p>Créer des images pour tes publications et contenus.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg>
+          <h3>Visuels publicitaires</h3>
+          <p>Donner une dimension visuelle à tes offres et campagnes.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <h3>Portraits & personnages</h3>
+          <p>Créer différents styles de portraits et de personnages.</p>
+        </div>
+        <div class="carte-competence">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 2Z"/></svg>
+          <h3>Créations à partir d'une idée</h3>
+          <p>Transformer une simple idée en véritable concept visuel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIE D'EXEMPLES ===================== -->
+  <section class="reveal">
+    <div class="conteneur-large">
+      <h2 class="titre-section">Voici ce que tu pourras réaliser</h2>
+      <p class="sous-titre-section">Découvre quelques exemples de créations réalisées avec les méthodes présentées pendant la formation.</p>
+      <div class="grille-galerie">
+        <div class="cadre-galerie"><img src="../Images/exemple-image-ia-1.webp" alt="Exemple de visuel produit créé avec l'IA"></div>
+        <div class="cadre-galerie"><img src="../Images/exemple-image-ia-2.webp" alt="Exemple de visuel réseaux sociaux créé avec l'IA"></div>
+        <div class="cadre-galerie"><img src="../Images/exemple-image-ia-3.webp" alt="Exemple de visuel publicitaire créé avec l'IA"></div>
+        <div class="cadre-galerie"><img src="../Images/exemple-image-ia-4.webp" alt="Exemple de portrait créé avec l'IA"></div>
+        <div class="cadre-galerie"><img src="../Images/exemple-image-ia-5.webp" alt="Exemple de personnage créé avec l'IA"></div>
+        <div class="cadre-galerie"><img src="../Images/exemple-image-ia-6.webp" alt="Exemple de concept visuel créé avec l'IA"></div>
+      </div>
+      <p class="sous-titre-section" style="margin-top:36px; margin-bottom:0;">Les exemples te donnent simplement un aperçu des possibilités que tu découvriras pendant la formation.</p>
+    </div>
+  </section>
+
+  <!-- ===================== TU N'Y CONNAIS RIEN À L'IA ===================== -->
+  <section class="section-alternee reveal">
+    <div class="conteneur-etroit">
+      <span class="amorce-objection">« Tu n'y connais rien à l'IA ? »</span>
+      <h2 class="titre-section">Ce n'est pas un problème</h2>
+      <div class="texte-narratif">
+        <p>Tu n'as pas besoin d'être graphiste, designer ou ingénieur. La formation est destinée aux personnes qui veulent apprendre en pratiquant, même lorsqu'elles découvrent complètement la création d'images avec l'IA.</p>
+        <p class="accent">Tu viens avec ton téléphone, ta curiosité et tes idées.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATION SUR WHATSAPP ===================== -->
+  <section class="reveal">
+    <div class="conteneur">
+      <h2 class="titre-section">La formation se passe sur WhatsApp</h2>
+      <p class="sous-titre-section">Tu rejoins le groupe et tu suis les différentes étapes de la formation directement depuis ton téléphone.</p>
+      <div class="carte-whatsapp">
+        <svg class="icone-whatsapp" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.1-4.7A9 9 0 1 1 21 12Z"/><path d="M8.5 9.5c0 3 2 5 5 5 .7 0 1.3-.5 1.3-1.2l-1.6-.8-.8.8a5 5 0 0 1-2.7-2.7l.8-.8-.8-1.6c-.7 0-1.2.6-1.2 1.3Z"/></svg>
+        <span class="badge-gratuit">100% GRATUIT</span>
+        <h2>Rejoins le groupe et apprends depuis ton téléphone</h2>
+        <ul class="liste-reassurance-wa">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Pas besoin de te déplacer</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Pas besoin d'une formation préalable</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Pas besoin de payer pour participer</span></li>
+        </ul>
+        <div class="bouton-hero-conteneur">
+          <a href="https://chat.whatsapp.com/LIEN_A_REMPLACER" target="_blank" rel="noopener noreferrer" class="bouton-principal">
+            Rejoindre le groupe WhatsApp →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== POURQUOI APPRENDRE ÇA ===================== -->
+  <section class="section-alternee reveal">
+    <div class="conteneur-large">
+      <h2 class="titre-section">Pourquoi apprendre ça ?</h2>
+      <p class="sous-titre-section">Parce que les images créées avec l'IA peuvent aujourd'hui servir dans de nombreux projets.</p>
+      <div class="grille-raisons">
+        <div class="carte-raison">
+          <h3>Ton activité</h3>
+          <p>Créer tes propres visuels.</p>
+        </div>
+        <div class="carte-raison">
+          <h3>Tes réseaux sociaux</h3>
+          <p>Illustrer tes contenus.</p>
+        </div>
+        <div class="carte-raison">
+          <h3>Tes produits</h3>
+          <p>Mieux présenter ce que tu vends.</p>
+        </div>
+        <div class="carte-raison">
+          <h3>Tes projets personnels</h3>
+          <p>Donner vie à tes idées.</p>
+        </div>
+        <div class="carte-raison">
+          <h3>Tes services</h3>
+          <p>Et pourquoi pas, à terme, proposer tes compétences à d'autres personnes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA FINAL ===================== -->
+  <section class="message-central">
+    <h2>Tu as une idée ? Apprends à la transformer en image.</h2>
+    <p>Formation gratuite. Accessible aux débutants.</p>
+    <a href="https://chat.whatsapp.com/LIEN_A_REMPLACER" target="_blank" rel="noopener noreferrer" class="bouton-principal">
+       Je rejoins la formation
+    </a>
+  </section>
+
+  <script>
+    // Barre de progression de lecture
+    const barreProgression = document.getElementById("barreProgression");
+    function mettreAJourProgression() {
+      if (!barreProgression) return;
+      const hauteurTotale = document.documentElement.scrollHeight - window.innerHeight;
+      const pourcentage = hauteurTotale > 0 ? (window.scrollY / hauteurTotale) * 100 : 0;
+      barreProgression.style.width = pourcentage + "%";
+    }
+    window.addEventListener("scroll", mettreAJourProgression, { passive: true });
+    mettreAJourProgression();
+
+    // Apparition au scroll
+    const observateur = new IntersectionObserver(
+      (entrees) => {
+        entrees.forEach((entree) => {
+          if (entree.isIntersecting) {
+            entree.target.classList.add("visible");
+            observateur.unobserve(entree.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => observateur.observe(element));
+  </script>
+
+</body>
+
+</html>

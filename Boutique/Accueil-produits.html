@@ -674,184 +674,235 @@
        ============================================================ -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://kpvie.github.io/geraudzoe.com/#personne",
-        "name": "Géraud KPOVIESSI",
-        "alternateName": "Géraud Zoé",
-        "jobTitle": "Développeur web et formateur en outils IA",
-        "email": "geraudzoe66@gmail.com",
-        "url": "https://kpvie.github.io/geraudzoe.com/",
-        "knowsLanguage": ["fr", "en"],
-        "knowsAbout": [
-          "Création de sites web avec l'intelligence artificielle",
-          "Montage vidéo mobile avec CapCut",
-          "Création et monétisation de contenu vidéo par IA",
-          "Développement web HTML CSS JavaScript Python",
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Cotonou",
-          "addressRegion": "Littoral",
-          "addressCountry": "BJ"
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://kpvie.github.io/geraudzoe.com/#personne",
+      "name": "Géraud KPOVIESSI",
+      "alternateName": "Géraud Zoé",
+      "jobTitle": "Développeur web et formateur en outils IA",
+      "email": "geraudzoe66@gmail.com",
+      "url": "https://kpvie.github.io/geraudzoe.com/",
+      "knowsLanguage": ["fr", "en"],
+      "knowsAbout": [
+        "Création de sites web avec l'intelligence artificielle",
+        "Montage vidéo mobile avec CapCut",
+        "Création et monétisation de contenu vidéo par IA",
+        "Développement web HTML CSS JavaScript Python"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cotonou",
+        "addressRegion": "Littoral",
+        "addressCountry": "BJ"
+      },
+      "sameAs": [
+        "https://www.facebook.com/geraud.zoe",
+        "https://www.linkedin.com/in/g%C3%A9raud-zo%C3%A9-539034259/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kpvie.github.io/geraudzoe.com/#site",
+      "name": "Géraud Zoé",
+      "url": "https://kpvie.github.io/geraudzoe.com/",
+      "inLanguage": "fr",
+      "publisher": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#page",
+      "name": "Boutique digitale — Géraud Zoé",
+      "description": "Formations et ressources digitales pour apprendre, créer et passer à l'action : créer un site web avec l'IA, produire et monétiser du contenu vidéo par IA, monter des vidéos professionnelles sur téléphone avec CapCut.",
+      "url": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html",
+      "inLanguage": "fr",
+      "isPartOf": { "@id": "https://kpvie.github.io/geraudzoe.com/#site" },
+      "about": ["Intelligence artificielle", "Développement web", "Montage vidéo", "Formation en ligne"],
+      "mainEntity": { "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#catalogue" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://kpvie.github.io/geraudzoe.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Boutique", "item": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#catalogue",
+      "name": "Catalogue des formations digitales de Géraud Zoé",
+      "numberOfItems": 5,
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/contenuia.html#produit",
+            "name": "Apprendre à créer du contenu vidéo avec l'IA et le monétiser sur les réseaux sociaux",
+            "description": "Le système complet pour produire différents types de vidéos performantes avec l'intelligence artificielle et les monétiser sur les réseaux sociaux.",
+            "image": "https://kpvie.github.io/geraudzoe.com/Images/contenuia.webp",
+            "url": "https://kpvie.github.io/geraudzoe.com/Boutique/contenuvideo.html",
+            "sku": "contenuvideo",
+            "category": "Formation en ligne > Intelligence artificielle > Création de contenu",
+            "inLanguage": "fr",
+            "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+            "offers": {
+              "@type": "Offer",
+              "price": "2500",
+              "priceCurrency": "XOF",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/contenuvideo.html",
+              "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+            }
+          }
         },
-        "sameAs": [
-          "https://www.facebook.com/geraud.zoe",
-          "https://www.linkedin.com/in/g%C3%A9raud-zo%C3%A9-539034259/"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://kpvie.github.io/geraudzoe.com/#site",
-        "name": "Géraud Zoé",
-        "url": "https://kpvie.github.io/geraudzoe.com/",
-        "inLanguage": "fr",
-        "publisher": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
-      },
-      {
-        "@type": "CollectionPage",
-        "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#page",
-        "name": "Boutique digitale — Géraud Zoé",
-        "description": "Formations et ressources digitales pour apprendre, créer et passer à l'action : créer un site web avec l'IA, produire et monétiser du contenu vidéo par IA, monter des vidéos professionnelles sur téléphone avec CapCut.",
-        "url": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html",
-        "inLanguage": "fr",
-        "isPartOf": { "@id": "https://kpvie.github.io/geraudzoe.com/#site" },
-        "about": ["Intelligence artificielle", "Développement web", "Montage vidéo", "Formation en ligne"],
-        "mainEntity": { "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#catalogue" }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://kpvie.github.io/geraudzoe.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Boutique", "item": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" }
-        ]
-      },
-      {
-        "@type": "ItemList",
-        "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#catalogue",
-        "name": "Catalogue des formations digitales de Géraud Zoé",
-        "numberOfItems": 3,
-        "itemListOrder": "https://schema.org/ItemListOrderAscending",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "item": {
-              "@type": "Product",
-              "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_vajso9.html#produit",
-              "name": "Apprendre à créer du contenu vidéo avec l'IA et le monétiser sur les réseaux sociaux",
-              "description": "Le système complet pour produire différents types de vidéos performantes avec l'intelligence artificielle et les monétiser sur les réseaux sociaux.",
-              "image": "https://kpvie.github.io/geraudzoe.com/Images/contenu-video-ia.webp",
-              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_vajso9.html",
-              "sku": "contenuvideo",
-              "category": "Formation en ligne > Intelligence artificielle > Création de contenu",
-              "inLanguage": "fr",
-              "brand": { "@type": "Brand", "name": "Géraud Zoé" },
-              "offers": {
-                "@type": "Offer",
-                "price": "2500",
-                "priceCurrency": "XOF",
-                "availability": "https://schema.org/InStock",
-                "itemCondition": "https://schema.org/NewCondition",
-                "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_vajso9.html",
-                "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
-              }
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-              "@type": "Product",
-              "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_1n7gkf.html#produit",
-              "name": "Apprendre à créer un site web professionnel avec l'IA sans être développeur",
-              "description": "Crée et mets en ligne des sites web professionnels avec l'intelligence artificielle, même en partant de zéro et sans savoir coder.",
-              "image": "https://kpvie.github.io/geraudzoe.com/Images/site-web-ia.webp",
-              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_1n7gkf.html",
-              "sku": "vibecoding",
-              "category": "Formation en ligne > Développement web > Intelligence artificielle",
-              "inLanguage": "fr",
-              "brand": { "@type": "Brand", "name": "Géraud Zoé" },
-              "offers": {
-                "@type": "Offer",
-                "price": "5000",
-                "priceCurrency": "XOF",
-                "availability": "https://schema.org/InStock",
-                "itemCondition": "https://schema.org/NewCondition",
-                "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_1n7gkf.html",
-                "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
-              }
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "item": {
-              "@type": "Product",
-              "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_h60kzl.html#produit",
-              "name": "Réaliser du montage pro sur téléphone avec CapCut",
-              "description": "Devenir professionnel du montage vidéo avec CapCut mobile, sans ordinateur ni logiciel payant.",
-              "image": "https://kpvie.github.io/geraudzoe.com/Images/montage-capcut.webp",
-              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_h60kzl.html",
-              "sku": "capcut",
-              "category": "Formation en ligne > Montage vidéo > Mobile",
-              "inLanguage": "fr",
-              "brand": { "@type": "Brand", "name": "Géraud Zoé" },
-              "offers": {
-                "@type": "Offer",
-                "price": "3000",
-                "priceCurrency": "XOF",
-                "availability": "https://schema.org/InStock",
-                "itemCondition": "https://schema.org/NewCondition",
-                "url": "https://kpvie.github.io/geraudzoe.com/Boutique/prd_h60kzl.html",
-                "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
-              }
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/vibecoding.html#produit",
+            "name": "Apprendre à créer un site web professionnel avec l'IA sans être développeur",
+            "description": "Crée et mets en ligne des sites web professionnels avec l'intelligence artificielle, même en partant de zéro et sans savoir coder.",
+            "image": "https://kpvie.github.io/geraudzoe.com/Images/vibe-coding.webp",
+            "url": "https://kpvie.github.io/geraudzoe.com/Boutique/vibecoding.html",
+            "sku": "vibecoding",
+            "category": "Formation en ligne > Développement web > Intelligence artificielle",
+            "inLanguage": "fr",
+            "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+            "offers": {
+              "@type": "Offer",
+              "price": "5000",
+              "priceCurrency": "XOF",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/vibecoding.html",
+              "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
             }
           }
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Comment se passe l'accès à une formation après le paiement ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "L'accès à la ressource est délivré juste après la confirmation du paiement. Le contenu reste ensuite accessible dans le temps, depuis un téléphone comme depuis un ordinateur."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Quels moyens de paiement sont acceptés ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Les paiements sont traités par Mtn, Moov et Celtis. Les prix sont affichés en francs CFA (XOF)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Faut-il savoir coder ou monter des vidéos pour suivre ces formations ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Non. Chaque ressource part des bases et va jusqu'à la réalisation concrète. La formation sur la création de sites web avec l'IA s'adresse à des personnes qui ne sont pas développeurs, et la formation CapCut se suit entièrement depuis un téléphone."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Combien coûtent les formations de Géraud Zoé ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Les formations vont de 2 500 FCFA à 5 000 FCFA : créer du contenu vidéo avec l'IA à 2 500 FCFA, montage pro sur téléphone avec CapCut à 3 000 FCFA, et création de site web professionnel avec l'IA à 5 000 FCFA."
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Product",
+            "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/capcut.html#produit",
+            "name": "Réaliser du montage pro sur téléphone avec CapCut",
+            "description": "Devenir professionnel du montage vidéo avec CapCut mobile, sans ordinateur ni logiciel payant.",
+            "image": "https://kpvie.github.io/geraudzoe.com/Images/capcut.webp",
+            "url": "https://kpvie.github.io/geraudzoe.com/Boutique/capcut.html",
+            "sku": "capcut",
+            "category": "Formation en ligne > Montage vidéo > Mobile",
+            "inLanguage": "fr",
+            "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+            "offers": {
+              "@type": "Offer",
+              "price": "3000",
+              "priceCurrency": "XOF",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/capcut.html",
+              "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
             }
           }
-        ]
-      }
-    ]
-  }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "Product",
+            "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html#produit",
+            "name": "Créer une affiche IA pro avec AfficheIA",
+            "description": "Apprendre à créer des affiches attractives avec l'IA, sans compétences techniques.",
+            "image": "https://kpvie.github.io/geraudzoe.com/Images/afficheia.webp",
+            "url": "https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html",
+            "sku": "afficheia",
+            "category": "Formation en ligne > Design > IA",
+            "inLanguage": "fr",
+            "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "XOF",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/afficheia.html",
+              "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "Product",
+            "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/ideecontenu.html#produit",
+            "name": "Idée de contenu, niche à exploiter",
+            "description": "Accompagnement pour trouver des idées de contenu facile à produire et qui cartonne déjà sur les réseaux sociaux.",
+            "image": "https://kpvie.github.io/geraudzoe.com/Images/ideecontenu.webp",
+            "url": "https://kpvie.github.io/geraudzoe.com/Boutique/ideecontenu.html",
+            "sku": "ideecontenu",
+            "category": "Formation en ligne > Affiche IA pro et image IA > Compétences monétisables",
+            "inLanguage": "fr",
+            "brand": { "@type": "Brand", "name": "Géraud Zoé" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "XOF",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition",
+              "url": "https://kpvie.github.io/geraudzoe.com/Boutique/ideecontenu.html",
+              "seller": { "@id": "https://kpvie.github.io/geraudzoe.com/#personne" }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment se passe l'accès à une formation après le paiement ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L'accès à la communauté et aux ressources est délivré juste après la confirmation du paiement. Le contenu reste ensuite accessible dans le temps, depuis un téléphone comme depuis un ordinateur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels moyens de paiement sont acceptés ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les paiements sont traités par Mtn, Moov et Celtis. Les prix sont affichés en francs CFA (XOF)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il savoir coder ou monter des vidéos pour suivre ces formations ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Chaque ressource part des bases et va jusqu'à la réalisation concrète. La formation sur la création de sites web avec l'IA s'adresse à des personnes qui ne sont pas développeurs, et la formation CapCut se suit entièrement depuis un téléphone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûtent les formations de Géraud Zoé ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les formations vont de 2500 FCFA à 5 000 FCFA : créer du contenu vidéo avec l'IA à 2 500 FCFA, montage pro sur téléphone avec CapCut à 3 000 FCFA, et création de site web professionnel avec l'IA à 5 000 FCFA."
+          }
+        }
+      ]
+    }
+  ]
+}
+
   </script>
 </head>
 
@@ -894,20 +945,7 @@
     </div>
   </div>
 
-  <!-- ============================================================
-       PRODUITS
-       ----------
-       
-
-        POUR ... :
-          1. Cpie un bloc <article class="carte-produit"> ci-dessous
-          2. Change.. data-filtre, l'image, le title, la description,
-             the price and the link
-          3. Add this entrée dans le JSON-LD "itemListElement" (<head>)
-          4. Add this page in sitemap.xml
-
-    
-       ============================================================ -->
+  <!-- ==========PRODUITS=============== -->
   <section id="produits" class="reveal">
     <div class="conteneur">
       <h2 class="titre-section">Choisis ce qui t'intéresse</h2>
@@ -948,7 +986,7 @@
                alt="Formation pour créer un site web professionnel avec l'IA sans être développeur"
                width="1280" height="720" loading="lazy" decoding="async">
           <div class="contenu-carte">
-            <span class="categorie-produit">Formation • Web</span>
+            <span class="categorie-produit">Formation-Web</span>
             <h3 class="nom-produit"><a href="../Boutique/vibecoding.html">Apprendre à créer un site web professionnel avec l'IA sans être développeur</a></h3>
             <p class="description-produit">Crée et mets en ligne des sites web professionnels avec l'IA, même en partant de zéro.</p>
             <div class="bas-carte">
@@ -973,6 +1011,44 @@
             <div class="bas-carte">
               <span class="prix-produit">3 000 FCFA</span>
               <a class="bouton-produit" href="../Boutique/capcut.html" aria-label="Découvrir la formation de montage vidéo avec CapCut">
+                Découvrir
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+          <!-- ---------- Produit 4 : les images IA ---------- -->
+        <article class="carte-produit" data-filtre="IA">
+          <img src="../Images/afficheia.webp"
+               alt="Formation pour réaliser des images IA professionnelles et les utiliser pour créer du contenu"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <div class="contenu-carte">
+            <span class="categorie-produit">Formation</span>
+            <h3 class="nom-produit"><a href="../Boutique/afficheia.html">Réaliser des images et affiches IA professionnelles</a></h3>
+            <p class="description-produit">Apprendre à créer des images IA de qualité et les utiliser pour générer du revenu.</p>
+            <div class="bas-carte">
+              <span class="prix-produit">0 FCFA</span>
+              <a class="bouton-produit" href="../Boutique/afficheia.html" aria-label="Découvrir la formation sur les affiches et images IA">
+                Découvrir
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+         <!-- ---------- Produit 5 : Trouver des ides de contenu------ -->
+        <article class="carte-produit" data-filtre="business">
+          <img src="../Images/ideecontenu.webp"
+               alt="Formation pour réaliser des images IA professionnelles et les utiliser pour créer du contenu"
+               width="1280" height="720" loading="lazy" decoding="async">
+          <div class="contenu-carte">
+            <span class="categorie-produit">Accompagnement</span>
+            <h3 class="nom-produit"><a href="../Boutique/ideecontenu.html">Trouver des idées de contenu qui cartonnent</a></h3>
+            <p class="description-produit">Découvrez des idées de contenu facile à produire, populaires et engageantes.</p>
+            <div class="bas-carte">
+              <span class="prix-produit">0 FCFA</span>
+              <a class="bouton-produit" href="../Boutique/ideecontenu.html" aria-label="Découvrir la formation sur les affiches et images IA">
                 Découvrir
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
@@ -1010,12 +1086,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       PRODUIT À LA UNE
-       👉 Pour changer le produit vedette : remplace simplement
-          l'image, le titre, la description, le prix et le lien
-          de cette carte.
-       ============================================================ -->
+  <!-- ============ PRODUIT À LA UNE =================== -->
   <section class="reveal" id="sectionUne">
     <div class="conteneur">
       <h2 class="titre-section">À la une</h2>
@@ -1025,7 +1096,7 @@
              alt="Formation à la une : créer un site web professionnel avec l'IA sans être développeur"
              width="1280" height="720" loading="lazy" decoding="async">
         <div class="contenu-une">
-          <span class="categorie-produit">Formation • Web</span>
+          <span class="categorie-produit">Formation-Web</span>
           <h3>Apprendre à créer un site web professionnel avec l'IA sans être développeur</h3>
           <p>Crée et mets en ligne des sites web professionnels avec l'IA, même en partant de zéro.</p>
           <div class="bas-une">
@@ -1061,9 +1132,7 @@
           <h3>Vidéo</h3>
           <p>Montage, création de contenu et production vidéo.</p>
         </button>
-        <!-- Cette catégorie n'a pas encore de produit : elle est masquée
-             automatiquement par le JS, et réapparaîtra toute seule dès
-             qu'une carte aura data-filtre="business". -->
+        <!-- gérer par JS  : filtre business -->
         <button type="button" class="carte-categorie" data-categorie="business">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg>
           <h3>Business</h3>
@@ -1151,9 +1220,9 @@
   </footer>
 
   <script>
-    // ============================================================
+    // =============
     // Filtre
-    // ============================================================
+    // =============
 
     document.body.classList.remove("no-js");
 
