@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Test chatbot — page privée de vérification</title>
+<!--
+  ============================================================
+  PAGE DE TEST — PAS LA VERSION FINALE
+  ------------------------------------------------------------
+  Cette page sert UNIQUEMENT à vérifier que le worker et Gemini
+  répondent correctement une fois déployés sur ton vrai domaine
+  GitHub Pages (le CORS du worker n'autorise que ce domaine-là,
+  donc un test en local sur ton ordinateur échouera : il faut
+  tester depuis la page réellement publiée en ligne).
+
+  Ne la lie à aucun menu, aucun lien du site. Une fois le test
+  validé, on la remplacera par le vrai widget de chat (étape
+  suivante : affichage + entraînement approfondi).
+-->
+</head>
+<body style="font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px;">
+
+  <h1>Test du chatbot</h1>
+  <p>Pose une question sur Géraud ou ses formations pour vérifier que le bot répond correctement.</p>
+
+  <textarea id="champQuestion" rows="3" style="width:100%; padding:10px;" placeholder="Ex: Combien coûte la formation site web avec l'IA ?"></textarea>
+  <br><br>
+  <button id="boutonEnvoyer" style="padding:10px 20px;">Envoyer</button>
+
+  <p id="etat" style="color:#888;"></p>
+  <div id="reponse" style="margin-top:20px; padding:16px; background:#f5f5f5; border-radius:8px; white-space:pre-wrap;"></div>
+
+  <script>
+    // 👉 Remplace par l'URL réelle de ton worker après déploiement
+    const URL_WORKER = "https://gemini-proxy.TON-SOUS-DOMAINE.workers.dev/";
+
+    const champQuestion = document.getElementById("champQuestion");
+    const boutonEnvoyer = document.getElementById("boutonEnvoyer");
+    const zoneEtat = document.getElementById("etat");
+    const zoneReponse = document.getElementById("reponse");
+
+    async function envoyerQuestion() {
+      const prompt = champQuestion.value.trim();
+      if (!prompt) return;
+
+      boutonEnvoyer.disabled = true;
+      zoneEtat.textContent = "Le bot réfléchit...";
+      zoneReponse.textContent = "";
+
+      try {
+        const reponse = await fetch(URL_WORKER, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt }),
+        });
+
+        const donnees = await reponse.json().catch(() => ({}));
+
+        if (!reponse.ok) {
+          throw new Error(donnees.error || `Erreur HTTP ${reponse.status}`);
+        }
+
+        zoneEtat.textContent = "✅ Le worker et Gemini répondent correctement.";
+        zoneReponse.textContent = donnees.reponse || "(réponse vide)";
+
+      } catch (erreur) {
+        zoneEtat.textContent = "❌ Échec — voir le détail ci-dessous.";
+        zoneReponse.textContent = erreur.message;
+        console.error(erreur);
+      } finally {
+        boutonEnvoyer.disabled = false;
+      }
+    }
+
+    boutonEnvoyer.addEventListener("click", envoyerQuestion);
+  </script>
+
+</body>
+</html>
