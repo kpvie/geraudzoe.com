@@ -7,9 +7,11 @@
 
     <title>Géraud Zoé - Développeur Web Freelance au Bénin - Sites, IA & Vidéo</title>
 
-    <meta name="description" content="Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, les formations en IA et les accompagnements digitaux pour entrepreneurs.">
+    <meta name="description"
+        content="Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, les formations en IA et les accompagnements digitaux pour entrepreneurs.">
 
-    <meta name="keywords" content="développeur web Bénin, création site internet Bénin, montage vidéo Bénin, formation intelligence artificielle, accompagnement digital, Géraud Zoé, Géraud KPOVIESSI">
+    <meta name="keywords"
+        content="développeur web Bénin, création site internet Bénin, montage vidéo Bénin, formation intelligence artificielle, accompagnement digital, Géraud Zoé, Géraud KPOVIESSI">
 
     <!-- optimisation SEO - Balises open graph -->
 
@@ -28,7 +30,8 @@
     <meta property="og:type" content="website">
 
     <meta property="og:title" content="Géraud Zoé - Développeur Web Freelance au Bénin - Sites, IA & Vidéo">
-    <meta property="og:description" content="Développeur web freelance au Bénin : sites internet modernes, montage vidéo, formation en IA et accompagnement digital pour entrepreneurs et entreprises.">
+    <meta property="og:description"
+        content="Développeur web freelance au Bénin : sites internet modernes, montage vidéo, formation en IA et accompagnement digital pour entrepreneurs et entreprises.">
 
     <meta property="og:image" content="https://kpvie.github.io/geraudzoe.com/Images/apercu-site.webp">
     <meta property="og:image:width" content="1200">
@@ -42,7 +45,8 @@
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Géraud Zoé | Développeur Web Freelance au Bénin">
-    <meta name="twitter:description" content="Sites internet modernes, montage vidéo, formation IA et accompagnement digital pour entrepreneurs et entreprises au Bénin.">
+    <meta name="twitter:description"
+        content="Sites internet modernes, montage vidéo, formation IA et accompagnement digital pour entrepreneurs et entreprises au Bénin.">
     <meta name="twitter:image" content="https://kpvie.github.io/geraudzoe.com/Images/apercu-site.webp">
 
     <!-- Google Fonts -->
@@ -164,6 +168,281 @@
             }
         }
     </style>
+
+    <!-- assistant -->
+    <style>
+        .bouton-assistant {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #2e5cff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(46, 92, 255, 0.35);
+            z-index: 999;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .bouton-assistant:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 30px rgba(46, 92, 255, 0.4);
+        }
+
+        .bouton-assistant svg {
+            color: #ffffff;
+            transition: opacity 0.15s ease;
+        }
+
+        /* Icône qui bascule entre "discussion" et "fermer" selon l'état */
+        .icone-fermer {
+            display: none;
+        }
+
+        .bouton-assistant.ouvert .icone-discussion {
+            display: none;
+        }
+
+        .bouton-assistant.ouvert .icone-fermer {
+            display: block;
+        }
+
+        .panneau-assistant {
+            position: fixed;
+            bottom: 96px;
+            right: 24px;
+            width: 350px;
+            max-width: calc(100vw - 32px);
+            height: 480px;
+            max-height: calc(100vh - 140px);
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(16, 19, 26, 0.22);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 998;
+            font-family: "Inter", "Nunito", sans-serif;
+            border: 1px solid rgba(16, 19, 26, 0.08);
+        }
+
+        .panneau-assistant.ouvert {
+            display: flex;
+        }
+
+        .entete-assistant {
+            background: #10131a;
+            color: #ffffff;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .entete-assistant-titre {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.96rem;
+        }
+
+        .entete-assistant-titre .pastille-active {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            flex-shrink: 0;
+        }
+
+        .entete-assistant-sous-titre {
+            font-size: 0.76rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .fermer-assistant {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            display: flex;
+            padding: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .fermer-assistant:hover {
+            color: #ffffff;
+        }
+
+        .messages-assistant {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f7f8fa;
+        }
+
+        .bulle-message {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.89rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .bulle-assistant {
+            align-self: flex-start;
+            background: #ffffff;
+            border: 1px solid rgba(16, 19, 26, 0.08);
+            color: #10131a;
+            border-bottom-left-radius: 4px;
+        }
+
+        .bulle-utilisateur {
+            align-self: flex-end;
+            background: #2e5cff;
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bulle-erreur {
+            align-self: flex-start;
+            background: #fef2f2;
+            border: 1px solid rgba(220, 38, 38, 0.25);
+            color: #991b1b;
+            border-bottom-left-radius: 4px;
+        }
+
+        .bulle-chargement {
+            align-self: flex-start;
+            display: flex;
+            gap: 4px;
+            padding: 12px 14px;
+            background: #ffffff;
+            border: 1px solid rgba(16, 19, 26, 0.08);
+            border-radius: 12px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .point-chargement {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #9aa4b8;
+            animation: rebondPoint 1.2s ease-in-out infinite;
+        }
+
+        .point-chargement:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .point-chargement:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes rebondPoint {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+
+            30% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+        }
+
+        .zone-saisie-assistant {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid rgba(16, 19, 26, 0.08);
+            background: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .champ-saisie-assistant {
+            flex: 1;
+            border: 1.5px solid rgba(16, 19, 26, 0.12);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.89rem;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            max-height: 90px;
+            transition: border-color 0.2s ease;
+        }
+
+        .champ-saisie-assistant:focus {
+            border-color: #2e5cff;
+        }
+
+        .bouton-envoyer-assistant {
+            background: #2e5cff;
+            color: #ffffff;
+            border: 1.5px solid #2e5cff;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .bouton-envoyer-assistant:hover:not(:disabled) {
+            background: #ffffff;
+            color: #10131a;
+        }
+
+        .bouton-envoyer-assistant:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .note-limite-assistant {
+            text-align: center;
+            font-size: 0.72rem;
+            color: #9aa4b8;
+            padding: 6px 12px 10px;
+            background: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+
+            /* Décale le widget au-dessus de la barre d'achat mobile fixe présente sur les pages produits */
+            .bouton-assistant {
+                bottom: 88px;
+                right: 16px;
+            }
+
+            .panneau-assistant {
+                bottom: 158px;
+                right: 16px;
+                width: calc(100vw - 32px);
+                height: calc(100vh - 250px);
+            }
+        }
+    </style>
+
 
     <!-- JSON-LD structuré pour le SEO et le GEO (moteurs génératifs / IA) -->
     <script type="application/ld+json">
@@ -320,7 +599,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#services" data-i18n="nav.services">Services</a></li>
                 <li><a href="#processus" data-i18n="nav.processus">Processus</a></li>
-                <li><a href="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.boutique">Boutique</a></li>
+                <li><a href="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" target="_blank"
+                        rel="noopener noreferrer" data-i18n="nav.boutique">Boutique</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
 
             </ul>
@@ -389,9 +669,12 @@
 
                 <div class="hero-trust reveal">
                     <div class="hero-avatars">
-                        <img src="https://ui-avatars.com/api/?name=F+A&background=2E5CFF&color=fff&size=64" alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
-                        <img src="https://ui-avatars.com/api/?name=M+H&background=D4A73A&color=1a1a1a&size=64" alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
-                        <img src="https://ui-avatars.com/api/?name=K+D&background=131B2E&color=fff&size=64" alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
+                        <img src="https://ui-avatars.com/api/?name=F+A&background=2E5CFF&color=fff&size=64"
+                            alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
+                        <img src="https://ui-avatars.com/api/?name=M+H&background=D4A73A&color=1a1a1a&size=64"
+                            alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
+                        <img src="https://ui-avatars.com/api/?name=K+D&background=131B2E&color=fff&size=64"
+                            alt="Client de Géraud Zoé" width="64" height="64" loading="lazy">
                     </div>
                     <p data-i18n-html="hero.trust"><strong>20+</strong> projets livrés à des clients satisfaits</p>
                 </div>
@@ -406,7 +689,8 @@
                     <span class="orbit-icon oi-3"><i class="fa-solid fa-brain" aria-hidden="true"></i></span>
                     <span class="orbit-icon oi-4"><i class="fa-solid fa-handshake" aria-hidden="true"></i></span>
                     <div class="hero-photo-wrap">
-                        <img src="Images/photo de profil.webp" alt="Géraud Zoé, développeur web freelance au Bénin" class="parallax-img" fetchpriority="high">
+                        <img src="Images/photo de profil.webp" alt="Géraud Zoé, développeur web freelance au Bénin"
+                            class="parallax-img" fetchpriority="high">
                     </div>
                 </div>
 
@@ -425,7 +709,8 @@
             <div class="section-title reveal">
                 <span class="eyebrow" data-i18n="services.eyebrow">Mon expertise</span>
                 <h2 data-i18n="services.title">Ce que je propose</h2>
-                <p data-i18n="services.subtitle">Quatre compétences complémentaires, une seule mission : faire avancer votre projet.</p>
+                <p data-i18n="services.subtitle">Quatre compétences complémentaires, une seule mission : faire avancer
+                    votre projet.</p>
             </div>
 
             <div class="cards-grid">
@@ -433,25 +718,29 @@
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
                     <h3 data-i18n="services.web_title">Développement Web</h3>
-                    <p data-i18n="services.web_text">Création de sites web et applications modernes, rapides et responsives adaptés à votre activité.</p>
+                    <p data-i18n="services.web_text">Création de sites web et applications modernes, rapides et
+                        responsives adaptés à votre activité.</p>
                 </div>
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-video" aria-hidden="true"></i></div>
                     <h3 data-i18n="services.video_title">Montage Vidéo</h3>
-                    <p data-i18n="services.video_text">Création de contenus vidéo professionnels pour promouvoir vos produits et services.</p>
+                    <p data-i18n="services.video_text">Création de contenus vidéo professionnels pour promouvoir vos
+                        produits et services.</p>
                 </div>
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
                     <h3 data-i18n="services.ia_title">Formation IA</h3>
-                    <p data-i18n="services.ia_text">Apprentissage pratique des outils d'intelligence artificielle pour gagner en efficacité.</p>
+                    <p data-i18n="services.ia_text">Apprentissage pratique des outils d'intelligence artificielle pour
+                        gagner en efficacité.</p>
                 </div>
 
                 <div class="card reveal">
                     <div class="card-icon"><i class="fa-solid fa-handshake" aria-hidden="true"></i></div>
                     <h3 data-i18n="services.accomp_title">Accompagnement</h3>
-                    <p data-i18n="services.accomp_text">Conseils personnalisés pour développer votre présence numérique.</p>
+                    <p data-i18n="services.accomp_text">Conseils personnalisés pour développer votre présence numérique.
+                    </p>
                 </div>
 
             </div>
@@ -469,7 +758,8 @@
             <div class="section-title reveal">
                 <span class="eyebrow" data-i18n="process.eyebrow">Méthode de travail</span>
                 <h2 data-i18n="process.title">Comment travaillons-nous ensemble ?</h2>
-                <p data-i18n="process.subtitle">Un processus clair en quatre étapes, du premier échange à la livraison finale.</p>
+                <p data-i18n="process.subtitle">Un processus clair en quatre étapes, du premier échange à la livraison
+                    finale.</p>
             </div>
 
             <div class="process-grid">
@@ -477,7 +767,8 @@
                 <div class="process-card reveal">
                     <span>01</span>
                     <h3 data-i18n="process.step1_title">Discussion</h3>
-                    <p data-i18n="process.step1_text">Nous échangeons sur votre besoin, vos objectifs et les résultats attendus.</p>
+                    <p data-i18n="process.step1_text">Nous échangeons sur votre besoin, vos objectifs et les résultats
+                        attendus.</p>
                 </div>
 
                 <div class="process-card reveal">
@@ -489,13 +780,15 @@
                 <div class="process-card reveal">
                     <span>03</span>
                     <h3 data-i18n="process.step3_title">Création</h3>
-                    <p data-i18n="process.step3_text">Je réalise votre projet avec attention aux détails et à la qualité.</p>
+                    <p data-i18n="process.step3_text">Je réalise votre projet avec attention aux détails et à la
+                        qualité.</p>
                 </div>
 
                 <div class="process-card reveal">
                     <span>04</span>
                     <h3 data-i18n="process.step4_title">Livraison</h3>
-                    <p data-i18n="process.step4_text">Je vous accompagne après la livraison pour une meilleure utilisation.</p>
+                    <p data-i18n="process.step4_text">Je vous accompagne après la livraison pour une meilleure
+                        utilisation.</p>
                 </div>
 
             </div>
@@ -519,7 +812,9 @@
 
                 <div class="project reveal">
                     <div class="project-media">
-                        <img src="Images/portfolio1.webp" alt="Site vitrine professionnel réalisé par Géraud Zoé, développeur web au Bénin" loading="lazy">
+                        <img src="Images/portfolio1.webp"
+                            alt="Site vitrine professionnel réalisé par Géraud Zoé, développeur web au Bénin"
+                            loading="lazy">
                         <div class="project-overlay">
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
@@ -530,7 +825,8 @@
 
                 <div class="project reveal">
                     <div class="project-media">
-                        <img src="Images/portfolio2.webp" alt="Landing page commerciale conçue par Géraud Zoé" loading="lazy">
+                        <img src="Images/portfolio2.webp" alt="Landing page commerciale conçue par Géraud Zoé"
+                            loading="lazy">
                         <div class="project-overlay">
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
@@ -541,7 +837,8 @@
 
                 <div class="project reveal">
                     <div class="project-media">
-                        <img src="Images/portfolio3.webp" alt="Vidéo publicitaire montée par Géraud Zoé pour les réseaux sociaux" loading="lazy">
+                        <img src="Images/portfolio3.webp"
+                            alt="Vidéo publicitaire montée par Géraud Zoé pour les réseaux sociaux" loading="lazy">
                         <div class="project-overlay">
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
@@ -552,7 +849,8 @@
 
                 <div class="project reveal">
                     <div class="project-media">
-                        <img src="Images/portfolio4.webp" alt="Projet d'intelligence artificielle réalisé par Géraud Zoé" loading="lazy">
+                        <img src="Images/portfolio4.webp"
+                            alt="Projet d'intelligence artificielle réalisé par Géraud Zoé" loading="lazy">
                         <div class="project-overlay">
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
@@ -564,7 +862,8 @@
 
                 <div class="project reveal">
                     <div class="project-media">
-                        <img src="Images/portfolio5.webp" alt="Identité numérique créée par Géraud Zoé pour un client" loading="lazy">
+                        <img src="Images/portfolio5.webp" alt="Identité numérique créée par Géraud Zoé pour un client"
+                            loading="lazy">
                         <div class="project-overlay">
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
@@ -580,25 +879,27 @@
 
     </section>
 
-     <!-- ================= PRODUITS DIGITAUX ================= -->
- 
-   <section class="products section" id="produits">
+    <!-- ================= PRODUITS DIGITAUX ================= -->
 
-    <div class="container">
+    <section class="products section" id="produits">
 
-        <div class="section-title reveal">
-            <span class="eyebrow" data-i18n="products.eyebrow">Boutique digitale</span>
-            <h2 data-i18n="products.title">Mes formations en ligne</h2>
-            <p data-i18n="products.subtitle">Des ressources prêtes à l'emploi, des communautés d'apprenants et un accompagnement personnalisé.</p>
+        <div class="container">
+
+            <div class="section-title reveal">
+                <span class="eyebrow" data-i18n="products.eyebrow">Boutique digitale</span>
+                <h2 data-i18n="products.title">Mes formations en ligne</h2>
+                <p data-i18n="products.subtitle">Des ressources prêtes à l'emploi, des communautés d'apprenants et un
+                    accompagnement personnalisé.</p>
+            </div>
+
+            <div class="products-teaser reveal">
+                <a href="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" target="_blank"
+                    class="btn primary-btn" data-i18n="products.cta">Découvrir toutes les formations</a>
+            </div>
+
         </div>
 
-        <div class="products-teaser reveal">
-            <a href="https://kpvie.github.io/geraudzoe.com/Boutique/Accueil-produits.html" target="_blank" class="btn primary-btn" data-i18n="products.cta">Découvrir toutes les formations</a>
-        </div>
-
-    </div>
-
-</section>
+    </section>
 
     <!-- ================= POURQUOI ME CHOISIR ================= -->
 
@@ -649,7 +950,8 @@
                     <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="why.item1_title">Créativité</h3>
-                        <p data-i18n="why.item1_text">Chaque projet bénéficie d'une approche personnalisée afin de créer une expérience unique.</p>
+                        <p data-i18n="why.item1_text">Chaque projet bénéficie d'une approche personnalisée afin de créer
+                            une expérience unique.</p>
                     </div>
                 </div>
 
@@ -657,7 +959,8 @@
                     <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="why.item2_title">Polyvalence</h3>
-                        <p data-i18n="why.item2_text">Une combinaison de compétences en développement web, vidéo et intelligence artificielle.</p>
+                        <p data-i18n="why.item2_text">Une combinaison de compétences en développement web, vidéo et
+                            intelligence artificielle.</p>
                     </div>
                 </div>
 
@@ -665,7 +968,8 @@
                     <i class="fa-solid fa-rocket" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="why.item3_title">Solutions modernes</h3>
-                        <p data-i18n="why.item3_text">Utilisation d'outils actuels pour créer des solutions efficaces et évolutives.</p>
+                        <p data-i18n="why.item3_text">Utilisation d'outils actuels pour créer des solutions efficaces et
+                            évolutives.</p>
                     </div>
                 </div>
 
@@ -673,17 +977,22 @@
                     <i class="fa-solid fa-user-check" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="why.item4_title">Accompagnement</h3>
-                        <p data-i18n="why.item4_text">Un suivi basé sur l'écoute, le conseil et la recherche de résultats.</p>
+                        <p data-i18n="why.item4_text">Un suivi basé sur l'écoute, le conseil et la recherche de
+                            résultats.</p>
                     </div>
                 </div>
 
             </div>
 
             <div class="trust-badges reveal">
-                <div class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span data-i18n="why.badge1">Travail garanti</span></div>
-                <div class="badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span data-i18n="why.badge2">Réponse sous 24h</span></div>
-                <div class="badge"><i class="fa-solid fa-comments" aria-hidden="true"></i><span data-i18n="why.badge3">Suivi personnalisé</span></div>
-                <div class="badge"><i class="fa-solid fa-star" aria-hidden="true"></i><span data-i18n="why.badge4">4.9/5 satisfaction</span></div>
+                <div class="badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span
+                        data-i18n="why.badge1">Travail garanti</span></div>
+                <div class="badge"><i class="fa-solid fa-bolt" aria-hidden="true"></i><span
+                        data-i18n="why.badge2">Réponse sous 24h</span></div>
+                <div class="badge"><i class="fa-solid fa-comments" aria-hidden="true"></i><span
+                        data-i18n="why.badge3">Suivi personnalisé</span></div>
+                <div class="badge"><i class="fa-solid fa-star" aria-hidden="true"></i><span data-i18n="why.badge4">4.9/5
+                        satisfaction</span></div>
             </div>
 
         </div>
@@ -717,11 +1026,16 @@
 
                     <div class="testimonial-card">
                         <div class="t-stars">
-                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i>
                         </div>
-                        <p class="t-text">« Géraud a livré notre site vitrine dans les délais, avec un design bien plus moderne que ce que j'imaginais. Communication fluide du début à la fin. »</p>
+                        <p class="t-text">« Géraud a livré notre site vitrine dans les délais, avec un design bien plus
+                            moderne que ce que j'imaginais. Communication fluide du début à la fin. »</p>
                         <div class="t-author">
-                            <img src="Images/Fabrice Adjovi.jpg" alt="Fabrice Adjovi" width="48" height="48" loading="lazy">
+                            <img src="Images/Fabrice Adjovi.jpg" alt="Fabrice Adjovi" width="48" height="48"
+                                loading="lazy">
                             <div>
                                 <h4>Fabrice Adjovi</h4>
                                 <span>Fondateur, AdjoviTech</span>
@@ -731,11 +1045,16 @@
 
                     <div class="testimonial-card">
                         <div class="t-stars">
-                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star-half-stroke"
+                                aria-hidden="true"></i>
                         </div>
-                        <p class="t-text">« La vidéo publicitaire réalisée pour ma boutique a doublé mon engagement sur les réseaux en quelques semaines. Un vrai sens du rythme et du détail. »</p>
+                        <p class="t-text">« La vidéo publicitaire réalisée pour ma boutique a doublé mon engagement sur
+                            les réseaux en quelques semaines. Un vrai sens du rythme et du détail. »</p>
                         <div class="t-author">
-                            <img src="Images/Marielle Houngbo.jpg" alt="Marielle Houngbo" width="48" height="48" loading="lazy">
+                            <img src="Images/Marielle Houngbo.jpg" alt="Marielle Houngbo" width="48" height="48"
+                                loading="lazy">
                             <div>
                                 <h4>Marielle Houngbo</h4>
                                 <span>Directrice, Boutique Marielle</span>
@@ -745,9 +1064,13 @@
 
                     <div class="testimonial-card">
                         <div class="t-stars">
-                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i>
                         </div>
-                        <p class="t-text">« La formation IA était concrète et directement applicable à mon activité de conseil. J'ai gagné un temps précieux sur mes tâches répétitives. »</p>
+                        <p class="t-text">« La formation IA était concrète et directement applicable à mon activité de
+                            conseil. J'ai gagné un temps précieux sur mes tâches répétitives. »</p>
                         <div class="t-author">
                             <img src="Images/Kevin Dossou.jpg" alt="Kevin Dossou" width="48" height="48" loading="lazy">
                             <div>
@@ -759,9 +1082,13 @@
 
                     <div class="testimonial-card">
                         <div class="t-stars">
-                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i>
                         </div>
-                        <p class="t-text">« Un accompagnement patient et pédagogue pour structurer ma présence en ligne. Je recommande sans hésiter. »</p>
+                        <p class="t-text">« Un accompagnement patient et pédagogue pour structurer ma présence en ligne.
+                            Je recommande sans hésiter. »</p>
                         <div class="t-author">
                             <img src="Images/Aïcha Bello.jpg" alt="Aïcha Bello" width="48" height="48" loading="lazy">
                             <div>
@@ -773,11 +1100,16 @@
 
                     <div class="testimonial-card">
                         <div class="t-stars">
-                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i>
                         </div>
-                        <p class="t-text">« Notre landing page convertit nettement mieux depuis la refonte. Géraud comprend vite les enjeux business, pas seulement le code. »</p>
+                        <p class="t-text">« Notre landing page convertit nettement mieux depuis la refonte. Géraud
+                            comprend vite les enjeux business, pas seulement le code. »</p>
                         <div class="t-author">
-                            <img src="Images/Steve Agossou.jpg" alt="Steve Agossou" width="48" height="48" loading="lazy">
+                            <img src="Images/Steve Agossou.jpg" alt="Steve Agossou" width="48" height="48"
+                                loading="lazy">
                             <div>
                                 <h4>Steve Agossou</h4>
                                 <span>Responsable Marketing, NovaBenin</span>
@@ -787,9 +1119,13 @@
 
                     <div class="testimonial-card">
                         <div class="t-stars">
-                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i
+                                class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star"
+                                aria-hidden="true"></i>
                         </div>
-                        <p class="t-text">« Mon identité numérique a été entièrement repensée : cohérente, professionnelle, et fidèle à ce que je voulais transmettre. »</p>
+                        <p class="t-text">« Mon identité numérique a été entièrement repensée : cohérente,
+                            professionnelle, et fidèle à ce que je voulais transmettre. »</p>
                         <div class="t-author">
                             <img src="Images/Rachel Toko.jpg" alt="Rachel Toko" width="48" height="48" loading="lazy">
                             <div>
@@ -830,7 +1166,9 @@
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="faq.q1">Qui est Géraud Zoé ?</h3>
-                        <p data-i18n="faq.a1">Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, la formation en IA et l'accompagnement digital.</p>
+                        <p data-i18n="faq.a1">Géraud Zoé, de son vrai nom Géraud KPOVIESSI, est un développeur web
+                            freelance basé au Bénin, spécialisé dans la création de sites internet, le montage vidéo, la
+                            formation en IA et l'accompagnement digital.</p>
                     </div>
                 </div>
 
@@ -838,7 +1176,8 @@
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="faq.q2">Quels services propose-t-il ?</h3>
-                        <p data-i18n="faq.a2">Développement web, montage vidéo, formation en intelligence artificielle et accompagnement digital pour entreprises et entrepreneurs.</p>
+                        <p data-i18n="faq.a2">Développement web, montage vidéo, formation en intelligence artificielle
+                            et accompagnement digital pour entreprises et entrepreneurs.</p>
                     </div>
                 </div>
 
@@ -846,7 +1185,8 @@
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="faq.q3">Dans quelle zone intervient-il ?</h3>
-                        <p data-i18n="faq.a3">Il est basé au Bénin et intervient localement, tout en accompagnant également des clients à distance partout dans le monde.</p>
+                        <p data-i18n="faq.a3">Il est basé au Bénin et intervient localement, tout en accompagnant
+                            également des clients à distance partout dans le monde.</p>
                     </div>
                 </div>
 
@@ -854,7 +1194,8 @@
                     <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
                     <div>
                         <h3 data-i18n="faq.q4">Comment le contacter ?</h3>
-                        <p data-i18n="faq.a4">Par email à geraudzoe66@gmail.com ou via WhatsApp ; il répond généralement sous 24h.</p>
+                        <p data-i18n="faq.a4">Par email à geraudzoe66@gmail.com ou via WhatsApp ; il répond généralement
+                            sous 24h.</p>
                     </div>
                 </div>
 
@@ -891,7 +1232,8 @@
             <div class="section-title reveal">
                 <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
                 <h2 data-i18n="contact.title">Travaillons ensemble</h2>
-                <p data-i18n="contact.subtitle">Une question, une idée ou un projet ? Je serai ravi d'échanger avec vous.</p>
+                <p data-i18n="contact.subtitle">Une question, une idée ou un projet ? Je serai ravi d'échanger avec
+                    vous.</p>
             </div>
 
             <div class="contact-container">
@@ -909,7 +1251,8 @@
                     </div>
 
                     <div class="contact-item">
-                        <a href="https://wa.me/message/CWD4CKJOMTNNC1" target="_blank" rel="noopener noreferrer" aria-label="Contacter Géraud Zoé sur WhatsApp">
+                        <a href="https://wa.me/message/CWD4CKJOMTNNC1" target="_blank" rel="noopener noreferrer"
+                            aria-label="Contacter Géraud Zoé sur WhatsApp">
                             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                         </a>
                         <div>
@@ -919,7 +1262,8 @@
                     </div>
 
                     <div class="contact-item">
-                        <span class="contact-icon-plain"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+                        <span class="contact-icon-plain"><i class="fa-solid fa-location-dot"
+                                aria-hidden="true"></i></span>
                         <div>
                             <h3 data-i18n="contact.location_label">Localisation</h3>
                             <p data-i18n="contact.location_value">Bénin</p>
@@ -928,12 +1272,16 @@
 
                 </div>
 
-                <form action="https://formspree.io/f/xrenpooz" method="POST" enctype="multipart/form-data" class="contact-form reveal" aria-label="Formulaire de contact">
+                <form action="https://formspree.io/f/xrenpooz" method="POST" enctype="multipart/form-data"
+                    class="contact-form reveal" aria-label="Formulaire de contact">
 
-                    <input type="text" placeholder="Votre nom" name="name" autocomplete="name" required data-i18n-placeholder="contact.form_name">
-                    <input type="email" placeholder="Votre email" name="email" autocomplete="email" required data-i18n-placeholder="contact.form_email">
+                    <input type="text" placeholder="Votre nom" name="name" autocomplete="name" required
+                        data-i18n-placeholder="contact.form_name">
+                    <input type="email" placeholder="Votre email" name="email" autocomplete="email" required
+                        data-i18n-placeholder="contact.form_email">
                     <input type="text" placeholder="Sujet" name="subject" data-i18n-placeholder="contact.form_subject">
-                    <textarea rows="6" placeholder="Votre message" name="message" required data-i18n-placeholder="contact.form_message"></textarea>
+                    <textarea rows="6" placeholder="Votre message" name="message" required
+                        data-i18n-placeholder="contact.form_message"></textarea>
 
                     <button class="btn primary-btn" type="submit">
                         <span data-i18n="contact.form_submit">Envoyer le message</span>
@@ -963,14 +1311,20 @@
                     <li><a href="#services" data-i18n="footer.link1">Ce que je propose</a></li>
                     <li><a href="#portfolio" data-i18n="footer.link2">Mes Réalisations</a></li>
                     <li><a href="#faq" data-i18n="footer.link3">FAQ</a></li>
-                    <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer" data-i18n="footer.link4">Boutique</a></li>
+                    <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer"
+                            data-i18n="footer.link4">Boutique</a></li>
                 </ul>
 
                 <div class="social-links">
-                    <a href="https://www.facebook.com/geraud.zoe" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://wa.me/message/CWD4CKJOMTNNC1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/g%C3%A9raud-zo%C3%A9-539034259/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-                    <a href="https://github.com/kpvie/geraudzoe.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/geraud.zoe" target="_blank" rel="noopener noreferrer"
+                        aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/message/CWD4CKJOMTNNC1" target="_blank" rel="noopener noreferrer"
+                        aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/g%C3%A9raud-zo%C3%A9-539034259/" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"
+                            aria-hidden="true"></i></a>
+                    <a href="https://github.com/kpvie/geraudzoe.com" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
                 </div>
 
             </div>
@@ -988,372 +1342,153 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <!-- ================= JAVASCRIPT ================= -->
+    <!-- =========== ASSISTANT =========== -->
+    <button class="bouton-assistant" id="boutonAssistant" aria-label="Ouvrir l'assistant">
+        <svg class="icone-discussion" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <path d="M8 10h8M8 14h5" />
+        </svg>
+        <svg class="icone-fermer" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+    </button>
+
+    <div class="panneau-assistant" id="panneauAssistant">
+        <div class="entete-assistant">
+            <div>
+                <div class="entete-assistant-titre">
+                    <span class="pastille-active"></span>
+                    Assistant Géraud KPOVIESSI
+                </div>
+                <div class="entete-assistant-sous-titre">Pose-moi tes questions</div>
+            </div>
+            <button class="fermer-assistant" id="fermerAssistant" aria-label="Fermer l'assistant">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="messages-assistant" id="messagesAssistant">
+            <div class="bulle-message bulle-assistant">Bonjour 👋 Je peux répondre à tes questions sur les services,
+                formations et projets de Géraud. Que veux-tu savoir ?</div>
+        </div>
+
+        <div class="zone-saisie-assistant">
+            <textarea class="champ-saisie-assistant" id="champSaisieAssistant" placeholder="Écris ton message..."
+                rows="1" maxlength="1000"></textarea>
+            <button class="bouton-envoyer-assistant" id="boutonEnvoyerAssistant" aria-label="Envoyer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m22 2-7 20-4-9-9-4Z" />
+                    <path d="M22 2 11 13" />
+                </svg>
+            </button>
+        </div>
+        <p class="note-limite-assistant">Je ne suis qu'un assistant, je peux faires des erreurs.</p>
+    </div>
+
     <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
-    <!-- ===================== ASSISTANT IA (widget flottant, sitewide) ===================== -->
-<style>
-  .bouton-assistant {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: #2e5cff;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(46, 92, 255, 0.35);
-    z-index: 999;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
 
-  .bouton-assistant:hover {
-    transform: scale(1.06);
-    box-shadow: 0 12px 30px rgba(46, 92, 255, 0.4);
-  }
+    <script>
+        (function () {
+            // iiiiiiiiiiiiiii
+            const URL_WORKER_ASSISTANT = "https://portfolio.kpoviessigeraude.workers.dev/";
 
-  .bouton-assistant svg { color: #ffffff; transition: opacity 0.15s ease; }
+            const boutonAssistant = document.getElementById("boutonAssistant");
+            const panneauAssistant = document.getElementById("panneauAssistant");
+            const fermerAssistant = document.getElementById("fermerAssistant");
+            const messagesAssistant = document.getElementById("messagesAssistant");
+            const champSaisieAssistant = document.getElementById("champSaisieAssistant");
+            const boutonEnvoyerAssistant = document.getElementById("boutonEnvoyerAssistant");
 
-  /* Icône qui bascule entre "discussion" et "fermer" selon l'état */
-  .icone-fermer { display: none; }
-  .bouton-assistant.ouvert .icone-discussion { display: none; }
-  .bouton-assistant.ouvert .icone-fermer { display: block; }
+            function basculerPanneau() {
+                const estOuvert = panneauAssistant.classList.toggle("ouvert");
+                boutonAssistant.classList.toggle("ouvert", estOuvert);
+                if (estOuvert) champSaisieAssistant.focus();
+            }
 
-  .panneau-assistant {
-    position: fixed;
-    bottom: 96px;
-    right: 24px;
-    width: 350px;
-    max-width: calc(100vw - 32px);
-    height: 480px;
-    max-height: calc(100vh - 140px);
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(16, 19, 26, 0.22);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 998;
-    font-family: "Inter", "Nunito", sans-serif;
-    border: 1px solid rgba(16, 19, 26, 0.08);
-  }
+            boutonAssistant.addEventListener("click", basculerPanneau);
+            fermerAssistant.addEventListener("click", basculerPanneau);
 
-  .panneau-assistant.ouvert { display: flex; }
+            // Le champ de texte grandit....
+            champSaisieAssistant.addEventListener("input", () => {
+                champSaisieAssistant.style.height = "auto";
+                champSaisieAssistant.style.height = champSaisieAssistant.scrollHeight + "px";
+            });
 
-  .entete-assistant {
-    background: #10131a;
-    color: #ffffff;
-    padding: 16px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-  }
+            function ajouterBulle(texte, type) {
+                const bulle = document.createElement("div");
+                bulle.className = "bulle-message " + (
+                    type === "utilisateur" ? "bulle-utilisateur" :
+                        type === "erreur" ? "bulle-erreur" : "bulle-assistant"
+                );
+                bulle.textContent = texte;
+                messagesAssistant.appendChild(bulle);
+                messagesAssistant.scrollTop = messagesAssistant.scrollHeight;
+                return bulle;
+            }
 
-  .entete-assistant-titre {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 0.96rem;
-  }
+            function afficherChargement() {
+                const conteneur = document.createElement("div");
+                conteneur.className = "bulle-chargement";
+                conteneur.id = "chargementAssistant";
+                conteneur.innerHTML = '<span class="point-chargement"></span><span class="point-chargement"></span><span class="point-chargement"></span>';
+                messagesAssistant.appendChild(conteneur);
+                messagesAssistant.scrollTop = messagesAssistant.scrollHeight;
+            }
 
-  .entete-assistant-titre .pastille-active {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #22c55e;
-    flex-shrink: 0;
-  }
+            function retirerChargement() {
+                const chargement = document.getElementById("chargementAssistant");
+                if (chargement) chargement.remove();
+            }
 
-  .entete-assistant-sous-titre {
-    font-size: 0.76rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 400;
-    margin-top: 2px;
-  }
+            async function envoyerMessage() {
+                const message = champSaisieAssistant.value.trim();
+                if (!message) return;
 
-  .fermer-assistant {
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    display: flex;
-    padding: 4px;
-    transition: color 0.2s ease;
-  }
+                ajouterBulle(message, "utilisateur");
+                champSaisieAssistant.value = "";
+                champSaisieAssistant.style.height = "auto";
+                boutonEnvoyerAssistant.disabled = true;
+                afficherChargement();
 
-  .fermer-assistant:hover { color: #ffffff; }
+                try {
+                    // Contrat exact attendu par le Worker : { prompt: "..." } → { reponse: "..." } ou { error: "..." }
+                    const reponse = await fetch(URL_WORKER_ASSISTANT, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ prompt: message }),
+                    });
 
-  .messages-assistant {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: #f7f8fa;
-  }
+                    const donnees = await reponse.json();
+                    retirerChargement();
 
-  .bulle-message {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 0.89rem;
-    line-height: 1.5;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-  }
+                    if (!reponse.ok || donnees.error) {
+                        ajouterBulle(donnees.error || "Une erreur est survenue. Réessaie dans un instant.", "erreur");
+                    } else {
+                        ajouterBulle(donnees.reponse || "Désolé, je n'ai pas pu générer de réponse.", "assistant");
+                    }
+                } catch (erreurReseau) {
+                    retirerChargement();
+                    ajouterBulle("Impossible de contacter l'assistant. Vérifie ta connexion et réessaie.", "erreur");
+                } finally {
+                    boutonEnvoyerAssistant.disabled = false;
+                }
+            }
 
-  .bulle-assistant {
-    align-self: flex-start;
-    background: #ffffff;
-    border: 1px solid rgba(16, 19, 26, 0.08);
-    color: #10131a;
-    border-bottom-left-radius: 4px;
-  }
+            boutonEnvoyerAssistant.addEventListener("click", envoyerMessage);
 
-  .bulle-utilisateur {
-    align-self: flex-end;
-    background: #2e5cff;
-    color: #ffffff;
-    border-bottom-right-radius: 4px;
-  }
-
-  .bulle-erreur {
-    align-self: flex-start;
-    background: #fef2f2;
-    border: 1px solid rgba(220, 38, 38, 0.25);
-    color: #991b1b;
-    border-bottom-left-radius: 4px;
-  }
-
-  .bulle-chargement {
-    align-self: flex-start;
-    display: flex;
-    gap: 4px;
-    padding: 12px 14px;
-    background: #ffffff;
-    border: 1px solid rgba(16, 19, 26, 0.08);
-    border-radius: 12px;
-    border-bottom-left-radius: 4px;
-  }
-
-  .point-chargement {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #9aa4b8;
-    animation: rebondPoint 1.2s ease-in-out infinite;
-  }
-
-  .point-chargement:nth-child(2) { animation-delay: 0.15s; }
-  .point-chargement:nth-child(3) { animation-delay: 0.3s; }
-
-  @keyframes rebondPoint {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-    30% { transform: translateY(-4px); opacity: 1; }
-  }
-
-  .zone-saisie-assistant {
-    display: flex;
-    gap: 8px;
-    padding: 12px;
-    border-top: 1px solid rgba(16, 19, 26, 0.08);
-    background: #ffffff;
-    flex-shrink: 0;
-  }
-
-  .champ-saisie-assistant {
-    flex: 1;
-    border: 1.5px solid rgba(16, 19, 26, 0.12);
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: 0.89rem;
-    font-family: inherit;
-    resize: none;
-    outline: none;
-    max-height: 90px;
-    transition: border-color 0.2s ease;
-  }
-
-  .champ-saisie-assistant:focus { border-color: #2e5cff; }
-
-  .bouton-envoyer-assistant {
-    background: #2e5cff;
-    color: #ffffff;
-    border: 1.5px solid #2e5cff;
-    border-radius: 10px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .bouton-envoyer-assistant:hover:not(:disabled) { background: #ffffff; color: #10131a; }
-
-  .bouton-envoyer-assistant:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .note-limite-assistant {
-    text-align: center;
-    font-size: 0.72rem;
-    color: #9aa4b8;
-    padding: 6px 12px 10px;
-    background: #ffffff;
-  }
-
-  @media (max-width: 640px) {
-    /* Décale le widget au-dessus de la barre d'achat mobile fixe présente sur les pages produits */
-    .bouton-assistant { bottom: 88px; right: 16px; }
-    .panneau-assistant {
-      bottom: 158px;
-      right: 16px;
-      width: calc(100vw - 32px);
-      height: calc(100vh - 250px);
-    }
-  }
-</style>
-
-<button class="bouton-assistant" id="boutonAssistant" aria-label="Ouvrir l'assistant">
-  <svg class="icone-discussion" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="M8 10h8M8 14h5"/></svg>
-  <svg class="icone-fermer" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-</button>
-
-<div class="panneau-assistant" id="panneauAssistant">
-  <div class="entete-assistant">
-    <div>
-      <div class="entete-assistant-titre">
-        <span class="pastille-active"></span>
-        Assistant Géraud KPOVIESSI
-      </div>
-      <div class="entete-assistant-sous-titre">Répond à tes questions sur les services et formations</div>
-    </div>
-    <button class="fermer-assistant" id="fermerAssistant" aria-label="Fermer l'assistant">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-
-  <div class="messages-assistant" id="messagesAssistant">
-    <div class="bulle-message bulle-assistant">Bonjour 👋 Je peux répondre à tes questions sur les services, formations et projets de Géraud. Que veux-tu savoir ?</div>
-  </div>
-
-  <div class="zone-saisie-assistant">
-    <textarea class="champ-saisie-assistant" id="champSaisieAssistant" placeholder="Écris ton message..." rows="1" maxlength="1000"></textarea>
-    <button class="bouton-envoyer-assistant" id="boutonEnvoyerAssistant" aria-label="Envoyer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-    </button>
-  </div>
-  <p class="note-limite-assistant">Assistant automatique — les réponses peuvent être incomplètes.</p>
-</div>
-
-<script>
-(function () {
-  // iiiiiiii
-  const URL_WORKER_ASSISTANT = "https://portfolio.kpoviessigeraude.workers.dev/";
-
-  const boutonAssistant = document.getElementById("boutonAssistant");
-  const panneauAssistant = document.getElementById("panneauAssistant");
-  const fermerAssistant = document.getElementById("fermerAssistant");
-  const messagesAssistant = document.getElementById("messagesAssistant");
-  const champSaisieAssistant = document.getElementById("champSaisieAssistant");
-  const boutonEnvoyerAssistant = document.getElementById("boutonEnvoyerAssistant");
-
-  function basculerPanneau() {
-    const estOuvert = panneauAssistant.classList.toggle("ouvert");
-    boutonAssistant.classList.toggle("ouvert", estOuvert);
-    if (estOuvert) champSaisieAssistant.focus();
-  }
-
-  boutonAssistant.addEventListener("click", basculerPanneau);
-  fermerAssistant.addEventListener("click", basculerPanneau);
-
-  // Le champ de texte grandit....
-  champSaisieAssistant.addEventListener("input", () => {
-    champSaisieAssistant.style.height = "auto";
-    champSaisieAssistant.style.height = champSaisieAssistant.scrollHeight + "px";
-  });
-
-  function ajouterBulle(texte, type) {
-    const bulle = document.createElement("div");
-    bulle.className = "bulle-message " + (
-      type === "utilisateur" ? "bulle-utilisateur" :
-      type === "erreur" ? "bulle-erreur" : "bulle-assistant"
-    );
-    bulle.textContent = texte;
-    messagesAssistant.appendChild(bulle);
-    messagesAssistant.scrollTop = messagesAssistant.scrollHeight;
-    return bulle;
-  }
-
-  function afficherChargement() {
-    const conteneur = document.createElement("div");
-    conteneur.className = "bulle-chargement";
-    conteneur.id = "chargementAssistant";
-    conteneur.innerHTML = '<span class="point-chargement"></span><span class="point-chargement"></span><span class="point-chargement"></span>';
-    messagesAssistant.appendChild(conteneur);
-    messagesAssistant.scrollTop = messagesAssistant.scrollHeight;
-  }
-
-  function retirerChargement() {
-    const chargement = document.getElementById("chargementAssistant");
-    if (chargement) chargement.remove();
-  }
-
-  async function envoyerMessage() {
-    const message = champSaisieAssistant.value.trim();
-    if (!message) return;
-
-    ajouterBulle(message, "utilisateur");
-    champSaisieAssistant.value = "";
-    champSaisieAssistant.style.height = "auto";
-    boutonEnvoyerAssistant.disabled = true;
-    afficherChargement();
-
-    try {
-      // Contrat exact attendu par le Worker : { prompt: "..." } → { reponse: "..." } ou { error: "..." }
-      const reponse = await fetch(URL_WORKER_ASSISTANT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: message }),
-      });
-
-      const donnees = await reponse.json();
-      retirerChargement();
-
-      if (!reponse.ok || donnees.error) {
-        ajouterBulle(donnees.error || "Une erreur est survenue. Réessaie dans un instant.", "erreur");
-      } else {
-        ajouterBulle(donnees.reponse || "Désolé, je n'ai pas pu générer de réponse.", "assistant");
-      }
-    } catch (erreurReseau) {
-      retirerChargement();
-      ajouterBulle("Impossible de contacter l'assistant. Vérifie ta connexion et réessaie.", "erreur");
-    } finally {
-      boutonEnvoyerAssistant.disabled = false;
-    }
-  }
-
-  boutonEnvoyerAssistant.addEventListener("click", envoyerMessage);
-
-  champSaisieAssistant.addEventListener("keydown", (evenement) => {
-    if (evenement.key === "Enter" && !evenement.shiftKey) {
-      evenement.preventDefault();
-      envoyerMessage();
-    }
-  });
-})();
-</script>
+            champSaisieAssistant.addEventListener("keydown", (evenement) => {
+                if (evenement.key === "Enter" && !evenement.shiftKey) {
+                    evenement.preventDefault();
+                    envoyerMessage();
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
