@@ -1473,11 +1473,8 @@
                         body: JSON.stringify({
                             prompt: message,
                             historique: historiqueConversation,
-                            body: JSON.stringify({
-  prompt,
-  historique,
-  clientId: obtenirIdentifiantClient(),
-}) // envoie les échanges précédents
+                            
+// envoie les échanges précédents
                         }),
                     });
 
