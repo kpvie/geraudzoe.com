@@ -1,24 +1,5 @@
 /**
- * ============================================================
- * WIDGET DE COMMENTAIRES — fichier unique, partagé par toutes
- * les pages produit. Modifier ce fichier met à jour le widget
- * partout en même temps, sans toucher au HTML des pages.
- * ------------------------------------------------------------
- * INTÉGRATION (à ajouter dans chaque page produit, juste avant
- * la fermeture de </body>, rien d'autre à modifier) :
- *
- *   <div id="gz-commentaires"></div>
- *   <script src="commentaires.js"></script>
- *
- * L'identifiant de page est déduit automatiquement du nom du
- * fichier HTML (ex: "prd_1n7gkf.html" → page_id "prd_1n7gkf"),
- * donc aucune configuration manuelle par page n'est nécessaire.
- *
- * Toutes les classes CSS sont préfixées "gz-commentaires-" pour
- * ne jamais entrer en collision avec les styles déjà présents
- * sur tes pages (même si une classe ".carte" ou ".bouton" existe
- * déjà ailleurs sur la page, ce widget n'y touche jamais).
- * ============================================================
+ * ============WIDGET DE COMMENTAIRES — fichier unique,...======================
  */
 
 (function () {
@@ -93,10 +74,10 @@
     return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
   }
 
-  // IMPORTANT : on utilise toujours textContent, jamais innerHTML, pour
+  // IMPORTANT :  j'utilise toujours textContent, jamais innerHTML, pour
   // insérer le nom et le texte des visiteurs. Même si quelqu'un tente
   // de stocker du code malveillant, il s'affiche comme texte inoffensif,
-  // il ne peut jamais s'exécuter dans le navigateur des autres visiteurs.
+  // il ne peut jamais s'exécuter dans le navigateur des autres visiteurs.....
   function construireCommentaire(item) {
     const bloc = document.createElement("div");
     bloc.className = "gz-commentaires-item";
@@ -156,7 +137,7 @@
           page_id: pageId,
           nom,
           texte,
-          site_web: champPiege.value, // toujours vide pour un humain
+          site_web: champPiege.value, // toujours vide pour un hum
         }),
       });
 
@@ -166,7 +147,7 @@
         throw new Error(donnees.error || "Une erreur est survenue.");
       }
 
-      message.textContent = "Merci ! Ton commentaire sera visible après validation.";
+      message.textContent = "Merci ! Ton commentaire va bientôt apparaître.";
       message.classList.add("succes");
       formulaire.reset();
 
