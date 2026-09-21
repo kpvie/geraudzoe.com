@@ -1419,14 +1419,7 @@
                 champSaisieAssistant.style.height = champSaisieAssistant.scrollHeight + "px";
             });
 
-            function obtenirIdentifiantClient() {
-  let id = localStorage.getItem("gz_client_id");
-  if (!id) {
-    id = crypto.randomUUID();
-    localStorage.setItem("gz_client_id", id);
-  }
-  return id;
-}
+
 
             function ajouterBulle(texte, type) {
                 const bulle = document.createElement("div");
