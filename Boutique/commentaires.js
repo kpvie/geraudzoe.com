@@ -44,7 +44,7 @@
     document.head.appendChild(style);
   }
 
-  // --- Construction du HTML du widget ---
+  // --- HTML du widget ---
   conteneur.innerHTML = `
     <section class="gz-commentaires-section">
       <h2 class="gz-commentaires-titre">Commentaires</h2>
@@ -147,7 +147,7 @@
         throw new Error(donnees.error || "Une erreur est survenue.");
       }
 
-      message.textContent = "Merci ! Ton commentaire va bientôt apparaître.";
+      message.textContent = "Merci ! Votre commentaire va bientôt apparaître. Nous analysons pour détecter les spams et les contenus inappropriés.";
       message.classList.add("succes");
       formulaire.reset();
 
