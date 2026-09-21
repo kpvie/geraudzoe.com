@@ -173,7 +173,7 @@
     <style>
         .bouton-assistant {
             position: fixed;
-            bottom: 24px;
+            bottom: 60px;
             right: 24px;
             width: 58px;
             height: 58px;
@@ -214,7 +214,7 @@
 
         .panneau-assistant {
             position: fixed;
-            bottom: 96px;
+            bottom: 132px;
             right: 24px;
             width: 350px;
             max-width: calc(100vw - 32px);
@@ -1445,6 +1445,8 @@
                 if (chargement) chargement.remove();
             }
 
+            let historiqueConversation = []; // vit tant que la page reste ouverte, se vide au rechargement
+
             async function envoyerMessage() {
                 const message = champSaisieAssistant.value.trim();
                 if (!message) return;
@@ -1456,11 +1458,13 @@
                 afficherChargement();
 
                 try {
-                    // Contrat exact attendu par le Worker : { prompt: "..." } → { reponse: "..." } ou { error: "..." }
                     const reponse = await fetch(URL_WORKER_ASSISTANT, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ prompt: message }),
+                        body: JSON.stringify({
+                            prompt: message,
+                            historique: historiqueConversation, // envoie les échanges précédents
+                        }),
                     });
 
                     const donnees = await reponse.json();
@@ -1469,7 +1473,12 @@
                     if (!reponse.ok || donnees.error) {
                         ajouterBulle(donnees.error || "Une erreur est survenue. Réessaie dans un instant.", "erreur");
                     } else {
-                        ajouterBulle(donnees.reponse || "Désolé, je n'ai pas pu générer de réponse.", "assistant");
+                        const texteReponse = donnees.reponse || "Désolé, je n'ai pas pu générer de réponse.";
+                        ajouterBulle(texteReponse, "assistant");
+
+                        // Met à jour l'historique local pour le prochain message
+                        historiqueConversation.push({ role: "user", texte: message });
+                        historiqueConversation.push({ role: "assistant", texte: texteReponse });
                     }
                 } catch (erreurReseau) {
                     retirerChargement();
