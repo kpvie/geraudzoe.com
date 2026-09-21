@@ -1419,6 +1419,15 @@
                 champSaisieAssistant.style.height = champSaisieAssistant.scrollHeight + "px";
             });
 
+            function obtenirIdentifiantClient() {
+  let id = localStorage.getItem("gz_client_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("gz_client_id", id);
+  }
+  return id;
+}
+
             function ajouterBulle(texte, type) {
                 const bulle = document.createElement("div");
                 bulle.className = "bulle-message " + (
@@ -1463,7 +1472,12 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             prompt: message,
-                            historique: historiqueConversation, // envoie les échanges précédents
+                            historique: historiqueConversation,
+                            body: JSON.stringify({
+  prompt,
+  historique,
+  clientId: obtenirIdentifiantClient(),
+}) // envoie les échanges précédents
                         }),
                     });
 
