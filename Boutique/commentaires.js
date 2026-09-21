@@ -4,7 +4,7 @@
 
 (function () {
   // oooooooooiiiioioioioio
-  const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev/";
+  const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
 
   const conteneur = document.getElementById("gz-commentaires");
   if (!conteneur) return; // widget absent de cette page, ...
