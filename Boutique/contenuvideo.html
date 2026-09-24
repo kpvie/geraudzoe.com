@@ -491,7 +491,16 @@
 
     .video-conteneur:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(17, 24, 38, 0.12); }
     .video-conteneur iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
+.video-conteneur video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+  background: #000;
+}
     .carte-video h3 { font-family: "DM Sans", sans-serif; font-size: 0.98rem; margin-bottom: 4px; }
     .carte-video p { color: var(--gris); font-size: 0.88rem; }
 
@@ -884,7 +893,7 @@
       <div class="bloc-prix-hero">
         <span class="prix-hero">2500 FCFA </span>
         <div class="bouton-hero-conteneur">
-          <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" class="bouton-principal">Rejoindre la formation avant l'augmentation de prix</a>
+          <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" rel="noopener noreferrer" class="bouton-principal">Rejoindre la formation avant l'augmentation de prix</a>
         </div>
       </div>
     </div>
@@ -962,18 +971,22 @@
           <p>Un format pensé pour raconter une histoire et retenir l'attention.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
-            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg" alt="Aperçu de la vidéo dessins animés">
+          <div class="video-conteneur "data-video-id="1423558758635645">
+            <img class="miniature-video" src="../Images/capcut.webp" alt="Aperçu de la vidéo dessins animés">
             <button class="bouton-lecture-video rond" aria-label="Lire la vidéo"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
           </div>
           <h3>Dessins animés pour enfants</h3>
           <p>Personnages, scènes, animation et narration.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
-            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg" alt="Aperçu de la vidéo publicité IA">
-            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
+
+         <!--====== Source locale ====== -->
+<div class="video-conteneur" data-type="local" data-video-src="../video1.mp4">
+  <img class="miniature-video" src="../Images/apercu-local.webp" alt="Aperçu de la vidéo locale">
+  <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+</div>
           <h3>Publicité vidéo IA</h3>
           <p>Transformer un produit ou un service en contenu publicitaire.</p>
         </div>
@@ -986,18 +999,25 @@
           <p>Un personnage qui parle, explique, présente ou recommande.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
-            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg" alt="Aperçu de la vidéo podcast">
-            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
+         <!-- Source Facebook -->
+<div class="video-conteneur" data-type="facebook" data-video-url="https://www.facebook.com/reel/1423558758635645/">
+  <img class="miniature-video" src="../Images/capcut.webp" alt="Aperçu de la publicité vidéo IA">
+  <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+</div>
           <h3>Podcast & contenu parlé</h3>
           <p>Un autre format pour produire régulièrement du contenu avec l'IA.</p>
         </div>
         <div class="carte-video">
-          <div class="video-conteneur" data-video-id="VIDEO_ID_1">
-            <img class="miniature-video" src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg" alt="Aperçu de la vidéo sticky animé">
-            <button class="bouton-lecture-video rond" aria-label="Lire la vidéo"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
+          <!-- Source YouTube -->
+<div class="video-conteneur" data-type="youtube" data-video-id="-_2QYXmdab8">
+  <img class="miniature-video" src="../Images/capcut.webp" alt="Aperçu de la vidéo storytelling">
+  <button class="bouton-lecture-video rond" aria-label="Lire la vidéo">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+</div>
+
           <h3>Sticky animé</h3>
           <p>Exploiter les contenus existants pour faire rire les spectateurs.</p>
         </div>
@@ -1182,7 +1202,7 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span>Lien d'accès final envoyé dès la confirmation du paiement</span></li>
         </ul>
         <!-- EJBHVHGVGJG -->
-       <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" class="bouton-principal">Rejoindre maintenant</a>
+      <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" rel="noopener noreferrer" class="bouton-principal">Rejoindre maintenant</a>
       </div>
     </div>
   </section>
@@ -1211,14 +1231,14 @@
     <h2>Créer du contenu vidéo avec l'IA n'est plus réservé aux studios et aux experts</h2>
     <p class="sous-ligne">Apprends le processus ! Expérimente ! Publie ! Et, construis ton audience.</p>
     <div class="bouton-hero-conteneur">
-      <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" class="bouton-principal">Je veux rejoindre la formation</a>
+      <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" rel="noopener noreferrer" class="bouton-principal">Je veux rejoindre la formation</a>
     </div>
   </section>
 
   <!-- ===================== BARRE D'ACHAT MOBILE ===================== -->
   <div class="barre-achat-mobile" id="barreAchatMobile">
     <span class="prix-hero">2000 FCFA</span>
-    <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" class="bouton-principal">Rejoindre gratuitement d'abord</a>
+    <a href="https://chat.whatsapp.com/K3hHscXdBiR6UzuuXipRIY" rel="noopener noreferrer" class="bouton-principal">Rejoindre gratuitement d'abord</a>
   </div>
 
   <script>
@@ -1275,21 +1295,51 @@
     );
     observateurHero.observe(zoneHero);
 
-    // Bouton lecture vidéo : remplace la miniature par l'iframe YouTube au clic
-    document.querySelectorAll(".bouton-lecture-video").forEach((bouton) => {
-      bouton.addEventListener("click", () => {
-        const conteneur = bouton.closest(".video-conteneur");
-        const idVideo = conteneur.dataset.videoId;
+    // Bouton lecture vidéo : gère YouTube, Facebook et vidéos locales selon data-type
+document.querySelectorAll(".bouton-lecture-video").forEach((bouton) => {
+  bouton.addEventListener("click", () => {
+    const conteneur = bouton.closest(".video-conteneur");
+    const typeSource = conteneur.dataset.type || "youtube"; // "youtube" par défaut pour compatibilité
 
-        const iframe = document.createElement("iframe");
-        iframe.src = `https://www.youtube.com/embed/${idVideo}?autoplay=1`;
-        iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-        iframe.allowFullscreen = true;
+    let lecteur;
 
-        conteneur.appendChild(iframe);
-        conteneur.classList.add("lu");
-      });
-    });
+    if (typeSource === "youtube") {
+      const idVideo = conteneur.dataset.videoId;
+      lecteur = document.createElement("iframe");
+      lecteur.src = `https://www.youtube.com/embed/${idVideo}?autoplay=1`;
+      lecteur.allow = "autoplay; encrypted-media; picture-in-picture";
+      lecteur.allowFullscreen = true;
+
+    } else if (typeSource === "facebook") {
+      const urlVideo = conteneur.dataset.videoUrl;
+      const urlEncodee = encodeURIComponent(urlVideo);
+      lecteur = document.createElement("iframe");
+      lecteur.src = `https://www.facebook.com/plugins/video.php?href=${urlEncodee}&show_text=false&autoplay=1`;
+      lecteur.allow = "autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share";
+      lecteur.allowFullscreen = true;
+      lecteur.scrolling = "no";
+
+    } else if (typeSource === "local") {
+      const srcVideo = conteneur.dataset.videoSrc;
+      lecteur = document.createElement("video");
+      lecteur.src = srcVideo;
+      lecteur.controls = true;
+      lecteur.autoplay = true;
+      lecteur.playsInline = true; // évite le plein écran forcé automatique sur iPhone
+    }
+
+    if (!lecteur) return; // sécurité si data-type inconnu ou mal orthographié
+
+    lecteur.style.position = "absolute";
+    lecteur.style.inset = "0";
+    lecteur.style.width = "100%";
+    lecteur.style.height = "100%";
+    lecteur.style.border = "none";
+
+    conteneur.appendChild(lecteur);
+    conteneur.classList.add("lu");
+  });
+});
   </script>
   <div id="gz-commentaires"></div>
 <script src="commentaires.js"></script>
