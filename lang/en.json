@@ -5,7 +5,7 @@
     "processus": "Process",
     "portfolio": "Portfolio",
     "faq": "FAQ",
-    "boutique": "Shop",
+    "boutique": "Digitalist Academy",
     "contact": "Contact",
     "cta": "Start a project"
   },
@@ -58,13 +58,6 @@
     "p5_text": "Building a professional digital presence."
       },
 
-    "products": {
-      "here": "Digital Shop",
-      "digit": "My Digital Products",
-      "again": "Ready-to-use resources, delivered automatically after secure payment.",
-      "januar": "Discover all my products"
-  },
-  
   "why": {
     "eyebrow": "Why me",
     "title": "A digital partner worth investing in",
@@ -127,12 +120,12 @@
     "link1": "What I offer",
     "link2": "My Work",
     "link3": "FAQ",
-    "link4": "Shop"
+    "link4": "Digitalist Academy"
   },
   "products": {
-    "eyebrow": "Digital shop",
-    "title": "My digital products",
-    "subtitle": "Ready-to-use resources, delivered automatically after secure payment.",
-    "cta": "Discover all my products"
-}
+    "eyebrow": "Digitalist Academy",
+    "title": "My online courses",
+    "subtitle": "Ready-to-use resources, learner communities, and personalized support.",
+    "cta": "Discover all courses"
+  }
 }

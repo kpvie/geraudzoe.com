@@ -5,7 +5,7 @@
     "processus": "Processus",
     "portfolio": "Portfolio",
     "faq": "FAQ",
-    "boutique": "Boutique",
+    "boutique": "Digitalist Academy",
     "contact": "Contact",
     "cta": "Démarrer un projet"
   },
@@ -57,13 +57,6 @@
     "p5_title": "Identité numérique",
     "p5_text": "Création d'une présence digitale professionnelle."
   },
-     "products": {
-      "here": "Boutique digitale",
-      "digit": "Mes produits numériques",
-      "again": "Des ressources prêtes à l'emploi, livrées automatiquement après paiement sécurisé.",
-      "januar": "Découvrir tous mes produits"
-  },
-
   "why": {
     "eyebrow": "Pourquoi moi",
     "title": "Un partenaire digital en qui vous pouvez investir",
@@ -126,12 +119,12 @@
     "link1": "Ce que je propose",
     "link2": "Mes Réalisations",
     "link3": "FAQ",
-    "link4": "Boutique"
+    "link4": "Digitalist Academy"
   },
   "products": {
-    "eyebrow": "Boutique digitale",
-    "title": "Mes produits numériques",
-    "subtitle": "Des ressources prêtes à l'emploi, livrées automatiquement après paiement sécurisé.",
-    "cta": "Découvrir tous mes produits"
-}
+    "eyebrow": "Digitalist Academy",
+    "title": "Mes formations en ligne",
+    "subtitle": "Des ressources prêtes à l'emploi, des communautés d'apprenants et un accompagnement personnalisé.",
+    "cta": "Découvrir toutes les formations"
+  }
 }
