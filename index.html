@@ -1311,7 +1311,7 @@
                     <li><a href="#services" data-i18n="footer.link1">Ce que je propose</a></li>
                     <li><a href="#portfolio" data-i18n="footer.link2">Mes Réalisations</a></li>
                     <li><a href="#faq" data-i18n="footer.link3">FAQ</a></li>
-                    <li><a href="https://elhjqpbx.mychariow.shop" target="_blank" rel="noopener noreferrer"
+                    <li><a href="Boutique/Accueil-produits.html" target="_blank" rel="noopener noreferrer"
                             data-i18n="footer.link4">Boutique</a></li>
                 </ul>
 
@@ -1332,6 +1332,8 @@
             <p class="copyright">
                 © 2026 Designed by <a href="#accueil">Géraud KPOVIESSI</a><br>Tous droits réservés.
             </p>
+
+               <a href="#" data-ouvrir-cookies>Gérer mes cookies</a>
 
         </div>
 
@@ -1391,11 +1393,27 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/consentement.js" data-politique="../politique-confidentialite.html" defer></script>
 
     <script>
         (function () {
             // iiiiiiiiiiiiiii
             const URL_WORKER_ASSISTANT = "https://portfolio.kpoviessigeraude.workers.dev/";
+            function obtenirClientId() {
+                try {
+                    let id = localStorage.getItem("assistantClientId");
+                    if (!id) {
+                        id = crypto.randomUUID
+                            ? crypto.randomUUID()
+                            : String(Date.now()) + Math.random().toString(36).slice(2);
+                        localStorage.setItem("assistantClientId", id);
+                    }
+                    return id;
+                } catch (e) {
+                    return "";
+                }
+            }
+            const CLIENT_ID = obtenirClientId();
 
             const boutonAssistant = document.getElementById("boutonAssistant");
             const panneauAssistant = document.getElementById("panneauAssistant");
@@ -1466,6 +1484,8 @@
                         body: JSON.stringify({
                             prompt: message,
                             historique: historiqueConversation,
+                            clientId: CLIENT_ID,
+                            visiteurId: window.Consentement ? Consentement.obtenirVisiteurId() : null,
                             
 // envoie les échanges précédents
                         }),
