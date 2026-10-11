@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Géraud KPOVIESSI</title>
+  <meta name="description" content="Actualités, conseils et ressources sur l'IA, le développement web et la création de contenu, par Géraud KPOVIESSI.">
+  <meta name="author" content="Géraud KPOVIESSI">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://kpvie.github.io/geraudzoe.com/blog.html">
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/blog-style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Inter", sans-serif; color: #10131a; background: #ffffff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    .entete { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(16, 19, 26, 0.09); }
+    .entete-interieur { max-width: 1140px; margin: 0 auto; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .logo { font-family: "Sora", "Inter", sans-serif; font-size: 1.35rem; font-weight: 700; color: #10131a; letter-spacing: -0.01em; }
+    .logo span { color: #2e5cff; }
+
+    .bouton { display: inline-block; background: #2e5cff; color: #ffffff; border: 1.5px solid #2e5cff; font-weight: 600; font-size: 0.88rem; padding: 9px 16px; border-radius: 8px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+    .bouton:hover { background: #ffffff; color: #000000; }
+
+    .conteneur { max-width: 1140px; margin: 0 auto; padding: 48px 20px 72px; }
+    .titre-page { font-family: "Sora", sans-serif; font-size: clamp(1.8rem, 5vw, 2.5rem); letter-spacing: -0.02em; margin-bottom: 8px; }
+    .sous-titre-page { color: #4b5563; margin-bottom: 36px; max-width: 620px; }
+
+    .grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .carte { display: flex; flex-direction: column; background: #ffffff; border: 1px solid rgba(16, 19, 26, 0.1); border-radius: 14px; overflow: hidden; transition: transform 0.25s ease, border-color 0.25s ease; }
+    .carte:hover { transform: translateY(-5px); border-color: rgba(46, 92, 255, 0.4); }
+    .carte img, .carte-sans-image { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+    .carte-sans-image { opacity: 0.9; }
+    .carte-corps { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .carte-date { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; }
+    .carte h2 { font-family: "Sora", sans-serif; font-size: 1.1rem; line-height: 1.3; }
+    .carte p { color: #4b5563; font-size: 0.92rem; }
+    .carte-lire { margin-top: auto; padding-top: 8px; font-weight: 600; font-size: 0.9rem; color: #2e5cff; }
+
+    .message { text-align: center; color: #6b7280; padding: 60px 0; grid-column: 1 / -1; }
+
+    .actions-article { max-width: 720px; margin: 0 auto; padding: 24px 20px 56px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+    .bouton-clair { display: inline-block; background: #ffffff; color: #10131a; border: 1.5px solid rgba(16, 19, 26, 0.2); font-weight: 600; font-size: 0.88rem; padding: 9px 16px; border-radius: 8px; transition: border-color 0.2s ease; }
+    .bouton-clair:hover { border-color: #2e5cff; }
+
+    .pied { border-top: 1px solid rgba(16, 19, 26, 0.09); padding: 28px 20px; text-align: center; color: #6b7280; font-size: 0.86rem; }
+
+    @media (max-width: 1024px) { .grille { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) {
+      .grille { grid-template-columns: 1fr; }
+      .conteneur { padding: 32px 16px 56px; }
+      .bouton { font-size: 0.8rem; padding: 7px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="entete">
+    <div class="entete-interieur">
+      <a href="https://kpvie.github.io/geraudzoe.com/" class="logo">Géraud<span>KPOVIESSI</span></a>
+      <a href="https://kpvie.github.io/geraudzoe.com/" class="bouton">Retour au site</a>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <noscript><p class="message">Active JavaScript pour lire les articles.</p></noscript>
+  </main>
+
+  <footer class="pied">© 2026 Géraud KPOVIESSI — Tous droits réservés.</footer>
+
+  <script src="js/blog-rendu.js"></script>
+  <script>
+    const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
+    const URL_SITE = "https://kpvie.github.io/geraudzoe.com/";
+    const zoneContenu = document.getElementById("contenu");
+    const slugDemande = new URLSearchParams(window.location.search).get("a");
+
+    function urlImage(article) {
+      return URL_API + "/blog/image?id=" + article.id + "&v=" + article.modifie_le;
+    }
+
+    function definirMeta(nom, valeur, attribut) {
+      const cle = attribut || "name";
+      let balise = document.head.querySelector("meta[" + cle + '="' + nom + '"]');
+      if (!balise) {
+        balise = document.createElement("meta");
+        balise.setAttribute(cle, nom);
+        document.head.appendChild(balise);
+      }
+      balise.setAttribute("content", valeur);
+    }
+
+    // Référencement : titre, description, lien canonique et données structurées de l'article
+    function definirSeo(article) {
+      const description = article.resume || article.contenu.replace(/\s+/g, " ").slice(0, 155);
+      const adresse = URL_SITE + "blog.html?a=" + encodeURIComponent(article.slug);
+      document.title = article.titre + " | Géraud KPOVIESSI";
+      definirMeta("description", description);
+      definirMeta("og:title", article.titre, "property");
+      definirMeta("og:description", description, "property");
+      definirMeta("og:type", "article", "property");
+      definirMeta("og:url", adresse, "property");
+      if (article.a_image) definirMeta("og:image", urlImage(article), "property");
+
+      const canonique = document.head.querySelector('link[rel="canonical"]');
+      if (canonique) canonique.setAttribute("href", adresse);
+
+      const donnees = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: article.titre,
+        description: description,
+        datePublished: new Date(article.publie_le * 1000).toISOString(),
+        dateModified: new Date(article.modifie_le * 1000).toISOString(),
+        author: { "@type": "Person", name: "Géraud KPOVIESSI" },
+        mainEntityOfPage: adresse,
+      };
+      if (article.a_image) donnees.image = urlImage(article);
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(donnees);
+      document.head.appendChild(script);
+    }
+
+    function carteArticle(a) {
+      const style = BlogRendu.normaliserStyle(a.style);
+      const visuel = a.a_image
+        ? '<img src="' + urlImage(a) + '" alt="" loading="lazy">'
+        : '<div class="carte-sans-image" style="background:' + style.accent + '"></div>';
+      return (
+        '<a class="carte" href="blog.html?a=' + encodeURIComponent(a.slug) + '">' + visuel +
+        '<div class="carte-corps"><span class="carte-date">' + BlogRendu.formaterDate(a.publie_le) + "</span>" +
+        "<h2>" + BlogRendu.echapper(a.titre) + "</h2>" +
+        (a.resume ? "<p>" + BlogRendu.echapper(a.resume) + "</p>" : "") +
+        '<span class="carte-lire">Lire l\'article →</span></div></a>'
+      );
+    }
+
+    async function afficherListe() {
+      zoneContenu.innerHTML =
+        '<div class="conteneur"><h1 class="titre-page">Blog</h1>' +
+        '<p class="sous-titre-page">Actualités, conseils et ressources sur l\'IA, le développement web et la création de contenu.</p>' +
+        '<div class="grille" id="grille"><p class="message">Chargement des articles…</p></div></div>';
+      const grille = document.getElementById("grille");
+      try {
+        const reponse = await fetch(URL_API + "/blog/liste");
+        const donnees = await reponse.json();
+        if (!reponse.ok) throw new Error();
+        grille.innerHTML = donnees.articles.length
+          ? donnees.articles.map(carteArticle).join("")
+          : '<p class="message">Aucun article pour le moment. Reviens bientôt !</p>';
+      } catch {
+        grille.innerHTML = '<p class="message">Impossible de charger les articles pour le moment.</p>';
+      }
+    }
+
+    async function afficherArticle(slug) {
+      zoneContenu.innerHTML = '<p class="message">Chargement…</p>';
+      try {
+        const reponse = await fetch(URL_API + "/blog/article?slug=" + encodeURIComponent(slug));
+        const donnees = await reponse.json();
+        if (!reponse.ok) throw new Error();
+        const article = donnees.article;
+        definirSeo(article);
+        const lien = "https://wa.me/?text=" + encodeURIComponent(article.titre + " — " + window.location.href);
+        zoneContenu.innerHTML =
+          BlogRendu.rendreArticle(article, article.a_image ? urlImage(article) : "") +
+          '<div class="actions-article"><a class="bouton-clair" href="blog.html">← Tous les articles</a>' +
+          '<a class="bouton" href="' + lien + '" target="_blank" rel="noopener noreferrer">Partager sur WhatsApp</a></div>';
+      } catch {
+        zoneContenu.innerHTML =
+          '<div class="conteneur"><p class="message">Cet article n\'existe pas ou n\'est plus disponible.</p>' +
+          '<p style="text-align:center"><a class="bouton" href="blog.html">Voir tous les articles</a></p></div>';
+      }
+    }
+
+    if (slugDemande) afficherArticle(slugDemande);
+    else afficherListe();
+  </script>
+</body>
+</html>

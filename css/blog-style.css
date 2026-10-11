@@ -1,0 +1,67 @@
+/* Styles des articles de blog — partagés par l'aperçu (admin) et la page publique */
+.bl {
+  --bl-fond: #ffffff;
+  --bl-texte: #10131a;
+  --bl-muted: #4b5563;
+  --bl-accent: #2e5cff;
+  --bl-police: "Sora", "Inter", sans-serif;
+  background: var(--bl-fond);
+  color: var(--bl-texte);
+  font-family: var(--bl-police);
+  padding: clamp(28px, 6vw, 64px) 20px;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
+.bl *, .bl *::before, .bl *::after { box-sizing: border-box; }
+.bl-fond-creme { --bl-fond: #faf6ee; --bl-texte: #1f1a14; --bl-muted: #5c5347; }
+.bl-fond-sombre { --bl-fond: #10131a; --bl-texte: #ffffff; --bl-muted: rgba(255, 255, 255, 0.76); }
+
+.bl-date {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bl-accent);
+  margin-bottom: 14px;
+}
+.bl h1 {
+  font-size: clamp(1.7rem, 5vw, 2.8rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  color: var(--bl-texte);
+}
+.bl-resume { font-size: 1.1rem; color: var(--bl-muted); margin: 0; }
+.bl-image { margin: 0; }
+.bl-image img { width: 100%; height: auto; display: block; border-radius: 16px; }
+
+.bl-corps { font-size: 1.05rem; }
+.bl-taille-grande .bl-corps { font-size: 1.2rem; line-height: 1.85; }
+.bl-corps p { margin: 0 0 1.3em; }
+.bl-corps h2 { font-size: 1.55em; line-height: 1.25; margin: 2em 0 0.6em; letter-spacing: -0.01em; color: var(--bl-texte); }
+.bl-corps h2::before { content: ""; display: block; width: 36px; height: 3px; background: var(--bl-accent); border-radius: 3px; margin-bottom: 0.6em; }
+.bl-corps h3 { font-size: 1.2em; margin: 1.6em 0 0.5em; color: var(--bl-texte); }
+.bl-corps blockquote { margin: 1.6em 0; padding: 0.2em 0 0.2em 1.1em; border-left: 3px solid var(--bl-accent); font-size: 1.12em; font-style: italic; color: var(--bl-muted); }
+.bl-corps ul, .bl-corps ol { margin: 0 0 1.3em; padding-left: 1.4em; }
+.bl-corps li { margin-bottom: 0.4em; }
+.bl-corps li::marker { color: var(--bl-accent); font-weight: 700; }
+.bl-corps a { color: var(--bl-accent); text-underline-offset: 3px; }
+
+/* Modèle ÉDITORIAL : titre centré, grande image, texte étroit */
+.bl-editorial .bl-entete, .bl-editorial .bl-corps { max-width: 720px; margin-left: auto; margin-right: auto; }
+.bl-editorial .bl-entete { text-align: center; margin-bottom: 28px; }
+.bl-editorial .bl-image { max-width: 960px; margin: 0 auto 40px; }
+
+/* Modèle MAGAZINE : titre et image côte à côte, lettrine */
+.bl-magazine .bl-haut { max-width: 1080px; margin: 0 auto 44px; display: grid; gap: 28px; align-items: center; }
+@media (min-width: 860px) { .bl-magazine .bl-haut { grid-template-columns: 1.05fr 1fr; gap: 48px; } }
+.bl-magazine.bl-sans-image .bl-haut { display: block; max-width: 720px; }
+.bl-magazine .bl-corps { max-width: 720px; margin: 0 auto; }
+.bl-magazine .bl-corps > p:first-child::first-letter { float: left; font-size: 3.4em; line-height: 0.85; padding: 6px 10px 0 0; color: var(--bl-accent); font-weight: 700; }
+
+/* Modèle MINIMAL : colonne étroite alignée à gauche */
+.bl-minimal .bl-entete, .bl-minimal .bl-corps, .bl-minimal .bl-image { max-width: 640px; margin-left: auto; margin-right: auto; }
+.bl-minimal .bl-entete { margin-bottom: 24px; border-left: 3px solid var(--bl-accent); padding-left: 16px; }
+.bl-minimal .bl-image { margin-bottom: 32px; }
+.bl-minimal .bl-image img { border-radius: 8px; }

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#10131a">
+  <title>Gestion — Géraud KPOVIESSI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/blog-style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { font-family: "Inter", sans-serif; background: #f4f6fa; color: #10131a; line-height: 1.5; padding-bottom: calc(80px + env(safe-area-inset-bottom)); -webkit-font-smoothing: antialiased; }
+    input, textarea, button { font-family: inherit; }
+    input[type="text"], input[type="password"], textarea { width: 100%; font-size: 16px; padding: 12px; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 10px; background: #ffffff; color: #10131a; }
+    input:focus, textarea:focus { outline: none; border-color: #2e5cff; }
+    textarea { resize: vertical; }
+    label.etiquette { display: block; font-size: 0.82rem; font-weight: 600; color: #4b5563; margin: 16px 0 6px; }
+
+    /* Boutons : bleu simple, sans ombre, blanc avec texte noir au survol */
+    .bouton { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #2e5cff; color: #ffffff; border: 1.5px solid #2e5cff; border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+    .bouton:hover { background: #ffffff; color: #000000; }
+    .bouton:disabled { opacity: 0.5; cursor: default; }
+    .bouton-clair { background: #ffffff; color: #10131a; border: 1.5px solid rgba(16, 19, 26, 0.2); border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
+    .bouton-clair:hover { border-color: #2e5cff; }
+    .bouton-rouge { background: #ffffff; color: #b91c1c; border: 1.5px solid rgba(185, 28, 28, 0.4); border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
+    .petit { padding: 8px 12px; font-size: 0.84rem; }
+
+    /* Connexion */
+    .connexion { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .connexion-carte { width: 100%; max-width: 380px; background: #ffffff; border-radius: 16px; padding: 28px 24px; border: 1px solid rgba(16, 19, 26, 0.09); }
+    .connexion-carte h1 { font-family: "Sora", sans-serif; font-size: 1.4rem; margin-bottom: 6px; }
+    .connexion-carte p.aide { color: #6b7280; font-size: 0.9rem; margin-bottom: 18px; }
+    .case { display: flex; align-items: center; gap: 8px; margin: 14px 0 18px; font-size: 0.88rem; color: #4b5563; }
+    .case input { width: 18px; height: 18px; }
+    .erreur-connexion { color: #b91c1c; font-size: 0.88rem; margin-top: 12px; min-height: 1.2em; }
+
+    /* Application */
+    .haut { position: sticky; top: 0; z-index: 40; background: #10131a; color: #ffffff; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; padding-top: calc(14px + env(safe-area-inset-top)); }
+    .haut strong { font-family: "Sora", sans-serif; font-size: 1.05rem; color: #ffffff; }
+    .haut button { background: transparent; color: #ffffff; border: 1.5px solid rgba(255, 255, 255, 0.4); border-radius: 8px; padding: 7px 12px; font-size: 0.82rem; cursor: pointer; }
+    .contenu { max-width: 760px; margin: 0 auto; padding: 16px; }
+    .nav-bas { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: #ffffff; border-top: 1px solid rgba(16, 19, 26, 0.12); display: flex; padding-bottom: env(safe-area-inset-bottom); }
+    .nav-bas button { flex: 1; background: none; border: none; padding: 12px 6px; font-size: 0.82rem; font-weight: 600; color: #6b7280; cursor: pointer; position: relative; }
+    .nav-bas button.actif { color: #2e5cff; }
+    .badge { display: inline-block; min-width: 20px; background: #dc2626; color: #ffffff; border-radius: 10px; font-size: 0.72rem; padding: 1px 6px; margin-left: 4px; }
+
+    .carte { background: #ffffff; border: 1px solid rgba(16, 19, 26, 0.09); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
+    .meta { font-size: 0.8rem; color: #6b7280; margin-bottom: 6px; }
+    .texte-com { white-space: pre-wrap; margin-bottom: 12px; font-size: 0.96rem; }
+    .rangee { display: flex; flex-wrap: wrap; gap: 8px; }
+    .vide { text-align: center; color: #6b7280; padding: 36px 0; }
+    .titre-vue { font-family: "Sora", sans-serif; font-size: 1.2rem; margin-bottom: 14px; }
+
+    .puces { display: flex; flex-wrap: wrap; gap: 8px; }
+    .puce { background: #ffffff; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 22px; padding: 8px 14px; font-size: 0.86rem; font-weight: 600; color: #10131a; cursor: pointer; }
+    .puce.actif { background: #2e5cff; border-color: #2e5cff; color: #ffffff; }
+    .pastille { width: 34px; height: 34px; border-radius: 50%; border: 3px solid #ffffff; box-shadow: 0 0 0 1.5px rgba(16, 19, 26, 0.25); cursor: pointer; }
+    .pastille.actif { box-shadow: 0 0 0 3px #2e5cff; }
+    .couleur-perso { width: 44px; height: 34px; padding: 0; border: none; background: none; }
+
+    .statut { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 3px 9px; border-radius: 12px; }
+    .statut.publie { background: #dcfce7; color: #166534; }
+    .statut.brouillon { background: #fef3c7; color: #92400e; }
+
+    .bascule { display: flex; background: #e6e9f0; border-radius: 10px; padding: 3px; }
+    .bascule button { flex: 1; background: none; border: none; border-radius: 8px; padding: 9px; font-weight: 600; font-size: 0.88rem; color: #4b5563; cursor: pointer; }
+    .bascule button.actif { background: #ffffff; color: #10131a; }
+    .outils { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .outils button { background: #ffffff; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 8px; padding: 7px 11px; font-size: 0.84rem; font-weight: 600; cursor: pointer; }
+    .aide-texte { font-size: 0.8rem; color: #6b7280; margin-top: 6px; }
+    .image-apercu { width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; }
+    .cadre-apercu { border-radius: 14px; overflow: hidden; border: 1px solid rgba(16, 19, 26, 0.12); }
+    .barre-actions { position: sticky; bottom: calc(60px + env(safe-area-inset-bottom)); background: rgba(244, 246, 250, 0.96); padding: 12px 0; margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .barre-actions .bouton, .barre-actions .bouton-clair { flex: 1; }
+
+    #toast { position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: #10131a; color: #ffffff; padding: 11px 18px; border-radius: 10px; font-size: 0.9rem; z-index: 100; max-width: 90vw; text-align: center; }
+    #toast.erreur { background: #b91c1c; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CONNEXION ===== -->
+  <div class="connexion" id="ecran-connexion">
+    <form class="connexion-carte" id="formConnexion">
+      <h1>Gestion du site</h1>
+      <p class="aide">Entre ta clé d'administration pour continuer.</p>
+      <input type="password" id="champCle" placeholder="Clé d'administration" autocomplete="current-password" required>
+      <label class="case"><input type="checkbox" id="resterConnecte"> Rester connecté sur ce téléphone</label>
+      <button class="bouton" type="submit" id="btnConnexion" style="width:100%">Se connecter</button>
+      <p class="erreur-connexion" id="erreurConnexion"></p>
+    </form>
+  </div>
+
+  <!-- ===== APPLICATION ===== -->
+  <div id="application" hidden>
+    <div class="haut"><strong>Gestion du site</strong><button id="btnDeconnexion">Déconnexion</button></div>
+    <main class="contenu">
+      <section id="vue-commentaires"></section>
+      <section id="vue-blog" hidden></section>
+    </main>
+    <nav class="nav-bas">
+      <button data-onglet="commentaires" class="actif">💬 Commentaires<span class="badge" id="badgeAttente" hidden>0</span></button>
+      <button data-onglet="blog">📝 Blog</button>
+    </nav>
+  </div>
+
+  <div id="toast" hidden></div>
+
+  <script src="js/blog-rendu.js"></script>
+  <script>
+  (function () {
+    const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
+    const CLE_STOCKAGE = "gz_cle_admin";
+    const $ = (id) => document.getElementById(id);
+    const echapper = BlogRendu.echapper;
+
+    let cleAdmin = localStorage.getItem(CLE_STOCKAGE) || sessionStorage.getItem(CLE_STOCKAGE) || "";
+    const etat = { onglet: "commentaires", statutCommentaires: "en_attente", articles: [], edition: null, apercu: false };
+
+    const OPTIONS = {
+      modele: [["editorial", "Éditorial"], ["magazine", "Magazine"], ["minimal", "Minimal"]],
+      police: [["sora", "Moderne"], ["inter", "Neutre"], ["playfair", "Élégante"], ["lora", "Lecture"]],
+      taille: [["normale", "Normale"], ["grande", "Grande"]],
+      fond: [["blanc", "Blanc"], ["creme", "Crème"], ["sombre", "Sombre"]],
+    };
+    const COULEURS = ["#2e5cff", "#dc2626", "#15803d", "#a16207", "#7c3aed", "#0f172a"];
+    const STYLES_PRETS = [
+      { nom: "Premium bleu", style: { modele: "editorial", police: "sora", taille: "normale", fond: "blanc", accent: "#2e5cff" } },
+      { nom: "Élégant", style: { modele: "magazine", police: "playfair", taille: "grande", fond: "creme", accent: "#a16207" } },
+      { nom: "Nocturne", style: { modele: "minimal", police: "inter", taille: "normale", fond: "sombre", accent: "#60a5fa" } },
+    ];
+    const STYLE_DEFAUT = STYLES_PRETS[0].style;
+
+    // ---------- Outils ----------
+    function afficherToast(message, erreur) {
+      const toast = $("toast");
+      toast.textContent = message;
+      toast.className = erreur ? "erreur" : "";
+      toast.hidden = false;
+      clearTimeout(afficherToast.minuteur);
+      afficherToast.minuteur = setTimeout(() => { toast.hidden = true; }, 3200);
+    }
+
+    async function api(chemin, options) {
+      const reponse = await fetch(URL_API + chemin, {
+        ...(options || {}),
+        headers: { "Content-Type": "application/json", "X-Cle-Admin": cleAdmin, ...((options && options.headers) || {}) },
+      });
+      const donnees = await reponse.json().catch(() => ({}));
+      if (reponse.status === 401) {
+        deconnecter();
+        throw new Error("Clé incorrecte ou expirée.");
+      }
+      if (!reponse.ok) throw new Error(donnees.error || "Erreur " + reponse.status);
+      return donnees;
+    }
+
+    function formaterDateHeure(secondes) {
+      return new Date(secondes * 1000).toLocaleString("fr-FR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+    }
+
+    // ---------- Connexion ----------
+    function deconnecter() {
+      localStorage.removeItem(CLE_STOCKAGE);
+      sessionStorage.removeItem(CLE_STOCKAGE);
+      cleAdmin = "";
+      $("application").hidden = true;
+      $("ecran-connexion").hidden = false;
+    }
+
+    function ouvrirApplication(resume) {
+      $("ecran-connexion").hidden = true;
+      $("application").hidden = false;
+      majBadge(resume ? resume.en_attente : 0);
+      afficherOnglet(etat.onglet);
+    }
+
+    function majBadge(nombre) {
+      const badge = $("badgeAttente");
+      badge.textContent = nombre;
+      badge.hidden = !nombre;
+    }
+
+    $("formConnexion").addEventListener("submit", async (evenement) => {
+      evenement.preventDefault();
+      const saisie = $("champCle").value.trim();
+      if (!saisie) return;
+      cleAdmin = saisie;
+      $("btnConnexion").disabled = true;
+      $("erreurConnexion").textContent = "";
+      try {
+        const resume = await api("/admin/verifier");
+        (($("resterConnecte").checked) ? localStorage : sessionStorage).setItem(CLE_STOCKAGE, cleAdmin);
+        $("champCle").value = "";
+        ouvrirApplication(resume);
+      } catch (erreur) {
+        cleAdmin = "";
+        $("erreurConnexion").textContent = erreur.message;
+      } finally {
+        $("btnConnexion").disabled = false;
+      }
+    });
+
+    $("btnDeconnexion").addEventListener("click", deconnecter);
+
+    // ---------- Navigation ----------
+    function afficherOnglet(nom) {
+      etat.onglet = nom;
+      document.querySelectorAll(".nav-bas button").forEach((b) => b.classList.toggle("actif", b.dataset.onglet === nom));
+      $("vue-commentaires").hidden = nom !== "commentaires";
+      $("vue-blog").hidden = nom !== "blog";
+      if (nom === "commentaires") chargerCommentaires();
+      if (nom === "blog") ouvrirListeBlog();
+    }
+
+    document.querySelectorAll(".nav-bas button").forEach((b) => b.addEventListener("click", () => afficherOnglet(b.dataset.onglet)));
+
+    // ================= COMMENTAIRES =================
+    async function chargerCommentaires() {
+      const vue = $("vue-commentaires");
+      vue.innerHTML =
+        '<h2 class="titre-vue">Commentaires</h2><div class="puces" id="filtresCommentaires">' +
+        [["en_attente", "En attente"], ["approuve", "Approuvés"], ["rejete", "Rejetés"]]
+          .map(([valeur, nom]) => '<button class="puce' + (valeur === etat.statutCommentaires ? " actif" : "") + '" data-statut="' + valeur + '">' + nom + "</button>").join("") +
+        '</div><div id="listeCommentaires" style="margin-top:14px"><p class="vide">Chargement…</p></div>';
+
+      vue.querySelectorAll("[data-statut]").forEach((b) => b.addEventListener("click", () => {
+        etat.statutCommentaires = b.dataset.statut;
+        chargerCommentaires();
+      }));
+
+      try {
+        const donnees = await api("/admin/commentaires?statut=" + etat.statutCommentaires);
+        const liste = $("listeCommentaires");
+        if (!donnees.commentaires.length) {
+          liste.innerHTML = '<p class="vide">Aucun commentaire dans cette catégorie.</p>';
+          return;
+        }
+        liste.innerHTML = donnees.commentaires.map((c) =>
+          '<div class="carte"><div class="meta">' + echapper(c.nom) + " · page « " + echapper(c.page_id) + " » · " + formaterDateHeure(c.cree_le) + "</div>" +
+          '<div class="texte-com">' + echapper(c.texte) + "</div><div class=\"rangee\">" +
+          (c.statut !== "approuve" ? '<button class="bouton petit" data-action="approuve" data-id="' + c.id + '">Approuver</button>' : "") +
+          (c.statut !== "rejete" ? '<button class="bouton-clair petit" data-action="rejete" data-id="' + c.id + '">Rejeter</button>' : "") +
+          '<button class="bouton-rouge petit" data-action="supprimer" data-id="' + c.id + '">Supprimer</button></div></div>'
+        ).join("");
+
+        liste.querySelectorAll("[data-action]").forEach((b) => b.addEventListener("click", () => actionCommentaire(b.dataset.action, b.dataset.id)));
+      } catch (erreur) {
+        $("listeCommentaires").innerHTML = '<p class="vide">' + echapper(erreur.message) + "</p>";
+      }
+    }
+
+    async function actionCommentaire(action, id) {
+      try {
+        if (action === "supprimer") {
+          if (!confirm("Supprimer définitivement ce commentaire ?")) return;
+          await api("/admin/commentaires/" + id, { method: "DELETE" });
+        } else {
+          await api("/admin/commentaires/" + id, { method: "PATCH", body: JSON.stringify({ statut: action }) });
+        }
+        afficherToast(action === "approuve" ? "Commentaire approuvé ✓" : action === "rejete" ? "Commentaire rejeté" : "Supprimé");
+        const resume = await api("/admin/verifier");
+        majBadge(resume.en_attente);
+        chargerCommentaires();
+      } catch (erreur) {
+        afficherToast(erreur.message, true);
+      }
+    }
+
+    // ================= BLOG : LISTE =================
+    async function ouvrirListeBlog() {
+      const vue = $("vue-blog");
+      vue.innerHTML = '<h2 class="titre-vue">Blog</h2><button class="bouton" id="btnNouvelArticle" style="width:100%;margin-bottom:14px">+ Nouvel article</button><div id="listeArticles"><p class="vide">Chargement…</p></div>';
+      $("btnNouvelArticle").addEventListener("click", () => ouvrirEditeur(null));
+      try {
+        const donnees = await api("/admin/blog/liste");
+        etat.articles = donnees.articles;
+        const liste = $("listeArticles");
+        if (!etat.articles.length) {
+          liste.innerHTML = '<p class="vide">Aucun article. Crée le premier !</p>';
+          return;
+        }
+        liste.innerHTML = etat.articles.map((a) =>
+          '<div class="carte"><div class="meta"><span class="statut ' + a.statut + '">' + (a.statut === "publie" ? "Publié" : "Brouillon") + "</span> · modifié " + formaterDateHeure(a.modifie_le) + "</div>" +
+          '<h3 style="font-family:Sora,sans-serif;font-size:1.02rem;margin-bottom:12px">' + echapper(a.titre) + '</h3><div class="rangee">' +
+          '<button class="bouton petit" data-action="modifier" data-id="' + a.id + '">Modifier</button>' +
+          '<button class="bouton-clair petit" data-action="statut" data-id="' + a.id + '" data-statut="' + (a.statut === "publie" ? "brouillon" : "publie") + '">' + (a.statut === "publie" ? "Retirer" : "Publier") + "</button>" +
+          (a.statut === "publie" ? '<a class="bouton-clair petit" style="text-decoration:none;display:inline-flex;align-items:center" href="blog.html?a=' + encodeURIComponent(a.slug) + '" target="_blank">Voir</a>' : "") +
+          '<button class="bouton-rouge petit" data-action="supprimer" data-id="' + a.id + '">Supprimer</button></div></div>'
+        ).join("");
+        liste.querySelectorAll("[data-action]").forEach((b) => b.addEventListener("click", () => actionArticle(b)));
+      } catch (erreur) {
+        $("listeArticles").innerHTML = '<p class="vide">' + echapper(erreur.message) + "</p>";
+      }
+    }
+
+    async function actionArticle(bouton) {
+      const id = Number(bouton.dataset.id);
+      try {
+        if (bouton.dataset.action === "modifier") return ouvrirEditeur(id);
+        if (bouton.dataset.action === "supprimer") {
+          if (!confirm("Supprimer définitivement cet article ?")) return;
+          await api("/admin/blog/supprimer", { method: "POST", body: JSON.stringify({ id }) });
+          afficherToast("Article supprimé");
+        } else {
+          await api("/admin/blog/statut", { method: "POST", body: JSON.stringify({ id, statut: bouton.dataset.statut }) });
+          afficherToast(bouton.dataset.statut === "publie" ? "Article publié ✓" : "Article retiré du blog");
+        }
+        ouvrirListeBlog();
+      } catch (erreur) {
+        afficherToast(erreur.message, true);
+      }
+    }
+
+    // ================= BLOG : ÉDITEUR =================
+    async function ouvrirEditeur(id) {
+      try {
+        if (id) {
+          const donnees = await api("/admin/blog/article?id=" + id);
+          const a = donnees.article;
+          etat.edition = { id: a.id, titre: a.titre, resume: a.resume, contenu: a.contenu, image: "__garder__", imageApercu: a.image || "", style: a.style, publie_le: a.publie_le };
+        } else {
+          etat.edition = { id: null, titre: "", resume: "", contenu: "", image: null, imageApercu: "", style: { ...STYLE_DEFAUT }, publie_le: null };
+        }
+        etat.apercu = false;
+        rendreEditeur();
+      } catch (erreur) {
+        afficherToast(erreur.message, true);
+      }
+    }
+
+    function groupePuces(nom) {
+      return '<div class="puces" data-groupe="' + nom + '">' +
+        OPTIONS[nom].map(([valeur, libelle]) => '<button type="button" class="puce" data-valeur="' + valeur + '">' + libelle + "</button>").join("") + "</div>";
+    }
+
+    function rendreEditeur() {
+      const e = etat.edition;
+      $("vue-blog").innerHTML =
+        '<div class="rangee" style="margin-bottom:14px"><button class="bouton-clair petit" id="btnRetour">← Articles</button>' +
+        '<div class="bascule" style="flex:1"><button id="btnEcrire" class="actif">Écrire</button><button id="btnApercu">Aperçu</button></div></div>' +
+        '<div id="zoneEcriture">' +
+        '<label class="etiquette">Titre</label><input type="text" id="champTitre" maxlength="150" placeholder="Le titre de ton article">' +
+        '<label class="etiquette">Résumé (sous le titre)</label><textarea id="champResume" rows="2" maxlength="300" placeholder="Une ou deux phrases"></textarea>' +
+        '<label class="etiquette">Image de couverture</label><img class="image-apercu" id="imageApercu" alt="" hidden>' +
+        '<div class="rangee"><label class="bouton petit" style="cursor:pointer">Choisir une image<input type="file" id="champImage" accept="image/*" hidden></label>' +
+        '<button type="button" class="bouton-clair petit" id="btnRetirerImage">Retirer</button></div>' +
+        '<label class="etiquette">Texte</label>' +
+        '<div class="outils"><button type="button" data-outil="h2">Titre</button><button type="button" data-outil="h3">Sous-titre</button><button type="button" data-outil="gras"><b>G</b></button><button type="button" data-outil="italique"><i>I</i></button><button type="button" data-outil="citation">Citation</button><button type="button" data-outil="liste">Liste</button><button type="button" data-outil="lien">Lien</button></div>' +
+        '<textarea id="champContenu" rows="14" placeholder="Écris ton article ici. Laisse une ligne vide entre les paragraphes."></textarea>' +
+        '<p class="aide-texte">Titres, listes et citations se placent en début de paragraphe. Utilise les boutons ci-dessus.</p>' +
+        '<h3 class="titre-vue" style="margin-top:24px">Style de l\'article</h3>' +
+        '<label class="etiquette">Styles prêts à l\'emploi</label><div class="puces" id="stylesPrets">' + STYLES_PRETS.map((p, i) => '<button type="button" class="puce" data-pret="' + i + '">' + p.nom + "</button>").join("") + "</div>" +
+        '<label class="etiquette">Mise en page</label>' + groupePuces("modele") +
+        '<label class="etiquette">Police</label>' + groupePuces("police") +
+        '<label class="etiquette">Taille du texte</label>' + groupePuces("taille") +
+        '<label class="etiquette">Fond</label>' + groupePuces("fond") +
+        '<label class="etiquette">Couleur d\'accent</label><div class="puces" id="couleurs">' +
+        COULEURS.map((c) => '<button type="button" class="pastille" data-couleur="' + c + '" style="background:' + c + '"></button>').join("") +
+        '<input type="color" class="couleur-perso" id="couleurPerso"></div></div>' +
+        '<div id="zoneApercu" hidden><div class="cadre-apercu" id="rendu"></div></div>' +
+        '<div class="barre-actions"><button class="bouton-clair" id="btnEnregistrer">Enregistrer</button><button class="bouton" id="btnPublier">' + (e.publie_le ? "Enregistrer et publier" : "Publier") + "</button></div>";
+
+      $("champTitre").value = e.titre;
+      $("champResume").value = e.resume;
+      $("champContenu").value = e.contenu;
+      majImage();
+      majStyle();
+
+      $("btnRetour").addEventListener("click", ouvrirListeBlog);
+      $("btnEcrire").addEventListener("click", () => basculerApercu(false));
+      $("btnApercu").addEventListener("click", () => basculerApercu(true));
+      $("champTitre").addEventListener("input", (ev) => { e.titre = ev.target.value; });
+      $("champResume").addEventListener("input", (ev) => { e.resume = ev.target.value; });
+      $("champContenu").addEventListener("input", (ev) => { e.contenu = ev.target.value; });
+      $("champImage").addEventListener("change", choisirImage);
+      $("btnRetirerImage").addEventListener("click", () => { e.image = null; e.imageApercu = ""; majImage(); });
+
+      document.querySelectorAll("[data-outil]").forEach((b) => b.addEventListener("click", () => appliquerOutil(b.dataset.outil)));
+      document.querySelectorAll("[data-groupe]").forEach((groupe) => groupe.querySelectorAll("[data-valeur]").forEach((b) => b.addEventListener("click", () => {
+        e.style[groupe.dataset.groupe] = b.dataset.valeur;
+        majStyle();
+      })));
+      document.querySelectorAll("[data-pret]").forEach((b) => b.addEventListener("click", () => {
+        e.style = { ...STYLES_PRETS[Number(b.dataset.pret)].style };
+        majStyle();
+      }));
+      document.querySelectorAll("[data-couleur]").forEach((b) => b.addEventListener("click", () => { e.style.accent = b.dataset.couleur; majStyle(); }));
+      $("couleurPerso").addEventListener("input", (ev) => { e.style.accent = ev.target.value; majStyle(); });
+
+      $("btnEnregistrer").addEventListener("click", () => enregistrer(false));
+      $("btnPublier").addEventListener("click", () => enregistrer(true));
+      window.scrollTo(0, 0);
+    }
+
+    function majStyle() {
+      const s = etat.edition.style;
+      document.querySelectorAll("[data-groupe]").forEach((groupe) => groupe.querySelectorAll("[data-valeur]").forEach((b) => b.classList.toggle("actif", s[groupe.dataset.groupe] === b.dataset.valeur)));
+      document.querySelectorAll("[data-couleur]").forEach((b) => b.classList.toggle("actif", s.accent.toLowerCase() === b.dataset.couleur));
+      $("couleurPerso").value = s.accent;
+      if (etat.apercu) majApercu();
+    }
+
+    function majImage() {
+      const e = etat.edition;
+      const image = $("imageApercu");
+      image.hidden = !e.imageApercu;
+      if (e.imageApercu) image.src = e.imageApercu;
+    }
+
+    function basculerApercu(afficher) {
+      etat.apercu = afficher;
+      $("btnEcrire").classList.toggle("actif", !afficher);
+      $("btnApercu").classList.toggle("actif", afficher);
+      $("zoneEcriture").hidden = afficher;
+      $("zoneApercu").hidden = !afficher;
+      if (afficher) majApercu();
+    }
+
+    function majApercu() {
+      const e = etat.edition;
+      $("rendu").innerHTML = BlogRendu.rendreArticle(
+        { titre: e.titre || "Titre de l'article", resume: e.resume, contenu: e.contenu || "Ton texte apparaîtra ici.", style: e.style, publie_le: Math.floor(Date.now() / 1000) },
+        e.imageApercu
+      );
+    }
+
+    // Insère la mise en forme à l'endroit du curseur
+    function appliquerOutil(outil) {
+      const champ = $("champContenu");
+      const debut = champ.selectionStart;
+      const fin = champ.selectionEnd;
+      const selection = champ.value.slice(debut, fin);
+      const bloc = ["h2", "h3", "citation", "liste"].includes(outil);
+      const prefixeBloc = bloc && debut > 0 && !champ.value.slice(0, debut).endsWith("\n\n") ? (champ.value.slice(0, debut).endsWith("\n") ? "\n" : "\n\n") : "";
+      let texte;
+      if (outil === "h2") texte = "## " + (selection || "Mon titre");
+      else if (outil === "h3") texte = "### " + (selection || "Mon sous-titre");
+      else if (outil === "citation") texte = "> " + (selection || "Ma citation");
+      else if (outil === "liste") texte = "- " + (selection || "Premier point").split("\n").join("\n- ");
+      else if (outil === "gras") texte = "**" + (selection || "texte important") + "**";
+      else if (outil === "italique") texte = "*" + (selection || "texte") + "*";
+      else if (outil === "lien") {
+        const adresse = prompt("Adresse du lien (https://...)");
+        if (!adresse || !/^https?:\/\//.test(adresse)) return;
+        texte = "[" + (selection || "texte du lien") + "](" + adresse + ")";
+      }
+      champ.setRangeText(prefixeBloc + texte, debut, fin, "end");
+      champ.focus();
+      etat.edition.contenu = champ.value;
+    }
+
+    // Réduit la photo avant l'envoi (largeur 1280 px max, ≈ 100-250 Ko)
+    async function compresserImage(fichier) {
+      let image;
+      try {
+        image = await createImageBitmap(fichier, { imageOrientation: "from-image" });
+      } catch {
+        image = await createImageBitmap(fichier);
+      }
+      const echelle = Math.min(1, 1280 / image.width);
+      const canevas = document.createElement("canvas");
+      canevas.width = Math.round(image.width * echelle);
+      canevas.height = Math.round(image.height * echelle);
+      canevas.getContext("2d").drawImage(image, 0, 0, canevas.width, canevas.height);
+      let type = "image/webp";
+      let qualite = 0.78;
+      let resultat = canevas.toDataURL(type, qualite);
+      if (!resultat.startsWith("data:image/webp")) {
+        type = "image/jpeg";
+        resultat = canevas.toDataURL(type, qualite);
+      }
+      while (resultat.length > 650000 && qualite > 0.4) {
+        qualite -= 0.1;
+        resultat = canevas.toDataURL(type, qualite);
+      }
+      return resultat;
+    }
+
+    async function choisirImage(evenement) {
+      const fichier = evenement.target.files[0];
+      if (!fichier) return;
+      try {
+        const donnees = await compresserImage(fichier);
+        if (donnees.length > 700000) throw new Error("Image trop lourde, choisis-en une plus petite.");
+        etat.edition.image = donnees;
+        etat.edition.imageApercu = donnees;
+        majImage();
+      } catch (erreur) {
+        afficherToast(erreur.message || "Image illisible.", true);
+      }
+      evenement.target.value = "";
+    }
+
+    async function enregistrer(publier) {
+      const e = etat.edition;
+      if (!e.titre.trim()) {
+        afficherToast("Ajoute un titre.", true);
+        return;
+      }
+      $("btnEnregistrer").disabled = true;
+      $("btnPublier").disabled = true;
+      try {
+        const reponse = await api("/admin/blog/enregistrer", {
+          method: "POST",
+          body: JSON.stringify({ id: e.id, titre: e.titre, resume: e.resume, contenu: e.contenu, image: e.image, style: e.style }),
+        });
+        e.id = reponse.id;
+        if (publier) await api("/admin/blog/statut", { method: "POST", body: JSON.stringify({ id: e.id, statut: "publie" }) });
+        afficherToast(publier ? "Article publié ✓" : "Enregistré ✓");
+        ouvrirListeBlog();
+      } catch (erreur) {
+        afficherToast(erreur.message, true);
+        if ($("btnEnregistrer")) {
+          $("btnEnregistrer").disabled = false;
+          $("btnPublier").disabled = false;
+        }
+      }
+    }
+
+    // ---------- Démarrage ----------
+    async function demarrer() {
+      if (!cleAdmin) return;
+      try {
+        ouvrirApplication(await api("/admin/verifier"));
+      } catch {
+        // la clé enregistrée n'est plus valable : l'écran de connexion reste affiché
+      }
+    }
+    demarrer();
+  })();
+  </script>
+</body>
+</html>
