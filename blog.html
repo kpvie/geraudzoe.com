@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/blog-style.css">
+<link rel="stylesheet" href="https://kpvie.github.io/geraudzoe.com/css/blog-style.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: "Inter", sans-serif; color: #10131a; background: #ffffff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -71,12 +71,25 @@
 
   <footer class="pied">© 2026 Géraud KPOVIESSI — Tous droits réservés.</footer>
 
-  <script src="js/blog-rendu.js"></script>
+    <script>
+    // Affiche à l'écran toute erreur de chargement ou d'exécution
+    window.addEventListener("error", function (e) {
+      var zone = document.getElementById("erreurConnexion");
+      if (!zone) return;
+      if (e.target && e.target !== window && (e.target.src || e.target.href)) {
+        zone.textContent = "Fichier introuvable : " + (e.target.src || e.target.href);
+      } else {
+        zone.textContent = "Erreur de la page : " + e.message;
+      }
+    }, true);
+  </script>
+  <script src="https://kpvie.github.io/geraudzoe.com/js/blog-rendu.js"></script>
   <script>
+  (function () {
     const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
-    const URL_SITE = "https://kpvie.github.io/geraudzoe.com/";
-    const zoneContenu = document.getElementById("contenu");
-    const slugDemande = new URLSearchParams(window.location.search).get("a");
+    const CLE_STOCKAGE = "gz_cle_admin";
+    const $ = (id) => document.getElementById(id);
+    const echapper = (texte) => String(texte).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
     function urlImage(article) {
       return URL_API + "/blog/image?id=" + article.id + "&v=" + article.modifie_le;

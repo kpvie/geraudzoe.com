@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/blog-style.css">
+ <link rel="stylesheet" href="https://kpvie.github.io/geraudzoe.com/css/blog-style.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     [hidden] { display: none !important; }
@@ -114,9 +114,25 @@
   <script>
   (function () {
     const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
+     <script>
+    // Affiche à l'écran toute erreur de chargement ou d'exécution
+    window.addEventListener("error", function (e) {
+      var zone = document.getElementById("erreurConnexion");
+      if (!zone) return;
+      if (e.target && e.target !== window && (e.target.src || e.target.href)) {
+        zone.textContent = "Fichier introuvable : " + (e.target.src || e.target.href);
+      } else {
+        zone.textContent = "Erreur de la page : " + e.message;
+      }
+    }, true);
+  </script>
+  <script src="https://kpvie.github.io/geraudzoe.com/js/blog-rendu.js"></script>
+  <script>
+  (function () {
+    const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
     const CLE_STOCKAGE = "gz_cle_admin";
     const $ = (id) => document.getElementById(id);
-    const echapper = BlogRendu.echapper;
+    const echapper = (texte) => String(texte).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
     let cleAdmin = localStorage.getItem(CLE_STOCKAGE) || sessionStorage.getItem(CLE_STOCKAGE) || "";
     const etat = { onglet: "commentaires", statutCommentaires: "en_attente", articles: [], edition: null, apercu: false };
