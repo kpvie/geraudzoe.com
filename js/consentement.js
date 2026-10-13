@@ -1,244 +1,185 @@
-/*!
- * consentement.js : bandeau cookies + identifiant visiteur
- *
- * Principe :
- *  - Rien n'est suivi tant que le visiteur n'a pas fait un choix.
- *  - "Nécessaires" : toujours actifs (fonctionnement du site et de l'assistant).
- *  - "Mesure et suivi" : activé seulement si le visiteur accepte. Seul ce
- *    choix autorise la création de l'identifiant visiteur (visiteurId).
- *  - Si le visiteur refuse (ou retire son accord), visiteurId est supprimé.
- *
- * Installation : une seule ligne avant </body> sur CHAQUE page :
- *   <script src="../js/consentement.js" data-politique="../politique-confidentialite.html" defer></script>
- *
- * Lien pour rouvrir les choix (pied de page, par exemple) :
- *   <a href="#" data-ouvrir-cookies>Gérer mes cookies</a>
- *
- * API pour les autres scripts (suivi, assistant, formulaires) :
- *   Consentement.mesureAutorisee()   -> true / false
- *   Consentement.obtenirVisiteurId() -> identifiant, ou null sans consentement
- *   Consentement.surChangement(fn)   -> fn({ mesure }) à chaque changement de choix
- *   Consentement.ouvrir()            -> rouvre le bandeau
+/**
+ * ============ WIDGET DE COMMENTAIRES — fichier unique ============
+ * Affiche les commentaires approuvés et ta réponse éventuelle.
  */
+
 (function () {
-  "use strict";
+  const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
 
-  var CLE_CONSENTEMENT = "consentement_v1";
-  var CLE_VISITEUR = "visiteurId";
-  var VERSION = 1;          // à incrémenter si la politique change : le choix est redemandé
-  var DUREE_MOIS = 12;      // durée de validité du choix
+  const conteneur = document.getElementById("gz-commentaires");
+  if (!conteneur) return; // widget absent de cette page
 
-  var scriptCourant = document.currentScript;
-  var URL_POLITIQUE =
-    (scriptCourant && scriptCourant.getAttribute("data-politique")) ||
-    "politique-confidentialite.html";
+  const pageId = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(".html", "") || "page-inconnue";
 
-  var ecouteurs = [];
+  // --- Injection du CSS, une seule fois ---
+  if (!document.getElementById("gz-commentaires-styles")) {
+    const style = document.createElement("style");
+    style.id = "gz-commentaires-styles";
+    style.textContent = `
+      .gz-commentaires-section { max-width: 720px; margin: 60px auto; padding: 0 20px; font-family: "Inter", sans-serif; }
+      .gz-commentaires-titre { font-family: "Sora", "Inter", sans-serif; font-size: 1.5rem; margin-bottom: 24px; color: #10131a; }
+      .gz-commentaires-liste { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+      .gz-commentaires-item { background: #f7f8fa; border: 1px solid rgba(16,19,26,0.09); border-radius: 12px; padding: 16px 18px; }
+      .gz-commentaires-auteur { font-weight: 700; font-size: 0.92rem; color: #10131a; margin-bottom: 4px; }
+      .gz-commentaires-date { font-weight: 400; color: #6b7280; font-size: 0.8rem; margin-left: 8px; }
+      .gz-commentaires-texte { color: #4b5563; font-size: 0.95rem; line-height: 1.55; white-space: pre-wrap; }
+      .gz-commentaires-reponse { margin-top: 12px; margin-left: 14px; padding: 10px 14px; background: #ffffff; border-left: 3px solid #2e5cff; border-radius: 8px; }
+      .gz-commentaires-reponse-auteur { font-weight: 700; font-size: 0.85rem; color: #2e5cff; margin-bottom: 4px; }
+      .gz-commentaires-vide { color: #6b7280; font-size: 0.92rem; font-style: italic; }
+      .gz-commentaires-formulaire { display: flex; flex-direction: column; gap: 12px; background: #ffffff; border: 1px solid rgba(16,19,26,0.09); border-radius: 12px; padding: 20px; }
+      .gz-commentaires-formulaire input, .gz-commentaires-formulaire textarea {
+        font-family: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid rgba(16,19,26,0.15); border-radius: 8px; width: 100%; box-sizing: border-box;
+      }
+      .gz-commentaires-formulaire textarea { min-height: 90px; resize: vertical; }
+      .gz-commentaires-bouton { align-self: flex-start; background: #2e5cff; color: #ffffff; border: 1.5px solid #2e5cff; font-weight: 600; font-size: 0.92rem; padding: 10px 22px; border-radius: 8px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+      .gz-commentaires-bouton:hover { background: #ffffff; color: #000000; }
+      .gz-commentaires-bouton:disabled { opacity: 0.5; cursor: default; }
+      .gz-commentaires-message { font-size: 0.88rem; margin-top: 4px; }
+      .gz-commentaires-message.succes { color: #15803d; }
+      .gz-commentaires-message.erreur { color: #b91c1c; }
+      .gz-commentaires-piege { position: absolute; left: -9999px; opacity: 0; height: 0; }
+      @media (max-width: 640px) {
+        .gz-commentaires-section { margin: 40px auto; }
+        .gz-commentaires-reponse { margin-left: 6px; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
-  // ---------- Stockage (tolérant aux navigateurs qui bloquent localStorage) ----------
-  function lire() {
+  // --- HTML du widget ---
+  conteneur.innerHTML = `
+    <section class="gz-commentaires-section">
+      <h2 class="gz-commentaires-titre">Commentaires</h2>
+      <div class="gz-commentaires-liste" id="gz-liste">
+        <p class="gz-commentaires-vide">Chargement des commentaires…</p>
+      </div>
+      <form class="gz-commentaires-formulaire" id="gz-formulaire">
+        <input type="text" id="gz-nom" placeholder="Ton nom" maxlength="60" required>
+        <textarea id="gz-texte" placeholder="Ton commentaire..." maxlength="800" required></textarea>
+        <input type="text" id="gz-piege" name="site_web" class="gz-commentaires-piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="gz-commentaires-bouton" id="gz-bouton">Publier le commentaire</button>
+        <p class="gz-commentaires-message" id="gz-message"></p>
+      </form>
+    </section>
+  `;
+
+  const liste = document.getElementById("gz-liste");
+  const formulaire = document.getElementById("gz-formulaire");
+  const champNom = document.getElementById("gz-nom");
+  const champTexte = document.getElementById("gz-texte");
+  const champPiege = document.getElementById("gz-piege");
+  const bouton = document.getElementById("gz-bouton");
+  const message = document.getElementById("gz-message");
+
+  function formaterDate(horodatageUnix) {
+    const date = new Date(horodatageUnix * 1000);
+    return date.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  // On utilise toujours textContent, jamais innerHTML, pour insérer le texte
+  // des visiteurs : même du code malveillant s'affiche comme du simple texte.
+  function construireCommentaire(item) {
+    const bloc = document.createElement("div");
+    bloc.className = "gz-commentaires-item";
+
+    const auteur = document.createElement("div");
+    auteur.className = "gz-commentaires-auteur";
+    auteur.textContent = item.nom;
+
+    const date = document.createElement("span");
+    date.className = "gz-commentaires-date";
+    date.textContent = formaterDate(item.cree_le);
+    auteur.appendChild(date);
+
+    const texte = document.createElement("div");
+    texte.className = "gz-commentaires-texte";
+    texte.textContent = item.texte;
+
+    bloc.appendChild(auteur);
+    bloc.appendChild(texte);
+
+    // Ta réponse, quand tu en as écrit une depuis la page de gestion
+    if (item.reponse) {
+      const reponse = document.createElement("div");
+      reponse.className = "gz-commentaires-reponse";
+
+      const auteurReponse = document.createElement("div");
+      auteurReponse.className = "gz-commentaires-reponse-auteur";
+      auteurReponse.textContent = "Réponse de Géraud";
+
+      const texteReponse = document.createElement("div");
+      texteReponse.className = "gz-commentaires-texte";
+      texteReponse.textContent = item.reponse;
+
+      reponse.appendChild(auteurReponse);
+      reponse.appendChild(texteReponse);
+      bloc.appendChild(reponse);
+    }
+
+    return bloc;
+  }
+
+  async function chargerCommentaires() {
     try {
-      var brut = localStorage.getItem(CLE_CONSENTEMENT);
-      if (!brut) return null;
-      var c = JSON.parse(brut);
-      if (!c || c.version !== VERSION) return null;
-      if (!c.expire || Date.now() > c.expire) return null;
-      return c;
-    } catch (e) {
-      return null;
+      const reponse = await fetch(`${URL_API}/commentaires?page=${encodeURIComponent(pageId)}`);
+      const donnees = await reponse.json();
+
+      liste.innerHTML = "";
+      if (!donnees.commentaires || donnees.commentaires.length === 0) {
+        liste.innerHTML = '<p class="gz-commentaires-vide">Aucun commentaire pour le moment. Sois le premier à donner ton avis !</p>';
+        return;
+      }
+      donnees.commentaires.forEach((item) => liste.appendChild(construireCommentaire(item)));
+    } catch {
+      liste.innerHTML = '<p class="gz-commentaires-vide">Impossible de charger les commentaires pour le moment.</p>';
     }
   }
 
-  function ecrire(mesure) {
-    var expire = new Date();
-    expire.setMonth(expire.getMonth() + DUREE_MOIS);
-    var c = {
-      version: VERSION,
-      mesure: !!mesure,
-      date: new Date().toISOString(),
-      expire: expire.getTime(),
-    };
+  formulaire.addEventListener("submit", async (evenement) => {
+    evenement.preventDefault();
+    const nom = champNom.value.trim();
+    const texte = champTexte.value.trim();
+
+    message.textContent = "";
+    message.className = "gz-commentaires-message";
+
+    if (!nom || !texte) return;
+
+    bouton.disabled = true;
+    bouton.textContent = "Envoi...";
+
     try {
-      localStorage.setItem(CLE_CONSENTEMENT, JSON.stringify(c));
-    } catch (e) {}
-    return c;
-  }
+      const reponse = await fetch(`${URL_API}/commentaires`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          page_id: pageId,
+          nom,
+          texte,
+          site_web: champPiege.value, // toujours vide pour un humain
+        }),
+      });
 
-  // ---------- Identifiant visiteur ----------
-  function genererId() {
-    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
-  }
+      const donnees = await reponse.json().catch(() => ({}));
 
-  function mesureAutorisee() {
-    var c = lire();
-    return !!(c && c.mesure);
-  }
-
-  function obtenirVisiteurId() {
-    if (!mesureAutorisee()) return null;
-    try {
-      var id = localStorage.getItem(CLE_VISITEUR);
-      if (!id) {
-        id = genererId();
-        localStorage.setItem(CLE_VISITEUR, id);
+      if (!reponse.ok) {
+        throw new Error(donnees.error || "Une erreur est survenue.");
       }
-      return id;
-    } catch (e) {
-      return null;
-    }
-  }
 
-  function supprimerVisiteurId() {
-    try {
-      localStorage.removeItem(CLE_VISITEUR);
-    } catch (e) {}
-  }
-
-  function appliquerChoix(mesure) {
-    ecrire(mesure);
-    if (mesure) obtenirVisiteurId();
-    else supprimerVisiteurId();
-    ecouteurs.forEach(function (fn) {
-      try {
-        fn({ mesure: !!mesure });
-      } catch (e) {}
-    });
-    window.dispatchEvent(
-      new CustomEvent("consentement:change", { detail: { mesure: !!mesure } })
-    );
-  }
-
-  // ---------- Interface ----------
-  var CSS =
-    "#bandeau-cookies{position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;justify-content:center;padding:12px;font-family:inherit}" +
-    "#bandeau-cookies .cc-boite{width:100%;max-width:760px;background:var(--marine,#0f1f3d);color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.35);padding:20px 22px;max-height:90vh;overflow-y:auto}" +
-    "#bandeau-cookies h2{margin:0 0 8px;font-size:1.1rem;line-height:1.3}" +
-    "#bandeau-cookies p{margin:0 0 14px;font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.88)}" +
-    "#bandeau-cookies a{color:#9db7ff;text-decoration:underline}" +
-    "#bandeau-cookies .cc-actions{display:flex;flex-wrap:wrap;gap:10px}" +
-    "#bandeau-cookies button{font:inherit;font-weight:600;font-size:.92rem;padding:11px 18px;border-radius:10px;cursor:pointer;border:2px solid var(--accent,#2e5cff);background:var(--accent,#2e5cff);color:#fff;flex:1 1 140px}" +
-    "#bandeau-cookies button.cc-secondaire{background:transparent;border-color:rgba(255,255,255,.45)}" +
-    "#bandeau-cookies button.cc-lien{flex:0 1 auto;background:transparent;border-color:transparent;text-decoration:underline;color:#9db7ff;padding-left:6px;padding-right:6px}" +
-    "#bandeau-cookies button:focus-visible,#bandeau-cookies input:focus-visible{outline:3px solid #ffd166;outline-offset:2px}" +
-    "#bandeau-cookies .cc-details{display:none;margin:0 0 16px;border-top:1px solid rgba(255,255,255,.14)}" +
-    "#bandeau-cookies .cc-details.ouvert{display:block}" +
-    "#bandeau-cookies .cc-ligne{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}" +
-    "#bandeau-cookies .cc-ligne strong{display:block;margin-bottom:3px;font-size:.95rem}" +
-    "#bandeau-cookies .cc-ligne span{font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.45}" +
-    "#bandeau-cookies input[type=checkbox]{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--accent,#2e5cff)}" +
-    "@media (max-width:480px){#bandeau-cookies{padding:8px}#bandeau-cookies .cc-boite{padding:16px}}";
-
-  function injecterStyle() {
-    if (document.getElementById("cc-style")) return;
-    var s = document.createElement("style");
-    s.id = "cc-style";
-    s.textContent = CSS;
-    document.head.appendChild(s);
-  }
-
-  function fermer() {
-    var b = document.getElementById("bandeau-cookies");
-    if (b) b.remove();
-  }
-
-  function ouvrir() {
-    fermer();
-    injecterStyle();
-
-    var courant = lire();
-    var mesureCochee = courant ? courant.mesure : false;
-
-    var racine = document.createElement("div");
-    racine.id = "bandeau-cookies";
-    racine.setAttribute("role", "dialog");
-    racine.setAttribute("aria-modal", "false");
-    racine.setAttribute("aria-labelledby", "cc-titre");
-
-    racine.innerHTML =
-      '<div class="cc-boite">' +
-      '<h2 id="cc-titre">Tes choix sur les cookies</h2>' +
-      "<p>Ce site utilise le stockage de ton navigateur. Une partie est nécessaire pour que le site et l'assistant fonctionnent. " +
-      "Avec ton accord, j'enregistre aussi ta navigation (pages vues, vidéos lues, questions posées à l'assistant) " +
-      "pour améliorer le site et pouvoir te recontacter si tu me laisses tes coordonnées. " +
-      'Tu peux changer d\'avis à tout moment. <a href="' +
-      URL_POLITIQUE +
-      '">Politique de confidentialité</a>.</p>' +
-      '<div class="cc-details" id="cc-details">' +
-      '<div class="cc-ligne"><div><strong>Nécessaires</strong>' +
-      "<span>Fonctionnement du site, mémorisation de ton choix, protection contre les abus de l'assistant. Toujours actifs.</span></div>" +
-      '<input type="checkbox" checked disabled aria-label="Cookies nécessaires, toujours actifs"></div>' +
-      '<div class="cc-ligne"><div><strong>Mesure et suivi</strong>' +
-      "<span>Identifiant visiteur anonyme, pages vues, vidéos lues, questions posées à l'assistant, et lien avec tes coordonnées si tu les fournis.</span></div>" +
-      '<input type="checkbox" id="cc-mesure" aria-label="Autoriser la mesure et le suivi"' +
-      (mesureCochee ? " checked" : "") +
-      "></div></div>" +
-      '<div class="cc-actions">' +
-      '<button type="button" id="cc-accepter">Tout accepter</button>' +
-      '<button type="button" id="cc-refuser">Tout refuser</button>' +
-      '<button type="button" class="cc-lien" id="cc-perso" aria-expanded="false" aria-controls="cc-details">Personnaliser</button>' +
-      "</div></div>";
-
-    document.body.appendChild(racine);
-
-    var details = racine.querySelector("#cc-details");
-    var boutonPerso = racine.querySelector("#cc-perso");
-    var boutonAccepter = racine.querySelector("#cc-accepter");
-    var boutonRefuser = racine.querySelector("#cc-refuser");
-    var caseMesure = racine.querySelector("#cc-mesure");
-
-    var enModePerso = false;
-
-    boutonAccepter.addEventListener("click", function () {
-      // En mode "Personnaliser", ce bouton enregistre l'état de la case.
-      appliquerChoix(enModePerso ? caseMesure.checked : true);
-      fermer();
-    });
-    boutonRefuser.addEventListener("click", function () {
-      appliquerChoix(false);
-      fermer();
-    });
-
-    boutonPerso.addEventListener("click", function () {
-      if (!enModePerso) {
-        enModePerso = true;
-        details.classList.add("ouvert");
-        boutonPerso.setAttribute("aria-expanded", "true");
-        boutonAccepter.textContent = "Enregistrer mes choix";
-        boutonPerso.style.display = "none";
-        caseMesure.focus();
-      }
-    });
-  }
-
-  function init() {
-    if (!lire()) ouvrir();
-  }
-
-  // Lien "Gérer mes cookies" n'importe où dans la page
-  document.addEventListener("click", function (e) {
-    var cible = e.target.closest && e.target.closest("[data-ouvrir-cookies]");
-    if (cible) {
-      e.preventDefault();
-      ouvrir();
+      message.textContent = "Merci ! Votre commentaire va bientôt apparaître. Nous analysons pour détecter les spams et les contenus inappropriés.";
+      message.classList.add("succes");
+      formulaire.reset();
+    } catch (erreur) {
+      message.textContent = erreur.message;
+      message.classList.add("erreur");
+    } finally {
+      bouton.disabled = false;
+      bouton.textContent = "Publier le commentaire";
     }
   });
 
-  window.Consentement = {
-    mesureAutorisee: mesureAutorisee,
-    obtenirVisiteurId: obtenirVisiteurId,
-    surChangement: function (fn) {
-      if (typeof fn === "function") ecouteurs.push(fn);
-    },
-    ouvrir: ouvrir,
-  };
-
-  // Si le choix existant autorise la mesure, on s'assure que l'identifiant existe.
-  if (mesureAutorisee()) obtenirVisiteurId();
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  chargerCommentaires();
 })();

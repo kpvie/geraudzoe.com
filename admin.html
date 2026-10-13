@@ -9,13 +9,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="https://kpvie.github.io/geraudzoe.com/css/blog-style.css">
+  <link rel="stylesheet" href="https://kpvie.github.io/geraudzoe.com/css/blog-style.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     [hidden] { display: none !important; }
     body { font-family: "Inter", sans-serif; background: #f4f6fa; color: #10131a; line-height: 1.5; padding-bottom: calc(80px + env(safe-area-inset-bottom)); -webkit-font-smoothing: antialiased; }
     input, textarea, button { font-family: inherit; }
-    input[type="text"], input[type="password"], textarea { width: 100%; font-size: 16px; padding: 12px; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 10px; background: #ffffff; color: #10131a; }
+    input[type="text"], input[type="password"], input[type="search"], textarea { width: 100%; font-size: 16px; padding: 12px; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 10px; background: #ffffff; color: #10131a; }
     input:focus, textarea:focus { outline: none; border-color: #2e5cff; }
     textarea { resize: vertical; }
     label.etiquette { display: block; font-size: 0.82rem; font-weight: 600; color: #4b5563; margin: 16px 0 6px; }
@@ -24,9 +24,10 @@
     .bouton { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #2e5cff; color: #ffffff; border: 1.5px solid #2e5cff; border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
     .bouton:hover { background: #ffffff; color: #000000; }
     .bouton:disabled { opacity: 0.5; cursor: default; }
-    .bouton-clair { background: #ffffff; color: #10131a; border: 1.5px solid rgba(16, 19, 26, 0.2); border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
+    .bouton-clair { display: inline-flex; align-items: center; justify-content: center; background: #ffffff; color: #10131a; border: 1.5px solid rgba(16, 19, 26, 0.2); border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
     .bouton-clair:hover { border-color: #2e5cff; }
     .bouton-rouge { background: #ffffff; color: #b91c1c; border: 1.5px solid rgba(185, 28, 28, 0.4); border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
+    a.bouton, a.bouton-clair { text-decoration: none; }
     .petit { padding: 8px 12px; font-size: 0.84rem; }
 
     /* Connexion */
@@ -44,16 +45,24 @@
     .haut button { background: transparent; color: #ffffff; border: 1.5px solid rgba(255, 255, 255, 0.4); border-radius: 8px; padding: 7px 12px; font-size: 0.82rem; cursor: pointer; }
     .contenu { max-width: 760px; margin: 0 auto; padding: 16px; }
     .nav-bas { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: #ffffff; border-top: 1px solid rgba(16, 19, 26, 0.12); display: flex; padding-bottom: env(safe-area-inset-bottom); }
-    .nav-bas button { flex: 1; background: none; border: none; padding: 12px 6px; font-size: 0.82rem; font-weight: 600; color: #6b7280; cursor: pointer; position: relative; }
+    .nav-bas button { flex: 1; background: none; border: none; padding: 12px 6px; font-size: 0.8rem; font-weight: 600; color: #6b7280; cursor: pointer; }
     .nav-bas button.actif { color: #2e5cff; }
     .badge { display: inline-block; min-width: 20px; background: #dc2626; color: #ffffff; border-radius: 10px; font-size: 0.72rem; padding: 1px 6px; margin-left: 4px; }
 
     .carte { background: #ffffff; border: 1px solid rgba(16, 19, 26, 0.09); border-radius: 14px; padding: 16px; margin-bottom: 12px; }
     .meta { font-size: 0.8rem; color: #6b7280; margin-bottom: 6px; }
-    .texte-com { white-space: pre-wrap; margin-bottom: 12px; font-size: 0.96rem; }
+    .texte-com { white-space: pre-wrap; margin-bottom: 12px; font-size: 0.96rem; word-break: break-word; }
     .rangee { display: flex; flex-wrap: wrap; gap: 8px; }
     .vide { text-align: center; color: #6b7280; padding: 36px 0; }
     .titre-vue { font-family: "Sora", sans-serif; font-size: 1.2rem; margin-bottom: 14px; }
+    .aide-texte { font-size: 0.8rem; color: #6b7280; margin-top: 6px; }
+
+    .reponse-existante { background: #eef2ff; border-left: 3px solid #2e5cff; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 0.92rem; white-space: pre-wrap; word-break: break-word; }
+    .zone-reponse { margin-top: 12px; }
+    details summary { cursor: pointer; font-weight: 600; color: #2e5cff; margin: 8px 0; font-size: 0.9rem; }
+    .recherche { display: flex; gap: 8px; margin-top: 12px; }
+    .recherche .bouton { flex-shrink: 0; }
+    .bandeau-filtre { background: #eef2ff; border: 1px solid rgba(46, 92, 255, 0.3); border-radius: 12px; padding: 12px; margin-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.88rem; }
 
     .puces { display: flex; flex-wrap: wrap; gap: 8px; }
     .puce { background: #ffffff; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 22px; padding: 8px 14px; font-size: 0.86rem; font-weight: 600; color: #10131a; cursor: pointer; }
@@ -65,13 +74,13 @@
     .statut { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 3px 9px; border-radius: 12px; }
     .statut.publie { background: #dcfce7; color: #166534; }
     .statut.brouillon { background: #fef3c7; color: #92400e; }
+    .statut.erreur { background: #fee2e2; color: #991b1b; }
 
     .bascule { display: flex; background: #e6e9f0; border-radius: 10px; padding: 3px; }
     .bascule button { flex: 1; background: none; border: none; border-radius: 8px; padding: 9px; font-weight: 600; font-size: 0.88rem; color: #4b5563; cursor: pointer; }
     .bascule button.actif { background: #ffffff; color: #10131a; }
     .outils { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
     .outils button { background: #ffffff; border: 1.5px solid rgba(16, 19, 26, 0.16); border-radius: 8px; padding: 7px 11px; font-size: 0.84rem; font-weight: 600; cursor: pointer; }
-    .aide-texte { font-size: 0.8rem; color: #6b7280; margin-top: 6px; }
     .image-apercu { width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; }
     .cadre-apercu { border-radius: 14px; overflow: hidden; border: 1px solid rgba(16, 19, 26, 0.12); }
     .barre-actions { position: sticky; bottom: calc(60px + env(safe-area-inset-bottom)); background: rgba(244, 246, 250, 0.96); padding: 12px 0; margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap; }
@@ -100,22 +109,20 @@
     <div class="haut"><strong>Gestion du site</strong><button id="btnDeconnexion">Déconnexion</button></div>
     <main class="contenu">
       <section id="vue-commentaires"></section>
+      <section id="vue-assistant" hidden></section>
       <section id="vue-blog" hidden></section>
     </main>
     <nav class="nav-bas">
       <button data-onglet="commentaires" class="actif">💬 Commentaires<span class="badge" id="badgeAttente" hidden>0</span></button>
+      <button data-onglet="assistant">🤖 Assistant</button>
       <button data-onglet="blog">📝 Blog</button>
     </nav>
   </div>
 
   <div id="toast" hidden></div>
 
-  <script src="js/blog-rendu.js"></script>
   <script>
-  (function () {
-    const URL_API = "https://commentaires-api.kpoviessigeraude.workers.dev";
-     <script>
-    // Affiche à l'écran toute erreur de chargement ou d'exécution
+    // Affiche à l'écran toute erreur de chargement ou d'exécution (utile sur téléphone, sans console)
     window.addEventListener("error", function (e) {
       var zone = document.getElementById("erreurConnexion");
       if (!zone) return;
@@ -135,7 +142,14 @@
     const echapper = (texte) => String(texte).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
     let cleAdmin = localStorage.getItem(CLE_STOCKAGE) || sessionStorage.getItem(CLE_STOCKAGE) || "";
-    const etat = { onglet: "commentaires", statutCommentaires: "en_attente", articles: [], edition: null, apercu: false };
+    const etat = {
+      onglet: "commentaires",
+      statutCommentaires: "en_attente",
+      articles: [],
+      edition: null,
+      apercu: false,
+      assistant: { vue: "questions", recherche: "", visiteur: "", elements: [], curseur: 0, total: 0, fini: false },
+    };
 
     const OPTIONS = {
       modele: [["editorial", "Éditorial"], ["magazine", "Magazine"], ["minimal", "Minimal"]],
@@ -158,7 +172,7 @@
       toast.className = erreur ? "erreur" : "";
       toast.hidden = false;
       clearTimeout(afficherToast.minuteur);
-      afficherToast.minuteur = setTimeout(() => { toast.hidden = true; }, 3200);
+      afficherToast.minuteur = setTimeout(() => { toast.hidden = true; }, 3600);
     }
 
     async function api(chemin, options) {
@@ -228,18 +242,40 @@
       etat.onglet = nom;
       document.querySelectorAll(".nav-bas button").forEach((b) => b.classList.toggle("actif", b.dataset.onglet === nom));
       $("vue-commentaires").hidden = nom !== "commentaires";
+      $("vue-assistant").hidden = nom !== "assistant";
       $("vue-blog").hidden = nom !== "blog";
       if (nom === "commentaires") chargerCommentaires();
+      if (nom === "assistant") ouvrirAssistant();
       if (nom === "blog") ouvrirListeBlog();
     }
 
     document.querySelectorAll(".nav-bas button").forEach((b) => b.addEventListener("click", () => afficherOnglet(b.dataset.onglet)));
 
-    // ================= COMMENTAIRES =================
+    // ================= COMMENTAIRES (avec réponses) =================
+    function carteCommentaire(c) {
+      const approuve = c.statut === "approuve";
+      return (
+        '<div class="carte"><div class="meta">' + echapper(c.nom) + " · page « " + echapper(c.page_id) + " » · " + formaterDateHeure(c.cree_le) + "</div>" +
+        '<div class="texte-com">' + echapper(c.texte) + "</div>" +
+        (c.reponse ? '<div class="reponse-existante"><strong>Ta réponse</strong><br>' + echapper(c.reponse) + "</div>" : "") +
+        '<div class="rangee">' +
+        (!approuve ? '<button class="bouton petit" data-action="approuve" data-id="' + c.id + '">Approuver</button>' : "") +
+        (approuve ? '<button class="bouton petit" data-action="repondre" data-id="' + c.id + '">' + (c.reponse ? "Modifier la réponse" : "Répondre") + "</button>" : "") +
+        (c.statut !== "rejete" ? '<button class="bouton-clair petit" data-action="rejete" data-id="' + c.id + '">Rejeter</button>' : "") +
+        '<button class="bouton-rouge petit" data-action="supprimer" data-id="' + c.id + '">Supprimer</button></div>' +
+        (approuve
+          ? '<div class="zone-reponse" id="zone-rep-' + c.id + '" hidden><textarea id="champ-rep-' + c.id + '" rows="3" maxlength="800" placeholder="Ta réponse, visible sous le commentaire"></textarea>' +
+            '<div class="rangee" style="margin-top:8px"><button class="bouton petit" data-action="enregistrer-reponse" data-id="' + c.id + '">Enregistrer la réponse</button></div>' +
+            '<p class="aide-texte">Laisse le champ vide puis enregistre pour retirer ta réponse.</p></div>'
+          : "") +
+        "</div>"
+      );
+    }
+
     async function chargerCommentaires() {
       const vue = $("vue-commentaires");
       vue.innerHTML =
-        '<h2 class="titre-vue">Commentaires</h2><div class="puces" id="filtresCommentaires">' +
+        '<h2 class="titre-vue">Commentaires</h2><div class="puces">' +
         [["en_attente", "En attente"], ["approuve", "Approuvés"], ["rejete", "Rejetés"]]
           .map(([valeur, nom]) => '<button class="puce' + (valeur === etat.statutCommentaires ? " actif" : "") + '" data-statut="' + valeur + '">' + nom + "</button>").join("") +
         '</div><div id="listeCommentaires" style="margin-top:14px"><p class="vide">Chargement…</p></div>';
@@ -256,14 +292,11 @@
           liste.innerHTML = '<p class="vide">Aucun commentaire dans cette catégorie.</p>';
           return;
         }
-        liste.innerHTML = donnees.commentaires.map((c) =>
-          '<div class="carte"><div class="meta">' + echapper(c.nom) + " · page « " + echapper(c.page_id) + " » · " + formaterDateHeure(c.cree_le) + "</div>" +
-          '<div class="texte-com">' + echapper(c.texte) + "</div><div class=\"rangee\">" +
-          (c.statut !== "approuve" ? '<button class="bouton petit" data-action="approuve" data-id="' + c.id + '">Approuver</button>' : "") +
-          (c.statut !== "rejete" ? '<button class="bouton-clair petit" data-action="rejete" data-id="' + c.id + '">Rejeter</button>' : "") +
-          '<button class="bouton-rouge petit" data-action="supprimer" data-id="' + c.id + '">Supprimer</button></div></div>'
-        ).join("");
-
+        liste.innerHTML = donnees.commentaires.map(carteCommentaire).join("");
+        donnees.commentaires.forEach((c) => {
+          const champ = $("champ-rep-" + c.id);
+          if (champ) champ.value = c.reponse || "";
+        });
         liste.querySelectorAll("[data-action]").forEach((b) => b.addEventListener("click", () => actionCommentaire(b.dataset.action, b.dataset.id)));
       } catch (erreur) {
         $("listeCommentaires").innerHTML = '<p class="vide">' + echapper(erreur.message) + "</p>";
@@ -272,6 +305,19 @@
 
     async function actionCommentaire(action, id) {
       try {
+        if (action === "repondre") {
+          const zone = $("zone-rep-" + id);
+          zone.hidden = !zone.hidden;
+          if (!zone.hidden) $("champ-rep-" + id).focus();
+          return;
+        }
+        if (action === "enregistrer-reponse") {
+          const texte = $("champ-rep-" + id).value;
+          await api("/admin/commentaires/" + id, { method: "PATCH", body: JSON.stringify({ reponse: texte }) });
+          afficherToast(texte.trim() ? "Réponse publiée ✓" : "Réponse retirée");
+          chargerCommentaires();
+          return;
+        }
         if (action === "supprimer") {
           if (!confirm("Supprimer définitivement ce commentaire ?")) return;
           await api("/admin/commentaires/" + id, { method: "DELETE" });
@@ -285,6 +331,152 @@
       } catch (erreur) {
         afficherToast(erreur.message, true);
       }
+    }
+
+    // ================= ASSISTANT =================
+    // Cherche numéros et e-mails dans la QUESTION du visiteur (jamais dans la réponse de l'assistant,
+    // qui contient tes propres coordonnées) pour proposer un contact direct.
+    function detecterContacts(texte) {
+      const contacts = [];
+      (texte.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g) || []).forEach((adresse) => {
+        contacts.push({ type: "email", valeur: adresse });
+      });
+      (texte.match(/(?:\+|00)?\d[\d\s().-]{6,}\d/g) || []).forEach((brut) => {
+        const nettoye = brut.trim();
+        if (/^\d{4}-\d{2}-\d{2}$/.test(nettoye) || /^\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}$/.test(nettoye)) return; // dates
+        let chiffres = nettoye.replace(/\D/g, "");
+        if (chiffres.startsWith("00")) {
+          chiffres = chiffres.slice(2);
+        } else if (!nettoye.startsWith("+")) {
+          if (chiffres.length === 10 && chiffres.startsWith("01")) chiffres = "229" + chiffres; // format béninois à 10 chiffres
+          else if (chiffres.length === 8) chiffres = "22901" + chiffres;                          // ancien format à 8 chiffres
+        }
+        if (chiffres.length >= 10 && chiffres.length <= 15) contacts.push({ type: "tel", valeur: nettoye, chiffres: chiffres });
+      });
+      return contacts;
+    }
+
+    function pastilleContact(contact) {
+      if (contact.type === "email") {
+        return '<a class="bouton-clair petit" href="mailto:' + echapper(contact.valeur) + '">Écrire à ' + echapper(contact.valeur) + "</a>";
+      }
+      return '<a class="bouton petit" href="https://wa.me/' + contact.chiffres + '" target="_blank" rel="noopener noreferrer">WhatsApp ' + echapper(contact.valeur) + "</a>";
+    }
+
+    function carteQuestion(q) {
+      const contacts = detecterContacts(q.question || "");
+      const visiteur = q.visiteur_id ? q.visiteur_id.slice(0, 8) : null;
+      return (
+        '<div class="carte"><div class="meta">' + formaterDateHeure(q.cree_le) +
+        (q.pays ? " · " + echapper(q.pays) : "") + (q.appareil ? " · " + echapper(q.appareil) : "") +
+        " · " + (visiteur ? "visiteur " + echapper(visiteur) : "anonyme") +
+        (q.nb_questions > 1 ? " (" + q.nb_questions + " questions)" : "") + "</div>" +
+        '<div class="texte-com"><strong>' + echapper(q.question || "") + "</strong></div>" +
+        (q.erreur ? '<span class="statut erreur">Erreur : ' + echapper(q.erreur) + "</span>" : "") +
+        (q.reponse ? "<details><summary>Voir la réponse</summary><div class=\"texte-com\">" + echapper(q.reponse) + "</div></details>" : "") +
+        (contacts.length ? '<div class="rangee" style="margin-top:10px">' + contacts.map(pastilleContact).join("") + "</div>" : "") +
+        (q.visiteur_id ? '<div class="rangee" style="margin-top:10px"><button class="bouton-clair petit" data-action="voir-visiteur" data-visiteur="' + echapper(q.visiteur_id) + '">Toutes ses questions</button></div>' : "") +
+        "</div>"
+      );
+    }
+
+    const LIBELLES_SIGNAUX = { visite_page: "Visite de page", clic_decouvrir: "Clic « Découvrir »", question_chaude: "Question à forte intention" };
+
+    function carteSignal(s) {
+      const visiteur = s.visiteur_id ? s.visiteur_id.slice(0, 8) : null;
+      return (
+        '<div class="carte"><div class="meta">' + formaterDateHeure(s.cree_le) +
+        (s.pays ? " · " + echapper(s.pays) : "") + (s.appareil ? " · " + echapper(s.appareil) : "") +
+        " · " + (visiteur ? "visiteur " + echapper(visiteur) : "anonyme") + "</div>" +
+        '<div style="margin-bottom:6px"><strong>' + echapper(LIBELLES_SIGNAUX[s.type] || s.type) + "</strong> · intérêt " + "●".repeat(Math.min(s.poids || 1, 5)) + "</div>" +
+        (s.cible ? '<div class="texte-com">' + echapper(s.cible) + "</div>" : "") +
+        (s.visiteur_id ? '<div class="rangee"><button class="bouton-clair petit" data-action="voir-visiteur" data-visiteur="' + echapper(s.visiteur_id) + '">Ses questions</button></div>' : "") +
+        "</div>"
+      );
+    }
+
+    function ouvrirAssistant() {
+      rendreAssistant();
+      chargerAssistant(true);
+    }
+
+    function rendreAssistant() {
+      const a = etat.assistant;
+      $("vue-assistant").innerHTML =
+        '<h2 class="titre-vue">Assistant</h2><div class="puces">' +
+        '<button class="puce' + (a.vue === "questions" ? " actif" : "") + '" data-vue="questions">Questions</button>' +
+        '<button class="puce' + (a.vue === "signaux" ? " actif" : "") + '" data-vue="signaux">Signaux d\'intérêt</button></div>' +
+        (a.vue === "questions"
+          ? '<form class="recherche" id="formRecherche"><input type="search" id="champRecherche" placeholder="Rechercher dans les questions" maxlength="100"><button class="bouton" type="submit">Chercher</button></form>'
+          : "") +
+        (a.visiteur
+          ? '<div class="bandeau-filtre"><span>Questions du visiteur <strong>' + echapper(a.visiteur.slice(0, 8)) + '</strong></span><button class="bouton-clair petit" id="btnRetirerFiltre">Retirer le filtre</button></div>'
+          : "") +
+        '<div id="listeAssistant" style="margin-top:14px"></div><div id="paginationAssistant"></div>';
+
+      if (a.vue === "questions") $("champRecherche").value = a.recherche;
+
+      document.querySelectorAll("[data-vue]").forEach((b) => b.addEventListener("click", () => {
+        a.vue = b.dataset.vue;
+        if (a.vue === "signaux") a.visiteur = "";
+        ouvrirAssistant();
+      }));
+      if (a.vue === "questions") {
+        $("formRecherche").addEventListener("submit", (ev) => {
+          ev.preventDefault();
+          a.recherche = $("champRecherche").value.trim();
+          chargerAssistant(true);
+        });
+      }
+      if (a.visiteur) {
+        $("btnRetirerFiltre").addEventListener("click", () => { a.visiteur = ""; ouvrirAssistant(); });
+      }
+    }
+
+    async function chargerAssistant(reinitialiser) {
+      const a = etat.assistant;
+      if (reinitialiser) {
+        a.elements = [];
+        a.curseur = 0;
+        a.fini = false;
+        $("listeAssistant").innerHTML = '<p class="vide">Chargement…</p>';
+      }
+      try {
+        const parametres = new URLSearchParams();
+        if (a.curseur) parametres.set("avant", a.curseur);
+        if (a.vue === "questions") {
+          if (a.recherche) parametres.set("q", a.recherche);
+          if (a.visiteur) parametres.set("visiteur", a.visiteur);
+        }
+        const donnees = await api("/admin/assistant/" + a.vue + "?" + parametres.toString());
+        a.elements = a.elements.concat(donnees.elements);
+        if (typeof donnees.total === "number") a.total = donnees.total;
+        a.fini = donnees.elements.length < 40;
+        a.curseur = a.elements.length ? a.elements[a.elements.length - 1].id : 0;
+        dessinerAssistant();
+      } catch (erreur) {
+        $("listeAssistant").innerHTML = '<p class="vide">' + echapper(erreur.message) + "</p>";
+      }
+    }
+
+    function dessinerAssistant() {
+      const a = etat.assistant;
+      const liste = $("listeAssistant");
+      if (!a.elements.length) {
+        liste.innerHTML = '<p class="vide">' + (a.vue === "questions" ? "Aucune question trouvée." : "Aucun signal enregistré.") + "</p>";
+      } else {
+        liste.innerHTML =
+          (a.vue === "questions" && !a.recherche && !a.visiteur ? '<p class="aide-texte" style="margin-bottom:10px">' + a.total + " question(s) au total</p>" : "") +
+          a.elements.map(a.vue === "questions" ? carteQuestion : carteSignal).join("");
+        liste.querySelectorAll("[data-action='voir-visiteur']").forEach((b) => b.addEventListener("click", () => {
+          a.vue = "questions";
+          a.visiteur = b.dataset.visiteur;
+          a.recherche = "";
+          ouvrirAssistant();
+        }));
+      }
+      $("paginationAssistant").innerHTML = a.fini || !a.elements.length ? "" : '<button class="bouton-clair" id="btnPlus" style="width:100%">Charger plus</button>';
+      if ($("btnPlus")) $("btnPlus").addEventListener("click", () => chargerAssistant(false));
     }
 
     // ================= BLOG : LISTE =================
@@ -305,7 +497,7 @@
           '<h3 style="font-family:Sora,sans-serif;font-size:1.02rem;margin-bottom:12px">' + echapper(a.titre) + '</h3><div class="rangee">' +
           '<button class="bouton petit" data-action="modifier" data-id="' + a.id + '">Modifier</button>' +
           '<button class="bouton-clair petit" data-action="statut" data-id="' + a.id + '" data-statut="' + (a.statut === "publie" ? "brouillon" : "publie") + '">' + (a.statut === "publie" ? "Retirer" : "Publier") + "</button>" +
-          (a.statut === "publie" ? '<a class="bouton-clair petit" style="text-decoration:none;display:inline-flex;align-items:center" href="blog.html?a=' + encodeURIComponent(a.slug) + '" target="_blank">Voir</a>' : "") +
+          (a.statut === "publie" ? '<a class="bouton-clair petit" href="blog.html?a=' + encodeURIComponent(a.slug) + '" target="_blank">Voir</a>' : "") +
           '<button class="bouton-rouge petit" data-action="supprimer" data-id="' + a.id + '">Supprimer</button></div></div>'
         ).join("");
         liste.querySelectorAll("[data-action]").forEach((b) => b.addEventListener("click", () => actionArticle(b)));
@@ -438,6 +630,10 @@
     }
 
     function majApercu() {
+      if (!window.BlogRendu) {
+        $("rendu").innerHTML = '<p class="vide">Fichier js/blog-rendu.js introuvable.</p>';
+        return;
+      }
       const e = etat.edition;
       $("rendu").innerHTML = BlogRendu.rendreArticle(
         { titre: e.titre || "Titre de l'article", resume: e.resume, contenu: e.contenu || "Ton texte apparaîtra ici.", style: e.style, publie_le: Math.floor(Date.now() / 1000) },
@@ -452,7 +648,8 @@
       const fin = champ.selectionEnd;
       const selection = champ.value.slice(debut, fin);
       const bloc = ["h2", "h3", "citation", "liste"].includes(outil);
-      const prefixeBloc = bloc && debut > 0 && !champ.value.slice(0, debut).endsWith("\n\n") ? (champ.value.slice(0, debut).endsWith("\n") ? "\n" : "\n\n") : "";
+      const avantCurseur = champ.value.slice(0, debut);
+      const prefixeBloc = bloc && debut > 0 && !avantCurseur.endsWith("\n\n") ? (avantCurseur.endsWith("\n") ? "\n" : "\n\n") : "";
       let texte;
       if (outil === "h2") texte = "## " + (selection || "Mon titre");
       else if (outil === "h3") texte = "### " + (selection || "Mon sous-titre");
