@@ -841,13 +841,23 @@
                 </div>
 
                 <div class="project reveal">
-                <a href="https://www.facebook.com/reel/1388300046556602/" target="_blank" rel="noopener noreferrer">
+        
                     <div class="project-media">
                         <img src="Images/portfolio3.webp"
                             alt="Vidéo publicitaire montée par Géraud Zoé pour les réseaux sociaux" loading="lazy">
                         <div class="project-overlay">
                             <span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
                         </div>
+                             <iframe
+                                 id="pub-video"
+                                  hidden
+                                  title="Vidéo pub"
+                                  width="100%"
+                                  height="100%"
+                                  style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+                                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                  allowfullscreen>
+                            </iframe>
                     </div>
                 </a>
                     <h3 data-i18n="portfolio.p3_title">Vidéo publicitaire</h3>
@@ -1501,6 +1511,23 @@
             });
         })();
     </script>
+    
+<script>
+document.getElementById('pub-project').addEventListener('click', function () {
+    const video = document.getElementById('pub-video');
+    const overlay = document.getElementById('pub-overlay');
+    const image = this.querySelector('img');
+
+    if (video.hidden) {
+        video.src = 'https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1388300046556602%2F&show_text=false&width=476&t=0&autoplay=true';
+
+        video.hidden = false;
+        image.style.display = 'none';
+        overlay.style.display = 'none';
+    }
+});
+</script>
+
 </body>
 
 </html>
